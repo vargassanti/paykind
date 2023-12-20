@@ -1,0 +1,2075 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #060b23;
+        }
+
+        .input-field {
+            position: relative;
+        }
+
+        .input-field input {
+            width: 350px;
+            height: 60px;
+            border-radius: 6px;
+            font-size: 18px;
+            padding: 0 15px;
+            border: 2px solid #fff;
+            background: transparent;
+            color: #fff;
+            outline: none;
+        }
+
+        .input-field label {
+            position: absolute;
+            top: 50%;
+            left: 15px;
+            transform: translateY(-50%);
+            color: #fff;
+            font-size: 19px;
+            pointer-events: none;
+            transition: .3s;
+        }
+
+        input:focus ~ label,
+        input:valid ~ label {
+            top: 0px;
+            left: 15px;
+            font-size: 16px;
+            padding: 0 2px;
+            background: #060b23;
+        }
+    </style>
+    <div class="input-field">
+        <input type="text" required>
+        <label>Enter email</label>
+    </div>
+</body>
+
+</html> -->
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #23b499;
+            font-family: sans-serif;
+            color: #fff;
+        }
+
+        select{
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            -ms-appearance: none;
+            appearance: none;
+            outline: 0;
+            box-shadow: none;
+            border: 0!important;
+            background: #5c6664;
+            background-image: none;
+            flex: 1;
+            padding: 0 .5em;
+            color: #fff;
+            cursor: pointer;
+            font-size: 1em;
+            font-family: sans-serif;
+        }
+
+        select::-ms-expand{
+            display: none;
+        }
+
+        .select{
+            position: relative;
+            display: flex;
+            width: 20em;
+            height: 3em;
+            line-height: 3;
+            background: #5c6664;
+            overflow: hidden;
+            border-radius: .25em;
+        }
+
+        .select::after{
+            content: '\25BC';
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 0 1em;
+            background: #2b2e2e;
+            cursor: pointer;
+            pointer-events: none;
+            transition: .25s all ease;
+        }
+
+        .select:hover::after{
+            color: #23b499;
+
+        }
+    </style>
+    <h1>Select</h1>
+    <div class="select">
+        <select name="format" id="format">
+            <option selected disabled>Selecciona uno</option>
+            <option value="pdf">PDF</option>
+            <option value="txt">TXT</option>
+            <option value="epub">ePub</option>
+            <option value="fb2">fb2</option>
+            <option value="mobi">mobi</option>
+        </select>
+    </div>
+</body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campo Select Personalizado</title>
+    <style>
+        /* Estilos para el campo select */
+        select {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #007bff;
+            border-radius: 5px;
+            outline: none;
+            width: 200px;
+            background-color: #fff;
+            color: #333;
+            cursor: pointer;
+        }
+
+        /* Estilos para las opciones del select */
+        select option {
+            background-color: #fff;
+            color: #333;
+        }
+
+        /* Estilos para las opciones seleccionadas */
+        select option:checked {
+            background-color: #007bff;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <h1>Campo Select Personalizado</h1>
+    <label for="miSelect">Selecciona una opción:</label>
+    <select id="miSelect">
+        <option value="opcion1">Opción 1</option>
+        <option value="opcion2">Opción 2</option>
+        <option value="opcion3">Opción 3</option>
+        <option value="opcion4">Opción 4</option>
+    </select>
+</body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validación de Formulario en Tiempo Real</title>
+    <style>
+        /* Estilo para los mensajes de error */
+        .error-message {
+            color: red;
+            font-family: sans-serif;
+            width: 200px;
+            position: relative;
+            left: 20px;
+            padding: 10px;
+        }
+
+        /* Estilo para los mensajes de éxito */
+        .success-message {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1>Validación de Formulario en Tiempo Real</h1>
+    <form id="miFormulario">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre">
+        <div id="nombre-error" class="error-message"></div>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email">
+        <div id="email-error" class="error-message"></div>
+
+        <input type="submit" value="Enviar">
+    </form>
+
+    <script>
+        const formulario = document.getElementById('miFormulario');
+        const nombreInput = document.getElementById('nombre');
+        const emailInput = document.getElementById('email');
+        const nombreError = document.getElementById('nombre-error');
+        const emailError = document.getElementById('email-error');
+
+        nombreInput.addEventListener('input', function () {
+            if (nombreInput.value.trim() === '') {
+                nombreError.textContent = 'El nombre es obligatorio';
+            } else {
+                nombreError.textContent = '';
+            }
+        });
+
+        emailInput.addEventListener('input', function () {
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            if (!emailPattern.test(emailInput.value)) {
+                emailError.textContent = 'El email no es válido';
+            } else {
+                emailError.textContent = '';
+            }
+        });
+
+        formulario.addEventListener('submit', function (e) {
+            if (nombreInput.value.trim() === '') {
+                nombreError.textContent = 'El nombre es obligatorio';
+                e.preventDefault();
+            }
+
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            if (!emailPattern.test(emailInput.value)) {
+                emailError.textContent = 'El email no es válido';
+                e.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Inicio de Sesión</title>
+    <style>
+        /* Estilo para los mensajes de error */
+        .error-message {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="inicio_sesion.php" method="post" class="formulario__login" onsubmit="return validarFormulario();">
+        <h2>Iniciar Sesión</h2>
+        <input type="email" placeholder="Correo:" name="correo" id="correo">
+        <div id="correo-error" class="error-message"></div>
+
+        <input type="password" placeholder="Contraseña:" name="password" id="password">
+        <div id="password-error" class="error-message"></div>
+
+        <a href="#" id="show-passwords"><img class="boton_ojo2" src="img/ojo.png"></a>
+
+        <button type="submit" name="btn_iniciar" id="btn2" class="button">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75">
+                </path>
+            </svg>
+            <div class="text">
+                Ingresar
+            </div>
+        </button>
+    </form>
+
+    <script>
+        // Función para validar correo electrónico
+        function validarCorreo(correo) {
+            const regexCorreo = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            return regexCorreo.test(correo);
+        }
+
+        function validarFormulario() {
+            const correoInput = document.getElementById('correo');
+            const correoError = document.getElementById('correo-error');
+            const passwordInput = document.getElementById('password');
+            const passwordError = document.getElementById('password-error');
+
+            // Validación del correo en tiempo real
+            correoInput.addEventListener('input', function() {
+                const correoValue = correoInput.value.trim();
+                if (correoValue === '') {
+                    correoError.textContent = 'El correo es obligatorio';
+                } else if (!validarCorreo(correoValue)) {
+                    correoError.textContent = 'El correo no es válido';
+                } else {
+                    correoError.textContent = ''; // Borra el mensaje si es válido
+                }
+            });
+
+            // Validación de la contraseña en tiempo real
+            passwordInput.addEventListener('input', function() {
+                const passwordValue = passwordInput.value.trim();
+                if (passwordValue === '') {
+                    passwordError.textContent = 'La contraseña es obligatoria';
+                } else {
+                    passwordError.textContent = ''; // Borra el mensaje si la contraseña está presente
+                }
+            });
+
+            // Validación final antes de enviar el formulario
+            const correoValue = correoInput.value.trim();
+            const passwordValue = passwordInput.value.trim();
+            
+            if (correoValue === '') {
+                correoError.textContent = 'El correo es obligatorio';
+            } else if (!validarCorreo(correoValue)) {
+                correoError.textContent = 'El correo no es válido';
+            }
+
+            if (passwordValue === '') {
+                passwordError.textContent = 'La contraseña es obligatoria';
+            }
+
+            return correoValue !== '' && validarCorreo(correoValue) && passwordValue !== '';
+        }
+    </script>
+</body>
+
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Registro</title>
+    <style>
+        /* Estilo para los mensajes de error */
+        .error-message {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <form action="crear_user.php" class="formulario__register" method="POST" enctype="multipart/form-data"
+        onsubmit="return validar(event);">
+        <h2>Regístrarse</h2>
+        <div class="caaaaja">
+            <input class="estilos_campos" type="text" placeholder="Nombres:" name="nombres_u" id="nombres_u">
+            <div id="nombres_u-error" class="error-message"></div>
+            <input class="estilos_campos" type="text" placeholder="Apellidos:" name="apellidos_u" id="apellidos_u">
+            <div id="apellidos_u-error" class="error-message"></div>
+        </div>
+        <input class="estilos_campos" type="email" placeholder="Correo:" name="correo2" id="correo2">
+        <div id="correo2-error" class="error-message"></div>
+
+        <input class="estilos_campos" type="password" placeholder="Contraseña:" name="password" id="confirmpassword">
+        <div id="confirmpassword-error" class="error-message"></div>
+
+        <div class="caaaaja">
+            <input class="estilos_campos" type="text" placeholder="Usuario:" name="usuario" id="usuario">
+            <div id="usuario-error" class="error-message"></div>
+            <input class="estilos_campos" type="text" placeholder="Celular:" name="celular" id="celular">
+            <div id="celular-error" class="error-message"></div>
+        </div>
+        <select class="estilos_campos_select" name="tipo_documento_u" id="tipo_documento_u">
+            <option class="estilos_option" value="">Tipo de identificación:</option>
+            <option class="estilos_option" value="CC">Cedula Ciudadanía</option>
+            <option class="estilos_option" value="TI">Tarjeta de Identidad</option>
+        </select>
+        <div id="tipo_documento_u-error" class="error-message"></div>
+
+        <div class="caaaaja">
+            <input class="estilos_campos" type="text" placeholder="Identificacion:" name="id_usuario" id="id_usuario">
+            <div id="id_usuario-error" class="error-message"></div>
+        </div>
+        <select class="estilos_campos_select" name="id_rol" id="id_rol">
+            <option value="">Tipo de rol:</option>
+            <option value="Cliente">Cliente</option>
+            <option value="Vendedor">Vendedor</option>
+        </select>
+        <div id="id_rol-error" class="error-message"></div>
+
+        <button type="submit" id="btn" name="btn_enviar_crear_cuenta" class="button2">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"></path>
+            </svg>
+            <div class="text">
+                Regístrarse
+            </div>
+        </button>
+    </form>
+
+    <script>
+        function validarCorreo(correo) {
+            const regexCorreo = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            return regexCorreo.test(correo);
+        }
+
+        function validarNombres() {
+            const nombresInput = document.getElementById('nombres_u');
+            const nombresError = document.getElementById('nombres_u-error');
+            const nombresValue = nombresInput.value.trim();
+            if (nombresValue === '') {
+                nombresError.textContent = 'El campo Nombres es obligatorio';
+            } else {
+                nombresError.textContent = '';
+            }
+        }
+
+        function validarApellidos() {
+            const apellidosInput = document.getElementById('apellidos_u');
+            const apellidosError = document.getElementById('apellidos_u-error');
+            const apellidosValue = apellidosInput.value.trim();
+            if (apellidosValue === '') {
+                apellidosError.textContent = 'El campo Apellidos es obligatorio';
+            } else {
+                apellidosError.textContent = '';
+            }
+        }
+
+        function validar(event) {
+            event.preventDefault(); // Evitar el envío del formulario por defecto
+
+            validarNombres();
+            validarApellidos();
+
+            const correoInput = document.getElementById('correo2');
+            const contrasenaInput = document.getElementById('confirmpassword');
+            const usuarioInput = document.getElementById('usuario');
+            const celularInput = document.getElementById('celular');
+            const tipoDocumentoInput = document.getElementById('tipo_documento_u');
+            const identificacionInput = document.getElementById('id_usuario');
+            const tipoRolInput = document.getElementById('id_rol');
+
+            // Validación de Correo
+            const correoValue = correoInput.value.trim();
+            const correoError = document.getElementById('correo2-error');
+            if (correoValue === '') {
+                correoError.textContent = 'El campo Correo es obligatorio';
+            } else if (!validarCorreo(correoValue)) {
+                correoError.textContent = 'El correo no es válido';
+            } else {
+                correoError.textContent = '';
+            }
+
+            // Validación de Contraseña
+            const contrasenaValue = contrasenaInput.value.trim();
+            const contrasenaError = document.getElementById('confirmpassword-error');
+            if (contrasenaValue === '') {
+                contrasenaError.textContent = 'El campo Contraseña es obligatorio';
+            } else {
+                contrasenaError.textContent = '';
+            }
+
+            // Validación de Usuario
+            const usuarioValue = usuarioInput.value.trim();
+            const usuarioError = document.getElementById('usuario-error');
+            if (usuarioValue === '') {
+                usuarioError.textContent = 'El campo Usuario es obligatorio';
+            } else {
+                usuarioError.textContent = '';
+            }
+
+            // Validación de Celular
+            const celularValue = celularInput.value.trim();
+            const celularError = document.getElementById('celular-error');
+            if (celularValue === '') {
+                celularError.textContent = 'El campo Celular es obligatorio';
+            } else {
+                celularError.textContent = '';
+            }
+
+            // Validación de Tipo de Documento
+            const tipoDocumentoValue = tipoDocumentoInput.value;
+            const tipoDocumentoError = document.getElementById('tipo_documento_u-error');
+            if (tipoDocumentoValue === '') {
+                tipoDocumentoError.textContent = 'Selecciona un tipo de identificación';
+            } else {
+                tipoDocumentoError.textContent = '';
+            }
+
+            // Validación de Identificación
+            const identificacionValue = identificacionInput.value.trim();
+            const identificacionError = document.getElementById('id_usuario-error');
+            if (identificacionValue === '') {
+                identificacionError.textContent = 'El campo Identificación es obligatorio';
+            } else {
+                identificacionError.textContent = '';
+            }
+
+            // Validación de Tipo de Rol
+            const tipoRolValue = tipoRolInput.value;
+            const tipoRolError = document.getElementById('id_rol-error');
+            if (tipoRolValue === '') {
+                tipoRolError.textContent = 'Selecciona un tipo de rol';
+            } else {
+                tipoRolError.textContent = '';
+            }
+
+            if (nombresError.textContent === '' &&
+                apellidosError.textContent === '' &&
+                correoError.textContent === '' &&
+                contrasenaError.textContent === '' &&
+                usuarioError.textContent === '' &&
+                celularError.textContent === '' &&
+                tipoDocumentoError.textContent === '' &&
+                identificacionError.textContent === '' &&
+                tipoRolError.textContent === '') {
+                // Si todos los campos son válidos, puedes enviar el formulario aquí
+                document.getElementById('formulario__register').submit();
+            }
+        }
+
+        // Agregar eventos 'input' para validación en tiempo real
+        document.getElementById('nombres_u').addEventListener('input', validarNombres);
+        document.getElementById('apellidos_u').addEventListener('input', validarApellidos);
+        document.getElementById('correo2').addEventListener('input', () => {
+            const correoError = document.getElementById('correo2-error');
+            correoError.textContent = ''; // Limpiar el mensaje de error en tiempo real
+        });
+        document.getElementById('confirmpassword').addEventListener('input', () => {
+            const contrasenaError = document.getElementById('confirmpassword-error');
+            contrasenaError.textContent = ''; // Limpiar el mensaje de error en tiempo real
+        });
+        document.getElementById('usuario').addEventListener('input', () => {
+            const usuarioError = document.getElementById('usuario-error');
+            usuarioError.textContent = ''; // Limpiar el mensaje de error en tiempo real
+        });
+        document.getElementById('celular').addEventListener('input', () => {
+            const celularError = document.getElementById('celular-error');
+            celularError.textContent = ''; // Limpiar el mensaje de error en tiempo real
+        });
+        document.getElementById('tipo_documento_u').addEventListener('input', () => {
+            const tipoDocumentoError = document.getElementById('tipo_documento_u-error');
+            tipoDocumentoError.textContent = ''; // Limpiar el mensaje de error en tiempo real
+        });
+        document.getElementById('id_usuario').addEventListener('input', () => {
+            const identificacionError = document.getElementById('id_usuario-error');
+            identificacionError.textContent = ''; // Limpiar el mensaje de error en tiempo real
+        });
+        document.getElementById('id_rol').addEventListener('input', () => {
+            const tipoRolError = document.getElementById('id_rol-error');
+            tipoRolError.textContent = ''; // Limpiar el mensaje de error en tiempo real
+        });
+    </script>
+</body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Registro</title>
+    <style>
+        /* Estilo para los mensajes de error */
+        .error-message {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <form action="crear_user.php" class="formulario__register" method="POST" enctype="multipart/form-data"
+        onsubmit="return validar(event);">
+        <h2>Regístrarse</h2>
+        <div class="caaaaja">
+            <input class="estilos_campos" type="text" placeholder="Nombres:" name="nombres_u" id="nombres_u">
+            <div id="nombres_u-error" class="error-message"></div>
+            <input class="estilos_campos" type="text" placeholder="Apellidos:" name="apellidos_u" id="apellidos_u">
+            <div id="apellidos_u-error" class="error-message"></div>
+        </div>
+        <input class="estilos_campos" type="email" placeholder="Correo:" name="correo2" id="correo2">
+        <div id="correo2-error" class="error-message"></div>
+
+        <input class="estilos_campos" type="password" placeholder="Contraseña:" name="password" id="confirmpassword">
+        <div id="confirmpassword-error" class="error-message"></div>
+
+        <div class="caaaaja">
+            <input class="estilos_campos" type="text" placeholder="Usuario:" name="usuario" id="usuario">
+            <div id="usuario-error" class="error-message"></div>
+            <input class="estilos_campos" type="text" placeholder="Celular:" name="celular" id="celular">
+            <div id="celular-error" class="error-message"></div>
+        </div>
+        <select class="estilos_campos_select" name="tipo_documento_u" id="tipo_documento_u">
+            <option class="estilos_option" value="">Tipo de identificación:</option>
+            <option class="estilos_option" value="CC">Cedula Ciudadanía</option>
+            <option class="estilos_option" value="TI">Tarjeta de Identidad</option>
+        </select>
+        <div id="tipo_documento_u-error" class="error-message"></div>
+
+        <div class="caaaaja">
+            <input class="estilos_campos" type="text" placeholder="Identificacion:" name="id_usuario" id="id_usuario">
+            <div id="id_usuario-error" class="error-message"></div>
+        </div>
+        <select class="estilos_campos_select" name="id_rol" id="id_rol">
+            <option value="">Tipo de rol:</option>
+            <option value="Cliente">Cliente</option>
+            <option value="Vendedor">Vendedor</option>
+        </select>
+        <div id="id_rol-error" class="error-message"></div>
+
+        <button type="submit" id="btn" name="btn_enviar_crear_cuenta" class="button2">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"></path>
+            </svg>
+            <div class="text">
+                Regístrarse
+            </div>
+        </button>
+    </form>
+
+    <script>
+        function validarCorreo(correo) {
+            const regexCorreo = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            return regexCorreo.test(correo);
+        }
+
+        function validarNombres() {
+            const nombresInput = document.getElementById('nombres_u');
+            const nombresError = document.getElementById('nombres_u-error');
+            const nombresValue = nombresInput.value.trim();
+            if (nombresValue === '') {
+                nombresError.textContent = 'El campo Nombres es obligatorio';
+            } else {
+                nombresError.textContent = '';
+            }
+        }
+
+        function validarApellidos() {
+            const apellidosInput = document.getElementById('apellidos_u');
+            const apellidosError = document.getElementById('apellidos_u-error');
+            const apellidosValue = apellidosInput.value.trim();
+            if (apellidosValue === '') {
+                apellidosError.textContent = 'El campo Apellidos es obligatorio';
+            } else {
+                apellidosError.textContent = '';
+            }
+        }
+
+        function validarCorreoEnTiempoReal() {
+            const correoInput = document.getElementById('correo2');
+            const correoValue = correoInput.value.trim();
+            const correoError = document.getElementById('correo2-error');
+            if (correoValue === '') {
+                correoError.textContent = 'El campo Correo es obligatorio';
+            } else if (!validarCorreo(correoValue)) {
+                correoError.textContent = 'El correo no es válido';
+            } else {
+                correoError.textContent = ''; // Limpiar el mensaje de error cuando es válido
+            }
+        }
+
+        function validar(event) {
+            event.preventDefault(); // Evitar el envío del formulario por defecto
+
+            validarNombres();
+            validarApellidos();
+            validarCorreoEnTiempoReal();
+
+            // Resto de validaciones aquí...
+
+            const correoError = document.getElementById('correo2-error');
+            if (correoError.textContent === '') {
+                // Si el correo es válido, puedes enviar el formulario aquí
+                document.getElementById('formulario__register').submit();
+            }
+        }
+
+        // Agregar eventos 'input' para validación en tiempo real
+        document.getElementById('nombres_u').addEventListener('input', validarNombres);
+        document.getElementById('apellidos_u').addEventListener('input', validarApellidos);
+        document.getElementById('correo2').addEventListener('input', validarCorreoEnTiempoReal);
+        // Resto de eventos 'input' aquí...
+    </script>
+</body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Registro</title>
+    <style>
+        /* Estilo para los mensajes de error */
+        .error-message {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <form action="crear_user.php" class="formulario__register" method="POST" enctype="multipart/form-data"
+        onsubmit="return validar(event);">
+        <h2>Regístrarse</h2>
+        <div class="caaaaja">
+            <input class="estilos_campos" type="text" placeholder="Nombres:" name="nombres_u" id="nombres_u">
+            <div id="nombres_u-error" class="error-message"></div>
+            <input class="estilos_campos" type="text" placeholder="Apellidos:" name="apellidos_u" id="apellidos_u">
+            <div id="apellidos_u-error" class="error-message"></div>
+        </div>
+        <input class="estilos_campos" type="email" placeholder="Correo:" name="correo2" id="correo2">
+        <div id="correo2-error" class="error-message"></div>
+
+        <input class="estilos_campos" type="password" placeholder="Contraseña:" name="password" id="confirmpassword">
+        <div id="confirmpassword-error" class="error-message"></div>
+
+        <div class="caaaaja">
+            <input class="estilos_campos" type="text" placeholder="Usuario:" name="usuario" id="usuario">
+            <div id="usuario-error" class="error-message"></div>
+            <input class="estilos_campos" type="text" placeholder="Celular:" name="celular" id="celular">
+            <div id="celular-error" class="error-message"></div>
+        </div>
+        <select class="estilos_campos_select" name="tipo_documento_u" id="tipo_documento_u">
+            <option class="estilos_option" value="">Tipo de identificación:</option>
+            <option class="estilos_option" value="CC">Cedula Ciudadanía</option>
+            <option class="estilos_option" value="TI">Tarjeta de Identidad</option>
+        </select>
+        <div id="tipo_documento_u-error" class="error-message"></div>
+
+        <div class="caaaaja">
+            <input class="estilos_campos" type="text" placeholder="Identificacion:" name="id_usuario" id="id_usuario">
+            <div id="id_usuario-error" class="error-message"></div>
+        </div>
+        <select class="estilos_campos_select" name="id_rol" id="id_rol">
+            <option value="">Tipo de rol:</option>
+            <option value="Cliente">Cliente</option>
+            <option value="Vendedor">Vendedor</option>
+        </select>
+        <div id="id_rol-error" class="error-message"></div>
+
+        <button type="submit" id="btn" name="btn_enviar_crear_cuenta" class="button2">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"></path>
+            </svg>
+            <div class="text">
+                Regístrarse
+            </div>
+        </button>
+    </form>
+
+    <script>
+        function validarCorreo(correo) {
+            const regexCorreo = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            return regexCorreo.test(correo);
+        }
+
+        function validarNombres() {
+            const nombresInput = document.getElementById('nombres_u');
+            const nombresError = document.getElementById('nombres_u-error');
+            const nombresValue = nombresInput.value.trim();
+            if (nombresValue === '') {
+                nombresError.textContent = 'El campo Nombres es obligatorio';
+            } else {
+                nombresError.textContent = '';
+            }
+        }
+
+        function validarApellidos() {
+            const apellidosInput = document.getElementById('apellidos_u');
+            const apellidosError = document.getElementById('apellidos_u-error');
+            const apellidosValue = apellidosInput.value.trim();
+            if (apellidosValue === '') {
+                apellidosError.textContent = 'El campo Apellidos es obligatorio';
+            } else {
+                apellidosError.textContent = '';
+            }
+        }
+
+        function validarCorreoEnTiempoReal() {
+            const correoInput = document.getElementById('correo2');
+            const correoValue = correoInput.value.trim();
+            const correoError = document.getElementById('correo2-error');
+            if (correoValue === '') {
+                correoError.textContent = 'El campo Correo es obligatorio';
+            } else if (!validarCorreo(correoValue)) {
+                correoError.textContent = 'El correo no es válido';
+            } else {
+                correoError.textContent = ''; // Limpiar el mensaje de error cuando es válido
+            }
+        }
+
+        function validarContrasena() {
+            const contrasenaInput = document.getElementById('confirmpassword');
+            const contrasenaError = document.getElementById('confirmpassword-error');
+            const contrasenaValue = contrasenaInput.value.trim();
+            if (contrasenaValue === '') {
+                contrasenaError.textContent = 'El campo Contraseña es obligatorio';
+            } else {
+                contrasenaError.textContent = '';
+            }
+        }
+
+        function validarUsuario() {
+            const usuarioInput = document.getElementById('usuario');
+            const usuarioError = document.getElementById('usuario-error');
+            const usuarioValue = usuarioInput.value.trim();
+            if (usuarioValue === '') {
+                usuarioError.textContent = 'El campo Usuario es obligatorio';
+            } else {
+                usuarioError.textContent = '';
+            }
+        }
+
+        function validarCelular() {
+            const celularInput = document.getElementById('celular');
+            const celularError = document.getElementById('celular-error');
+            const celularValue = celularInput.value.trim();
+            if (celularValue === '') {
+                celularError.textContent = 'El campo Celular es obligatorio';
+            } else {
+                celularError.textContent = '';
+            }
+        }
+
+        function validarTipoDocumento() {
+            const tipoDocumentoInput = document.getElementById('tipo_documento_u');
+            const tipoDocumentoError = document.getElementById('tipo_documento_u-error');
+            const tipoDocumentoValue = tipoDocumentoInput.value;
+            if (tipoDocumentoValue === '') {
+                tipoDocumentoError.textContent = 'Selecciona un tipo de identificación';
+            } else {
+                tipoDocumentoError.textContent = '';
+            }
+        }
+
+        function validarIdentificacion() {
+            const identificacionInput = document.getElementById('id_usuario');
+            const identificacionError = document.getElementById('id_usuario-error');
+            const identificacionValue = identificacionInput.value.trim();
+            if (identificacionValue === '') {
+                identificacionError.textContent = 'El campo Identificación es obligatorio';
+            } else {
+                identificacionError.textContent = '';
+            }
+        }
+
+        function validarTipoRol() {
+            const tipoRolInput = document.getElementById('id_rol');
+            const tipoRolError = document.getElementById('id_rol-error');
+            const tipoRolValue = tipoRolInput.value;
+            if (tipoRolValue === '') {
+                tipoRolError.textContent = 'Selecciona un tipo de rol';
+            } else {
+                tipoRolError.textContent = '';
+            }
+        }
+
+        function validar(event) {
+            event.preventDefault(); // Evitar el envío del formulario por defecto
+
+            validarNombres();
+            validarApellidos();
+            validarCorreoEnTiempoReal();
+            validarContrasena();
+            validarUsuario();
+            validarCelular();
+            validarTipoDocumento();
+            validarIdentificacion();
+            validarTipoRol();
+
+            const correoError = document.getElementById('correo2-error');
+            const nombresError = document.getElementById('nombres_u-error');
+            const apellidosError = document.getElementById('apellidos_u-error');
+            const contrasenaError = document.getElementById('confirmpassword-error');
+            const usuarioError = document.getElementById('usuario-error');
+            const celularError = document.getElementById('celular-error');
+            const tipoDocumentoError = document.getElementById('tipo_documento_u-error');
+            const identificacionError = document.getElementById('id_usuario-error');
+            const tipoRolError = document.getElementById('id_rol-error');
+
+            // Verificar que todos los campos estén válidos antes de enviar el formulario
+            if (
+                correoError.textContent === '' &&
+                nombresError.textContent === '' &&
+                apellidosError.textContent === '' &&
+                contrasenaError.textContent === '' &&
+                usuarioError.textContent === '' &&
+                celularError.textContent === '' &&
+                tipoDocumentoError.textContent === '' &&
+                identificacionError.textContent === '' &&
+                tipoRolError.textContent === ''
+            ) {
+                document.querySelector('form').submit();
+            }
+        }
+
+        // Agregar eventos 'input' para validación en tiempo real
+        document.getElementById('nombres_u').addEventListener('input', validarNombres);
+        document.getElementById('apellidos_u').addEventListener('input', validarApellidos);
+        document.getElementById('correo2').addEventListener('input', validarCorreoEnTiempoReal);
+        document.getElementById('confirmpassword').addEventListener('input', validarContrasena);
+        document.getElementById('usuario').addEventListener('input', validarUsuario);
+        document.getElementById('celular').addEventListener('input', validarCelular);
+        document.getElementById('tipo_documento_u').addEventListener('input', validarTipoDocumento);
+        document.getElementById('id_usuario').addEventListener('input', validarIdentificacion);
+        document.getElementById('id_rol').addEventListener('input', validarTipoRol);
+    </script>
+</body>
+</html>
+ -->
+
+<!-- <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contraseña con Imagen Toggle</title>
+    <style>
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        
+        .input {
+            border: solid 1.5px #9e9e9e;
+            border-radius: 1rem;
+            background: none;
+            width: 90%;
+            padding: 9px;
+            font-size: 1rem;
+            color: #000000;
+            transition: border 150ms cubic-bezier(0.4,0,0.2,1);
+        }
+        
+        .password-toggle {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container_inicio">
+        <div class="input-group">
+            <input required="" type="password" name="password" id="password" autocomplete="off" class="input">
+            <img class="password-toggle" id="togglePassword" src="img/ojo.png" alt="Mostrar Contraseña">
+        </div>
+    </div>
+
+    <script>
+        const passwordInput = document.getElementById('password');
+        const togglePassword = document.getElementById('togglePassword');
+
+        togglePassword.addEventListener('click', () => {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                togglePassword.src = 'img/logo.png'; // Cambiar a la imagen de ojo abierto
+            } else {
+                passwordInput.type = 'password';
+                togglePassword.src = 'img/ojo.png'; // Cambiar a la imagen de ojo cerrado
+            }
+        });
+    </script>
+</body>
+</html> -->
+<!-- <!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+            text-align: center;
+        }
+
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(#799397, #258555);
+        }
+
+        .container{
+            border: solid 1px rgba(255, 255, 255, 0.2);
+        }
+
+        table{
+            color: #fff;
+            font-size: 14px;
+            table-layout: fixed;
+            border-collapse: collapse;
+        }
+
+        thead{
+            background: rgba(140, 243, 149, 0.4);
+        }
+
+        th{
+            padding: 20px 15px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        td{
+            padding: 15px;
+            border-bottom: solid 1px rgba(255, 255, 255, 0.2);
+        }
+
+        tbody tr{
+            cursor: pointer;
+        }
+
+        tbody tr:hover{
+            background: rgba(140, 243, 149, 0.4);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>N°:</th>
+                    <th>Nombre:</th>
+                    <th>Apellidos:</th>
+                    <th>Edad:</th>
+                    <th>Telefono:</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>01</td>
+                    <td>Carlos</td>
+                    <td>Torres Paredes</td>
+                    <td>23</td>
+                    <td>23817281938</td>
+                </tr>
+                <tr>
+                    <td>01</td>
+                    <td>Carlos</td>
+                    <td>Torres Paredes</td>
+                    <td>23</td>
+                    <td>23817281938</td>
+                </tr>
+                <tr>
+                    <td>01</td>
+                    <td>Carlos</td>
+                    <td>Torres Paredes</td>
+                    <td>23</td>
+                    <td>23817281938</td>
+                </tr>
+                <tr>
+                    <td>01</td>
+                    <td>Carlos</td>
+                    <td>Torres Paredes</td>
+                    <td>23</td>
+                    <td>23817281938</td>
+                </tr>
+                <tr>
+                    <td>01</td>
+                    <td>Carlos</td>
+                    <td>Torres Paredes</td>
+                    <td>23</td>
+                    <td>23817281938</td>
+                </tr>
+                <tr>
+                    <td>01</td>
+                    <td>Carlos</td>
+                    <td>Torres Paredes</td>
+                    <td>23</td>
+                    <td>23817281938</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+</html> -->
+<!-- 
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Selección de Ciudades y Departamentos de Colombia</title>
+</head>
+<body>
+  <h1>Selecciona una Ciudad y su Departamento:</h1>
+
+  <select id="ciudades">
+  </select>
+
+  <select id="departamentos">
+  </select>
+
+  <script>
+    const selectCiudades = document.getElementById("ciudades");
+    const selectDepartamentos = document.getElementById("departamentos");
+
+    const ciudadesADepartamentos = {
+      "Medellin": ["Santiago", "Lopere", "Holaaaa"],
+      "Bello": ["Jesús", "david"],
+      "Sabaneta": ["Hola"],
+      "Itagüí": ["Hola"],
+      "Envigado": ["Hola2"],
+      "Caldas": ["Calditas"],
+      "La estrella": ["La estrellita"],
+      "Copacabana": ["Copacabanita"],
+    };
+
+    for (const ciudad in ciudadesADepartamentos) {
+      const option = document.createElement("option");
+      option.value = ciudad;
+      option.text = ciudad;
+      selectCiudades.appendChild(option);
+    }
+
+    function actualizarDepartamentos() {
+      const ciudadSeleccionada = selectCiudades.value;
+      const departamentos = ciudadesADepartamentos[ciudadSeleccionada] || [];
+
+      selectDepartamentos.innerHTML = "";
+
+      departamentos.forEach((departamento) => {
+        const option = document.createElement("option");
+        option.value = departamento;
+        option.text = departamento;
+        selectDepartamentos.appendChild(option);
+      });
+    }
+
+    selectCiudades.addEventListener("change", actualizarDepartamentos);
+
+    actualizarDepartamentos();
+  </script>
+</body>
+</html> -->
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartas Paginadas</title>
+    <style>
+        .carta {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        #botones-paginacion {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        #botones-paginacion button {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="cartas-container" id="cartas-container">
+        <div class="carta">Carta 1</div>
+        <div class="carta">Carta 2</div>
+        <div class="carta">Carta 1</div>
+        <div class="carta">Carta 2</div>
+        <div class="carta">Carta 1</div>
+        <div class="carta">Carta 2</div>
+        <div class="carta">Carta 1</div>
+        <div class="carta">Carta 2</div>
+        <div class="carta">Carta 1</div>
+        <div class="carta">Carta 2</div>
+        <div class="carta">Carta 1</div>
+        <div class="carta">Carta 2</div>
+    </div>
+    <div id="botones-paginacion">
+        <button id="pagina-anterior">Página Anterior</button>
+        <button id="siguiente-pagina">Siguiente Página</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const cartasContainer = document.getElementById('cartas-container');
+            const siguientePaginaButton = document.getElementById('siguiente-pagina');
+            const paginaAnteriorButton = document.getElementById('pagina-anterior');
+
+            let cartas = Array.from(cartasContainer.querySelectorAll('.carta'));
+            let paginaActual = 1;
+            const cartasPorPagina = 5;
+
+            function mostrarPagina(pagina) {
+                const inicio = (pagina - 1) * cartasPorPagina;
+                const fin = inicio + cartasPorPagina;
+                const cartasPagina = cartas.slice(inicio, fin);
+
+                cartasContainer.innerHTML = ''; 
+
+                cartasPagina.forEach(function (carta) {
+                    cartasContainer.appendChild(carta);
+                });
+
+                actualizarBotones();
+            }
+
+            siguientePaginaButton.addEventListener('click', function () {
+                if (paginaActual < calcularMaxPaginas()) {
+                    paginaActual++;
+                    mostrarPagina(paginaActual);
+                }
+            });
+
+            paginaAnteriorButton.addEventListener('click', function () {
+                if (paginaActual > 1) {
+                    paginaActual--;
+                    mostrarPagina(paginaActual);
+                }
+            });
+
+            function calcularMaxPaginas() {
+                return Math.ceil(cartas.length / cartasPorPagina);
+            }
+
+            function actualizarBotones() {
+                const maxPaginas = calcularMaxPaginas();
+
+                if (paginaActual < maxPaginas) {
+                    siguientePaginaButton.disabled = false;
+                } else {
+                    siguientePaginaButton.disabled = true;
+                }
+
+                if (paginaActual > 1) {
+                    paginaAnteriorButton.disabled = false;
+                } else {
+                    paginaAnteriorButton.disabled = true;
+                }
+            }
+
+            mostrarPagina(paginaActual); 
+        });
+    </script>
+</body>
+</html> -->
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Vista Previa de Producto</title>
+</head>
+
+<body>
+    <div class="product-preview">
+
+        <button id="open-preview">Vista Previa</button>
+    </div>
+    <div class="product-popup" id="product-popup">
+        <h2>Producto de ejemplo</h2>
+        <img src="imagen/05.jpg" alt="Imagen de vista previa">
+        <p>Descripción breve del producto...</p>
+        <button id="close-preview">Cerrar</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
+
+<style>
+    .product-preview {
+        text-align: center;
+        margin: 20px;
+    }
+
+    .product-popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+    }
+
+    .product-popup h2 {
+        margin-top: 0;
+    }
+
+    .product-popup img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .product-popup button {
+        display: block;
+        margin-top: 10px;
+        background-color: #007BFF;
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+</style>
+<script>
+    // script.js
+    const openButton = document.getElementById('open-preview');
+    const closeButton = document.getElementById('close-preview');
+    const productPopup = document.getElementById('product-popup');
+
+    // Función para mostrar la vista previa del producto
+    function openProductPreview() {
+        productPopup.style.display = 'block';
+    }
+
+    // Función para cerrar la vista previa del producto
+    function closeProductPreview() {
+        productPopup.style.display = 'none';
+    }
+
+    // Asigna manejadores de eventos a los botones
+    openButton.addEventListener('click', openProductPreview);
+    closeButton.addEventListener('click', closeProductPreview);
+
+
+</script> -->
+<!-- 
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Selector de Categorías y Subcategorías</title>
+</head>
+
+<body>
+    <h1>Selector de Categorías y Subcategorías</h1>
+
+    <label for="categorias">Categoría:</label>
+    <select id="categorias">
+        <option value="frutas">Frutas</option>
+        <option value="verduras">Verduras</option>
+        <option value="carnes">Carnes</option>
+    </select>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);">
+        <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
+    </svg>
+
+    <label for="subcategorias">Subcategoría:</label>
+    <select id="subcategorias">
+        <option value="manzanas">Manzanas</option>
+        <option value="peras">Peras</option>
+        <option value="zanahorias">Zanahorias</option>
+        <option value="brocoli">Brócoli</option>
+        <option value="res">Res</option>
+        <option value="pollo">Pollo</option>
+    </select>
+
+    <script>
+        // Obtiene referencias a los selectores
+        var categoriasSelect = document.getElementById("categorias");
+        var subcategoriasSelect = document.getElementById("subcategorias");
+
+        // Define un objeto con las subcategorías disponibles para cada categoría
+        var subcategorias = {
+            frutas: ["manzanas", "peras"],
+            verduras: ["zanahorias", "brocoli"],
+            carnes: ["res", "pollo"]
+        };
+
+        // Agrega un controlador de eventos para el cambio en el selector de categorías
+        categoriasSelect.addEventListener("change", function () {
+            var categoriaSeleccionada = categoriasSelect.value;
+            var subcategoriasDisponibles = subcategorias[categoriaSeleccionada];
+
+            // Limpia el selector de subcategorías
+            subcategoriasSelect.innerHTML = "";
+
+            // Agrega las opciones de subcategorías correspondientes
+            for (var i = 0; i < subcategoriasDisponibles.length; i++) {
+                var opcion = document.createElement("option");
+                opcion.text = subcategoriasDisponibles[i];
+                opcion.value = subcategoriasDisponibles[i];
+                subcategoriasSelect.appendChild(opcion);
+            }
+        });
+
+        // Inicializa el selector de subcategorías
+        categoriasSelect.dispatchEvent(new Event("change"));
+    </script>
+</body>
+
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="image-container">
+        <div class="magnifying-glass"></div>
+        <img src="imagen/01.jpg" id="image" alt="Imagen">
+    </div>
+
+</body>
+<style>
+    .image-container {
+        position: relative;
+    }
+
+    .magnifying-glass {
+        width: 100px;
+        height: 100px;
+        background-color: rgba(255, 255, 255, 0.8);
+        position: absolute;
+        cursor: none;
+        display: none;
+        /* Estilos adicionales para personalizar la lupa */
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Sombra */
+        transition: transform 0.2s ease-in-out; /* Agregar una transición suave */
+    }
+
+    .magnifying-glass:hover {
+        transform: scale(1.2); /* Aumentar el tamaño al pasar el mouse sobre la lupa */
+    }
+
+    #image {
+        width: 500px; /* Ancho de la imagen */
+    }
+</style>
+<script>
+    const container = document.querySelector('.image-container');
+    const magnifyingGlass = document.querySelector('.magnifying-glass');
+    const image = document.querySelector('#image');
+
+    container.addEventListener('mousemove', (e) => {
+        const zoomFactor = 2; // Factor de zoom (ajusta según tus preferencias)
+        const containerRect = container.getBoundingClientRect();
+
+        if (
+            e.clientX >= containerRect.left &&
+            e.clientX <= containerRect.left + containerRect.width &&
+            e.clientY >= containerRect.top &&
+            e.clientY <= containerRect.top + containerRect.height
+        ) {
+            const x = e.clientX - containerRect.left;
+            const y = e.clientY - containerRect.top;
+
+            const glassSize = magnifyingGlass.clientWidth / 2;
+            const imgWidth = image.clientWidth;
+            const imgHeight = image.clientHeight;
+
+            const bgPosX = -x * zoomFactor + glassSize;
+            const bgPosY = -y * zoomFactor + glassSize;
+
+            magnifyingGlass.style.display = 'block';
+            magnifyingGlass.style.backgroundImage = `url(${image.src})`;
+            magnifyingGlass.style.backgroundSize = `${imgWidth * zoomFactor}px ${imgHeight * zoomFactor}px`;
+            magnifyingGlass.style.backgroundPosition = `${bgPosX}px ${bgPosY}px`;
+
+            magnifyingGlass.style.left = x - glassSize + 'px';
+            magnifyingGlass.style.top = y - glassSize + 'px';
+        } else {
+            magnifyingGlass.style.display = 'none';
+        }
+    });
+
+    container.addEventListener('mouseleave', () => {
+        magnifyingGlass.style.display = 'none';
+    });
+    
+
+</script>
+
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="abrir-cuadro">Abrir Cuadro</button>
+    
+    <div id="cuadro-flotante" class="oculto">
+        <div id="contenido-cuadro">
+            <h2>Cuadro Flotante</h2>
+            <p>Este es un cuadro flotante en tu página web.</p>
+            <button id="cerrar-cuadro">Cerrar</button>
+        </div>
+    </div>
+
+<style>
+    #cuadro-flotante {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 300px;
+        height: 200px;
+        background: #fff;
+        border: 1px solid #ccc;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        display: none;
+        z-index: 1000;
+    }
+
+    #contenido-cuadro {
+        padding: 20px;
+    }
+
+    #cerrar-cuadro {
+        float: right;
+        cursor: pointer;
+    }
+</style>
+
+<script>
+    const cuadroFlotante = document.getElementById("cuadro-flotante");
+    const abrirCuadroBoton = document.getElementById("abrir-cuadro");
+    const cerrarCuadroBoton = document.getElementById("cerrar-cuadro");
+
+    abrirCuadroBoton.addEventListener("click", function () {
+        cuadroFlotante.style.display = "block";
+
+        setTimeout(function() {
+            cuadroFlotante.style.display = "none";
+        }, 4000);
+    });
+
+    cerrarCuadroBoton.addEventListener("click", function () {
+        cuadroFlotante.style.display = "none";
+    });
+
+</script>
+
+</body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #283048;
+            background: linear-gradient(to right, #859398, #283048);
+            padding: 20px;
+        }
+
+        .container-carousel {
+            position: relative;
+            width: 500px;
+            height: 300px;
+            background-color: #e0e0e0;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.66);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .carruseles {
+            width: 1000%;
+            height: 100%;
+            display: flex;
+        }
+
+        .slider-section {
+            width: calc(100% / 10);
+            height: 100%;
+        }
+
+        .slider-section img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .btn-left, .btn-right {
+            display: flex;
+            position: absolute;
+            top: 50%;
+            font-size: 1.5rem;
+            background-color: transparent;
+            border-radius: 50%;
+            padding: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            color: #ffffff81;
+            transform: translate(0, -50%);
+            transition: .5s ease;
+            user-select: none;
+        }
+
+        .btn-left:hover, .btn-right:hover {
+            background-color: #333333d4;
+            color: #fff;
+        }
+
+        .btn-left {
+            left: 10px;
+        }
+
+        .btn-right {
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-carousel">
+        <div class="carruseles" id="slider">
+            <section class="slider-section">
+                <img src="img/img1.jpg">
+            </section>
+            <section class="slider-section">
+                <img src="img/img2.jpg">
+            </section>
+            <section class="slider-section">
+                <img src="img/img3.jpg">
+            </section>
+            <section class="slider-section">
+                <img src="img/img4.jpg">
+            </section>
+            <section class="slider-section">
+                <img src="img/img5.jpg">
+            </section>
+            <section class="slider-section">
+                <img src="img/img1.jpg">
+            </section>
+            <section class="slider-section">
+                <img src="img/img2.jpg">
+            </section>
+            <section class="slider-section">
+                <img src="img/img3.jpg">
+            </section>
+            <section class="slider-section">
+                <img src="img/img4.jpg">
+            </section>
+            <section class="slider-section">
+                <img src="img/img5.jpg">
+            </section>  
+        </div>
+        <div class="btn-left"><i class='bx bx-chevron-left'></i></div>
+        <div class="btn-right"><i class='bx bx-chevron-right'></i></div>
+    </div>
+    <script>
+        const btnLeft = document.querySelector(".btn-left");
+        const btnRight = document.querySelector(".btn-right");
+        const slider = document.querySelector("#slider");
+        const sliderSection = document.querySelectorAll(".slider-section");
+
+        btnLeft.addEventListener("click", e => moveToLeft());
+        btnRight.addEventListener("click", e => moveToRight());
+
+        let operacion = 0;
+        let counter = 0;
+        let widthImg = 100 / sliderSection.length;
+
+        function moveToRight() {
+            if (counter >= sliderSection.length - 1) {
+                counter = 0;
+                operacion = 0;
+                slider.style.transform = `translate(-${operacion}%)`;
+                slider.style.transition = "none";
+                return;
+            }
+            counter++;
+            operacion = operacion + widthImg;
+            slider.style.transform = `translate(-${operacion}%)`;
+            slider.style.transition = "all ease .6s";
+        }
+
+        function moveToLeft() {
+            counter--;
+            if (counter < 0) {
+                counter = sliderSection.length - 1;
+                operacion = widthImg * (sliderSection.length - 1);
+                slider.style.transform = `translate(-${operacion}%)`;
+                slider.style.transition = "none";
+                return;
+            }
+            operacion = operacion - widthImg;
+            slider.style.transform = `translate(-${operacion}%)`;
+            slider.style.transition = "all ease .6s";
+        }   
+    </script>
+</body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-btn {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 200px;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .option {
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="procesar_formulario.php" method="post">
+        <div class="dropdown">
+            <button type="button" id="dropdown-btn" class="dropdown-btn">Seleccionar opciones</button>
+            <div id="dropdown-content" class="dropdown-content">
+                <label><input type="checkbox" class="option" name="opciones[]" value="Opción 1"> Opción 1</label>
+                <br>
+                <label><input type="checkbox" class="option" name="opciones[]" value="Opción 2"> Opción 2</label>
+                <br>
+                <label><input type="checkbox" class="option" name="opciones[]" value="Opción 3"> Opción 3</label>
+                <br>
+                <label><input type="checkbox" class="option" name="opciones[]" value="Opción 4"> Opción 4</label>
+            </div>
+        </div>
+
+        <input type="submit" value="Enviar">
+    </form>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const dropdownBtn = document.getElementById("dropdown-btn");
+            const dropdownContent = document.getElementById("dropdown-content");
+
+            dropdownBtn.addEventListener("click", function () {
+                dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block";
+            });
+
+            const options = document.querySelectorAll(".option");
+
+            options.forEach(function (option) {
+                option.addEventListener("change", function () {
+                    // Aquí puedes realizar acciones con las opciones seleccionadas
+                    console.log(`Opción seleccionada: ${option.value}`);
+                });
+            });
+        });
+    </script>
+</body>
+
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selector de Color</title>
+</head>
+<body>
+
+    <label for="colorPicker">Selecciona un color:</label>
+    <input type="color" id="colorPicker" name="color" value="#ff0000">
+
+    <button onclick="guardarColor()">Guardar Color</button>
+
+    <script>
+        function guardarColor() {
+            
+            var colorSeleccionado = document.getElementById("colorPicker").value;
+
+
+            alert("Color seleccionado: " + colorSeleccionado);
+
+        }
+    </script>
+
+</body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina 1</title>
+    <style>
+        .color {
+            background-color: #dc143c;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="color">
+        <p>Hola</p>
+    </div>
+</body>
+
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Inicio</title>
+    <style>
+        body {
+            background-size: cover;
+            background-color: #15cff95c;
+            background-image: url(imagen/pexels-eberhard-grossgasteiger-1287142.jpg);
+            font-family: 'Arial', sans-serif;
+            color: #333;
+        }
+
+        .titulo {
+            color: #ffffff;
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: disc;
+        }
+
+        ul li {
+            font-size: 1.1em;
+            margin-bottom: 5px;
+            color: #000;
+            font-weight: 600;
+        }
+
+        ol {
+            list-style-type: decimal;
+        }
+
+        p {
+            font-size: 16px;
+            font-weight: bold;
+            font-style: italic;
+            text-decoration: underline;
+            text-align: center;
+            color: #8ff3ff;
+        }
+
+        a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s;
+        }
+
+        a:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="titulo">Bienvenido a mi Página de Inicio</h1>
+    <p>¡Explora y disfruta de la experiencia!</p>
+
+    <ul>
+        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe natus ipsum voluptates. Officia blanditiis
+            impedit error perspiciatis molestias maxime maiores recusandae minima excepturi saepe, amet nulla expedita
+            provident. Sequi, sint!
+        </li>
+        <br>
+        <li>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Assumenda repudiandae magni, dolore veritatis
+            animi saepe non numquam ea fugiat tenetur laborum repellat quisquam voluptatibus dicta officiis expedita
+            blanditiis omnis molestiae!
+        </li>
+        <br>
+        <li>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod atque et eligendi vel minus quisquam impedit
+            ea soluta assumenda laborum reprehenderit possimus cum ipsa voluptas, libero ipsam. Accusamus, debitis fuga?
+        </li>
+    </ul>
+
+    <ol>
+        <li>Elemento 1</li>
+        <li>Elemento 2</li>
+        <li>Elemento 3</li>
+    </ol>
+
+    <a href="pagina2.html">Ir a la Página 2</a>
+</body>
+
+</html> -->
+<!-- <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Imagen con Degradado</title>
+</head>
+<body>
+    <div class="contenedor">
+        <div class="imagen-con-degradado">
+            <img src="img/banner2.png" alt="Imagen">
+        </div>
+    </div>
+</body>
+</html>
+
+<style>
+    body, html {
+        height: 100%;
+        margin: 0;
+    }
+    
+    .contenedor {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        background: linear-gradient(to bottom, #3498db, #ffffff); /* Cambia los colores del degradado según tus preferencias */
+        overflow: hidden;
+    }
+    
+    .imagen-con-degradado {
+        position: relative;
+        max-width: 100%;
+        max-height: 100%;
+    }
+    
+    .imagen-con-degradado img {
+        display: block;
+        width: 100%;
+        height: auto;
+        opacity: 0; /* Inicialmente oculta la imagen */
+        animation: fadeIn 2s forwards; /* Anima la opacidad para mostrar la imagen */
+    }
+    
+    @keyframes fadeIn {
+        to {
+            opacity: 1;
+        }
+    }    
+</style> -->
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ejemplo de estilos para select</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.0/css/boxicons.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="custom-select">
+        <select id="miSelect">
+            <option selected hidden>Selecciona una opción: </option>
+            <option value="opcion1">Opción 1</option>
+            <option value="opcion2">Opción 2</option>
+            <option value="opcion3">Opción 3</option>
+            <option value="opcion4">Opción 4</option>
+        </select>
+        <i class="bx bxs-chevron-down arrow"></i>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const select = document.getElementById('miSelect');
+        const customSelect = document.querySelector('.custom-select');
+
+        select.addEventListener('focus', function () {
+            customSelect.classList.add('active');
+        });
+
+        select.addEventListener('blur', function () {
+            customSelect.classList.remove('active');
+        });
+    });
+
+</script>

@@ -1,0 +1,664 @@
+.Carousel {
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    position: relative;
+    left: 50px;
+    top: 20px;
+}
+
+.Carousel h2 {
+    font-size: 26px;
+    line-height: 38px;
+    padding-bottom: 24px;
+    opacity: .9;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    text-align: center;
+}
+
+/* images */
+
+.slick-list {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    height: 304px;
+    padding: 10px 0px;
+    margin: 0px auto;
+    max-width: 90vw;
+    overflow: hidden;
+}
+
+.slick-track {
+    position: relative;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    transition: .5s ease-in-out;
+}
+
+.slick {
+    position: relative;
+    width: 275px;
+    padding: 0 18px;
+    float: left;
+    box-sizing: border-box;
+    display: flex;
+    height: 100%;
+}
+
+.slick h4 {
+    position: absolute;
+    z-index: 1;
+    font-size: 22px;
+    line-height: 23px;
+    color: #fff;
+    padding: 15px;
+}
+
+.slick h4 small {
+    font-size: 15px;
+    display: block;
+}
+
+.slick a img {
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .5);
+    transition: .3s ease-in-out;
+}
+
+.slick .tamaño_imagen_carrusel {
+    width: 200px;
+    height: 300px;
+    overflow: hidden;
+}
+
+.slick a img:hover {
+    opacity: .85;
+}
+
+/* buttons */
+
+.slick-arrow {
+    border-radius: 30px;
+    background-color: #fff;
+    position: absolute;
+    z-index: 4;
+    width: 48px;
+    height: 48px;
+    text-align: center;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .15);
+    border: 0;
+    cursor: pointer;
+}
+
+.slick-arrow:focus {
+    outline: 0;
+}
+
+.slick-arrow svg {
+    width: 12px;
+    height: 100%;
+    color: rgba(0, 0, 0, .7);
+}
+
+.slick-prev {
+    left: 0px;
+}
+
+.slick-next {
+    right: 0px;
+}
+
+/* -------------------------------------------------------------- */
+
+.Carousel2 {
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    position: relative;
+    left: 50px;
+    top: 20px;
+}
+
+.Carousel2 h2 {
+    font-size: 26px;
+    line-height: 38px;
+    padding-bottom: 24px;
+    opacity: .9;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    text-align: center;
+}
+
+/* images */
+
+.slick-list {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    height: 304px;
+    padding: 10px 0px;
+    margin: 0px auto;
+    max-width: 90vw;
+    overflow: hidden;
+}
+
+.slick-track {
+    position: relative;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    transition: .5s ease-in-out;
+}
+
+.slick {
+    position: relative;
+    width: 275px;
+    padding: 0 18px;
+    float: left;
+    box-sizing: border-box;
+    display: flex;
+    height: 100%;
+    margin: -10px;
+}
+
+.slick h4 {
+    position: absolute;
+    z-index: 1;
+    font-size: 14px;
+    line-height: 23px;
+    color: #ffffff;
+    padding: 15px;
+    background: rgb(0 0 0 / 34%);
+    width: 73%;
+    border-radius: 10px 10px 0 0;
+}
+
+.slick h4 small {
+    font-size: 15px;
+    display: block;
+}
+
+.slick a img {
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.5);
+    transition: .3s ease-in-out;
+}
+
+.slick .tamaño_imagen_carrusel {
+    width: 200px;
+    height: 300px;
+    overflow: hidden;
+}
+
+/* buttons */
+
+.slick-arrow {
+    border-radius: 30px;
+    background-color: #fff;
+    position: absolute;
+    z-index: 4;
+    width: 48px;
+    height: 48px;
+    text-align: center;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .15);
+    border: 0;
+    cursor: pointer;
+}
+
+.slick-arrow:focus {
+    outline: 0;
+}
+
+.slick-arrow svg {
+    width: 12px;
+    height: 100%;
+    color: rgba(0, 0, 0, .7);
+}
+
+.slick-prev {
+    left: 0px;
+}
+
+.slick-next {
+    right: 0px;
+}
+
+/* ----------------------------------------------------------------- */
+
+
+.Carousel3 {
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    position: relative;
+    left: 120px;
+    top: 20px;
+}
+
+.Carousel3 h3 {
+    font-size: 26px;
+    line-height: 38px;
+    padding-bottom: 24px;
+    opacity: .9;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    text-align: center;
+}
+
+/* images */
+
+.Carousel3 .slick-list {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    height: 304px;
+    padding: 10px 0px;
+    margin: 0px auto;
+    max-width: 90vw;
+    overflow: hidden;
+}
+
+.Carousel3 .slick-track {
+    position: relative;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    transition: .5s ease-in-out;
+}
+
+.Carousel3 .slick {
+    position: relative;
+    width: 275px;
+    padding: 0 18px;
+    float: left;
+    box-sizing: border-box;
+    display: flex;
+    height: 100%;
+    margin-left: 40px;
+}
+
+.Carousel3 .slick h4 {
+    position: absolute;
+    top: 190px;
+    z-index: 1;
+    font-size: 14px;
+    line-height: 23px;
+    color: #fefffe;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.548);
+    width: 73%;
+    height: 50px;
+    text-align: center;
+    border-radius: 20px;
+}
+
+.Carousel3 .slick h4 small {
+    font-size: 15px;
+    display: block;
+}
+
+.Carousel3 .slick a img {
+    object-fit: cover;
+    border-radius: 100%;
+    transition: .3s ease-in-out;
+    background-color: transparent;
+    width: 200px;
+    height: 200px;
+    box-shadow: 0 2px 5px 0 rgba(255, 255, 255, 0.5);
+}
+
+.Carousel3 .slick .tamaño_imagen_carrusel {
+    width: 200px;
+    height: 210px;
+    overflow: hidden;
+    border-radius: 100%;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    -ms-border-radius: 100%;
+    -o-border-radius: 100%;
+}
+
+.Carousel3 .slick .tamaño_imagen_carrusel:hover {
+    opacity: .85;
+    transform: scale(1.05);
+}
+
+/* TERMINA */
+
+/* buttons */
+
+.Carousel3 .slick-arrow {
+    border-radius: 30px;
+    background-color: #fff;
+    position: absolute;
+    z-index: 4;
+    width: 48px;
+    height: 48px;
+    text-align: center;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .15);
+    border: 0;
+    cursor: pointer;
+}
+
+.Carousel3 .slick-arrow:focus {
+    outline: 0;
+}
+
+.Carousel3 .slick-arrow svg {
+    width: 12px;
+    height: 100%;
+    color: rgba(0, 0, 0, .7);
+}
+
+.Carousel3 .slick-prev {
+    left: 0px;
+}
+
+.Carousel3 .slick-next {
+    right: 0px;
+}
+
+/* ----------------------------------------------------------------- */
+@media screen and (min-width: 1200px) {
+    .Carousel {
+        width: 100%;
+        font-family: Arial, Helvetica, sans-serif;
+        display: flex;
+        width: 100%;
+        align-items: center;
+        position: relative;
+        left: 120px;
+        top: 20px;
+    }
+
+    .slick-arrow {
+        border-radius: 30px;
+        background-color: #fff;
+        position: absolute;
+        z-index: 4;
+        width: 48px;
+        height: 48px;
+        text-align: center;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .15);
+        border: 0;
+        cursor: pointer;
+    }
+
+    .slick-arrow:focus {
+        outline: 0;
+    }
+
+    .slick-arrow svg {
+        width: 12px;
+        height: 100%;
+        color: rgba(0, 0, 0, .7);
+    }
+
+    .slick-prev {
+        left: 0px;
+    }
+
+    .slick-next {
+        right: 0px;
+    }
+
+    /* -------------------------------------------------------------- */
+
+    .Carousel2 {
+        width: 100%;
+        font-family: Arial, Helvetica, sans-serif;
+        display: flex;
+        width: 100%;
+        align-items: center;
+        position: relative;
+        left: 120px;
+        top: 20px;
+    }
+
+    /* buttons */
+
+    .slick-arrow {
+        border-radius: 30px;
+        background-color: #fff;
+        position: absolute;
+        z-index: 4;
+        width: 48px;
+        height: 48px;
+        text-align: center;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .15);
+        border: 0;
+        cursor: pointer;
+    }
+
+    .slick-arrow:focus {
+        outline: 0;
+    }
+
+    .slick-arrow svg {
+        width: 12px;
+        height: 100%;
+        color: rgba(0, 0, 0, .7);
+    }
+
+    .slick-prev {
+        left: 0px;
+    }
+
+    .slick-next {
+        right: 0px;
+    }
+
+    /* -------------------------------------------------------------- */
+
+    .Carousel3 {
+        width: 100%;
+        font-family: Arial, Helvetica, sans-serif;
+        display: flex;
+        width: 100%;
+        align-items: center;
+        position: relative;
+        left: 50px;
+        top: 20px;
+    }
+
+    .slick-arrow {
+        border-radius: 30px;
+        background-color: #fff;
+        position: absolute;
+        z-index: 4;
+        width: 48px;
+        height: 48px;
+        text-align: center;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .15);
+        border: 0;
+        cursor: pointer;
+    }
+
+    .slick-arrow:focus {
+        outline: 0;
+    }
+
+    .slick-arrow svg {
+        width: 12px;
+        height: 100%;
+        color: rgba(0, 0, 0, .7);
+    }
+
+    .slick-prev {
+        left: 0px;
+    }
+
+    .slick-next {
+        right: 0px;
+    }
+
+}
+
+@media screen and (min-width: 1300px) {
+    .Carousel {
+        width: 100%;
+        font-family: Arial, Helvetica, sans-serif;
+        display: flex;
+        width: 100%;
+        align-items: center;
+        position: relative;
+        left: 50px;
+        top: 20px;
+    }
+
+
+    /* -------------------------------------------------------------- */
+
+    .Carousel2 {
+        width: 100%;
+        font-family: Arial, Helvetica, sans-serif;
+        display: flex;
+        width: 100%;
+        align-items: center;
+        position: relative;
+        left: 50px;
+        top: 20px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .Carousel {
+        font-family: Arial, Helvetica, sans-serif;
+        display: flex;
+        width: 100%;
+        align-items: center;
+        position: relative;
+        left: 67px;
+        top: 20px;
+    }
+
+    .slick-prev {
+        left: 0px;
+    }
+
+    .slick-next {
+        right: 38px;
+    }
+
+    .Carousel2 {
+        width: 100%;
+        font-family: Arial, Helvetica, sans-serif;
+        display: flex;
+        width: 100%;
+        align-items: center;
+        position: relative;
+        left: 67px;
+        top: 20px;
+    }
+
+    .Carousel3 {
+        width: 100%;
+        font-family: Arial, Helvetica, sans-serif;
+        display: flex;
+        width: 100%;
+        align-items: center;
+        position: relative;
+        left: 76px;
+        top: 20px;
+    }
+
+    .Carousel3 .slick-next {
+        right: 56px;
+    }
+
+}
+
+@media screen and (min-width: 390px) and (max-width: 500px) {
+    .slick-prev {
+        left: 0px;
+    }
+
+    .slick-next {
+        right: 0px;
+    }
+
+    .slick {
+        position: relative;
+        width: 244px;
+        padding: 0 18px;
+        float: left;
+        box-sizing: border-box;
+        display: flex;
+        height: 100%;
+        margin: -10px;
+    }
+
+    .slick .tamaño_imagen_carrusel {
+        width: 177px;
+        height: 300px;
+        overflow: hidden;
+    }
+
+    .Carousel {
+        font-family: Arial, Helvetica, sans-serif;
+        display: flex;
+        width: 100%;
+        align-items: center;
+        position: relative;
+        left: 116px;
+        top: 20px;
+    }
+
+    .Carousel2 {
+        font-family: Arial, Helvetica, sans-serif;
+        display: flex;
+        width: 100%;
+        align-items: center;
+        position: relative;
+        left: 116px;
+        top: 20px;
+    }
+
+    .Carousel3 {
+        font-family: Arial, Helvetica, sans-serif;
+        display: flex;
+        width: 100%;
+        align-items: center;
+        position: relative;
+        left: 104px;
+        top: 20px;
+    }
+
+    .Carousel3 .slick {
+        position: relative;
+        width: 225px;
+        padding: 0 18px;
+        float: left;
+        box-sizing: border-box;
+        display: flex;
+        height: 100%;
+        margin-left: 40px;
+    }
+
+    .Carousel3 .slick a img {
+        object-fit: cover;
+        border-radius: 100%;
+        transition: .3s ease-in-out;
+        background-color: transparent;
+        width: 154px;
+        height: 170px;
+        box-shadow: 0 2px 5px 0 rgba(255, 255, 255, 0.5);
+    }
+}

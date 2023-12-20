@@ -1,0 +1,863 @@
+@media (max-width: 480px) {
+    .img-slider{
+        position: absolute;
+        left: 160px;
+    }
+    .img-slider .slide .info{
+        padding: 10px 25px;
+    }
+
+    .img-slider .slide .info h2{
+        font-size: 35px;
+    }
+
+    .img-slider .slide .info p{
+        width: 70%;
+        font-size: 15px;
+    }
+
+    .img-slider .navigation{
+        bottom: 25px;
+    }
+
+    .img-slider .navigation .btn{
+        width: 10px;
+        height: 10px;
+        margin: 8px;
+    }
+
+    .container22 {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        margin: 30px;
+        padding-top: 20px;
+        height: 100%;
+        text-decoration: none;
+    }
+
+    .caja22{
+        border-radius: 5px;
+        text-align: start;
+        margin: 10px;
+        width: 0px;
+        height: 30px;
+        background-color: var(--sidebar-color);
+        position: relative;
+        top: 240px;
+        left: 95px;
+        bottom: 20px;
+    }
+    
+    .caja22:hover {
+        box-shadow: 0px 0px 5px 4px var(--box-color);
+    }
+    
+    .boton_crear {
+        padding: 20px 20px;
+        text-align: center;
+        text-decoration: none;
+        color: #fff;
+        background-color: #4CAF50;
+        border: none;
+        border-radius: 4px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    }
+    
+    .boton_crear {
+        background-color: #f0f0f0;
+        margin-top: 10px;
+        margin-bottom: 15px;
+        border: none;
+        color: #000000;
+        padding: 10px 20px;
+        border-radius: 10px;
+        border: 1px solid #fff;
+    }
+    
+    .container22 .imagenn2 {
+        width: 200px;
+        height: 200px;
+        /* margin: 10px; */
+        border-radius: 3px;
+    }
+    
+    .container22 .parrafos1 {
+        margin: 13px;
+        font-size: 15px;
+        color: var(--text-color);
+    }
+    
+    .container22 .botones {
+        position: relative;
+        left: 15%;
+        align-content: space-around;
+    }
+    
+    .botones {
+        text-align: center;
+        text-decoration: none;
+        background-color: #4CAF50;
+        border: none;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    }
+    
+    .botones {
+        background-color: var(--text-color);
+        margin-top: 10px;
+        margin-bottom: 15px;
+        border: none;
+        color: var(--body-color);
+        padding: 5px 10px;
+        border-radius: 2px;
+    }
+    
+    .container_crearproducto .input {
+        margin: 50px;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+    
+    }
+    
+    .caja_crearproducto {
+        width: 250px;
+    }
+    
+    .caja_botoncancelar {
+        position: relative;
+        left: 10px;
+        width: 30px;
+    }
+    
+    /* .boton_cancelar{
+        text-decoration: none;
+        color: #397d3b;
+        margin-top: -17px;
+        width: 50px;
+      } */
+    
+    .caja_botoncancelar .imagen_cancelar {
+        width: 35px;
+    }
+
+    .ofertas {
+        position: relative;
+        left: 180px;
+        top: 20px;
+        margin-top: 30px;
+        margin-bottom: 40px;
+    }
+
+    .ofertas .h2_oferta {
+        font-size: 20px;
+    }
+
+    .ofertas .a_oferta {
+        color: #22b464;
+        font-weight: 500;
+    }
+
+    .ofertas2 {
+        position: relative;
+        left: 10px;
+        top: 30px;
+        margin-top: 30px;
+        margin-bottom: 40px;
+    }
+
+    .ofertas2 .a_oferta2 {
+        color: #22b464;
+        font-weight: 500;
+    }
+
+    .ofertas2 .h2_oferta2 {
+        font-size: 20px;
+    }
+
+    .ofertas3 {
+        position: relative;
+        left: 170px;
+        top: 40px;
+        margin-top: 30px;
+        margin-bottom: 40px;
+    }
+
+    .ofertas3 .a_oferta3 {
+        color: #22b464;
+        font-weight: 500;
+    }
+
+    .ofertas3 .h2_oferta3 {
+        font-size: 20px;
+    }
+
+    .caja22 {
+        border-radius: 5px;
+        text-align: start;
+        margin: 10px;
+        width: 220px;
+        height: 360px;
+        background-color: var(--sidebar-color);
+        position: relative;
+        top: 30px;
+        left: 95px;
+        bottom: 20px;
+    }
+
+    .caja22:hover {
+        box-shadow: 0px 0px 5px 4px var(--box-color);
+    }
+
+    .boton_crear {
+        padding: 20px 20px;
+        text-align: center;
+        text-decoration: none;
+        color: #fff;
+        background-color: #4CAF50;
+        border: none;
+        border-radius: 4px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    .boton_crear {
+        background-color: #f0f0f0;
+        margin-top: 10px;
+        margin-bottom: 15px;
+        border: none;
+        color: #000000;
+        padding: 10px 20px;
+        border-radius: 10px;
+        border: 1px solid #fff;
+    }
+
+    .container22 .imagenn2 {
+        width: 220px;
+        height: 220px;
+        /* margin: 10px; */
+        border-radius: 3px;
+    }
+
+    .container22 .parrafos1 {
+        margin: 13px;
+        font-size: 15px;
+        color: var(--text-color);
+    }
+
+    .container22 .botones {
+        position: relative;
+        left: 15%;
+        align-content: space-around;
+    }
+
+    .botones {
+        text-align: center;
+        text-decoration: none;
+        background-color: #4CAF50;
+        border: none;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    .botones {
+        background-color: var(--text-color);
+        margin-top: 10px;
+        margin-bottom: 15px;
+        border: none;
+        color: var(--body-color);
+        padding: 5px 10px;
+        border-radius: 2px;
+    }
+
+    .container_crearproducto .input {
+        margin: 50px;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+
+    }
+
+    .caja_crearproducto {
+        width: 250px;
+    }
+
+    .caja_botoncancelar {
+        position: relative;
+        left: 10px;
+        width: 30px;
+    }
+
+    /* .boton_cancelar{
+        text-decoration: none;
+        color: #397d3b;
+        margin-top: -17px;
+        width: 50px;
+      } */
+
+    .caja_botoncancelar .imagen_cancelar {
+        width: 35px;
+    }
+
+    .caja23 {
+        border-radius: 50%;
+        text-align: start;
+        margin: 25px;
+        width: 100px;
+        height: 100px;
+        background-color: var(--sidebar-color);
+        position: relative;
+        top: -10px;
+        left: 95px;
+        bottom: 20px;
+    }
+    
+    .caja23:hover{
+        box-shadow: 0px 0px 5px 4px var(--box-color);
+    }
+    
+    .caja33 {
+        position: relative;
+        left: 40px;
+    }
+    
+    .boton_crear {
+        padding: 20px 20px;
+        text-align: center;
+        text-decoration: none;
+        color: #fff;
+        background-color: #4CAF50;
+        border: none;
+        border-radius: 4px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    }
+    
+    .boton_crear {
+        background-color: #f0f0f0;
+        margin-top: 10px;
+        margin-bottom: 15px;
+        border: none;
+        color: #000000;
+        padding: 10px 20px;
+        border-radius: 10px;
+        border: 1px solid #fff;
+    }
+    
+    .container23 .imagenn1{
+        width: 90x;
+        height: 60px;
+        margin: 20px;
+        border-radius: 3px;
+    }
+    
+    .container23 .parrafos2{
+        margin: 10px;
+        position: relative;
+        left: 40px;
+        color: var(--text-color);
+    }
+    
+    .container23 .botones2{
+        position: relative;
+        left: 15%;
+        align-content: space-around;
+    }
+    
+    .botones2 {
+        text-align: center;
+        text-decoration: none;
+        background-color: #4CAF50;
+        border: none;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    }
+    
+    .botones2 {
+        background-color: var(--text-color);
+        margin-top: 10px;
+        margin-bottom: 15px;
+        border: none;
+        color: var(--body-color);
+        padding: 5px 10px;
+        border-radius: 2px;
+    }
+    
+    .container_crearproducto .input{
+        margin: 50px;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        
+    }
+    
+    .caja_crearproducto{
+        width: 250px;
+    }
+    
+    .caja_botoncancelar{
+        position: relative;
+        left: 10px;
+        width: 30px;
+    }
+    
+    /* .boton_cancelar{
+        text-decoration: none;
+        color: #397d3b;
+        margin-top: -17px;
+        width: 50px;
+      } */
+    
+    .caja_botoncancelar .imagen_cancelar{
+        width: 35px;
+    }
+}
+
+/* ------------------------------------------------- */
+
+@media (max-width: 600px) {
+    .img-slider{
+        position: relative;
+        left: 160px;
+    }
+    .img-slider .slide .info{
+        padding: 10px 25px;
+    }
+
+    .img-slider .slide .info h2{
+        font-size: 35px;
+    }
+
+    .img-slider .slide .info p{
+        width: 70%;
+        font-size: 15px;
+    }
+
+    .img-slider .navigation{
+        bottom: 25px;
+    }
+
+    .img-slider .navigation .btn{
+        width: 10px;
+        height: 10px;
+        margin: 8px;
+    }
+
+    .container22 {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        margin: 30px;
+        padding-top: 20px;
+        height: 100%;
+        text-decoration: none;
+    }
+
+    .caja22{
+        border-radius: 5px;
+        text-align: start;
+        margin: 10px;
+        width: 0px;
+        height: 30px;
+        background-color: var(--sidebar-color);
+        position: relative;
+        top: 240px;
+        left: 95px;
+        bottom: 20px;
+    }
+    
+    .caja22:hover {
+        box-shadow: 0px 0px 5px 4px var(--box-color);
+    }
+    
+    .boton_crear {
+        padding: 20px 20px;
+        text-align: center;
+        text-decoration: none;
+        color: #fff;
+        background-color: #4CAF50;
+        border: none;
+        border-radius: 4px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    }
+    
+    .boton_crear {
+        background-color: #f0f0f0;
+        margin-top: 10px;
+        margin-bottom: 15px;
+        border: none;
+        color: #000000;
+        padding: 10px 20px;
+        border-radius: 10px;
+        border: 1px solid #fff;
+    }
+    
+    .container22 .imagenn2 {
+        width: 200px;
+        height: 200px;
+        /* margin: 10px; */
+        border-radius: 3px;
+    }
+    
+    .container22 .parrafos1 {
+        margin: 13px;
+        font-size: 15px;
+        color: var(--text-color);
+    }
+    
+    .container22 .botones {
+        position: relative;
+        left: 15%;
+        align-content: space-around;
+    }
+    
+    .botones {
+        text-align: center;
+        text-decoration: none;
+        background-color: #4CAF50;
+        border: none;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    }
+    
+    .botones {
+        background-color: var(--text-color);
+        margin-top: 10px;
+        margin-bottom: 15px;
+        border: none;
+        color: var(--body-color);
+        padding: 5px 10px;
+        border-radius: 2px;
+    }
+    
+    .container_crearproducto .input {
+        margin: 50px;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+    
+    }
+    
+    .caja_crearproducto {
+        width: 250px;
+    }
+    
+    .caja_botoncancelar {
+        position: relative;
+        left: 10px;
+        width: 30px;
+    }
+    
+    /* .boton_cancelar{
+        text-decoration: none;
+        color: #397d3b;
+        margin-top: -17px;
+        width: 50px;
+      } */
+    
+    .caja_botoncancelar .imagen_cancelar {
+        width: 35px;
+    }
+
+    .ofertas {
+        position: relative;
+        left: 110px;
+        top: 10px;
+        margin-top: 30px;
+        margin-bottom: 40px;
+    }
+
+    .ofertas .h2_oferta {
+        font-size: 20px;
+    }
+
+    .ofertas .a_oferta {
+        color: #22b464;
+        font-weight: 500;
+    }
+
+    .ofertas2 {
+        position: relative;
+        left: 110px;
+        top: 30px;
+        margin-top: 30px;
+        margin-bottom: 40px;
+    }
+
+    .ofertas2 .a_oferta2 {
+        color: #22b464;
+        font-weight: 500;
+    }
+
+    .ofertas2 .h2_oferta2 {
+        font-size: 20px;
+    }
+
+    .ofertas3 {
+        position: relative;
+        left: 170px;
+        top: 40px;
+        margin-top: 30px;
+        margin-bottom: 40px;
+    }
+
+    .ofertas3 .a_oferta3 {
+        color: #22b464;
+        font-weight: 500;
+    }
+
+    .ofertas3 .h2_oferta3 {
+        font-size: 20px;
+    }
+
+    .caja22 {
+        border-radius: 5px;
+        text-align: start;
+        margin: 10px;
+        width: 220px;
+        height: 360px;
+        background-color: var(--sidebar-color);
+        position: relative;
+        top: 30px;
+        left: 95px;
+        bottom: 20px;
+    }
+
+    .caja22:hover {
+        box-shadow: 0px 0px 5px 4px var(--box-color);
+    }
+
+    .boton_crear {
+        padding: 20px 20px;
+        text-align: center;
+        text-decoration: none;
+        color: #fff;
+        background-color: #4CAF50;
+        border: none;
+        border-radius: 4px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    .boton_crear {
+        background-color: #f0f0f0;
+        margin-top: 10px;
+        margin-bottom: 15px;
+        border: none;
+        color: #000000;
+        padding: 10px 20px;
+        border-radius: 10px;
+        border: 1px solid #fff;
+    }
+
+    .container22 .imagenn2 {
+        width: 220px;
+        height: 220px;
+        /* margin: 10px; */
+        border-radius: 3px;
+    }
+
+    .container22 .parrafos1 {
+        margin: 13px;
+        font-size: 15px;
+        color: var(--text-color);
+    }
+
+    .container22 .botones {
+        position: relative;
+        left: 15%;
+        align-content: space-around;
+    }
+
+    .botones {
+        text-align: center;
+        text-decoration: none;
+        background-color: #4CAF50;
+        border: none;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    .botones {
+        background-color: var(--text-color);
+        margin-top: 10px;
+        margin-bottom: 15px;
+        border: none;
+        color: var(--body-color);
+        padding: 5px 10px;
+        border-radius: 2px;
+    }
+
+    .container_crearproducto .input {
+        margin: 50px;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+
+    }
+
+    .caja_crearproducto {
+        width: 250px;
+    }
+
+    .caja_botoncancelar {
+        position: relative;
+        left: 10px;
+        width: 30px;
+    }
+
+    /* .boton_cancelar{
+        text-decoration: none;
+        color: #397d3b;
+        margin-top: -17px;
+        width: 50px;
+      } */
+
+    .caja_botoncancelar .imagen_cancelar {
+        width: 35px;
+    }
+
+    .caja23 {
+        border-radius: 50%;
+        text-align: start;
+        margin: 25px;
+        width: 100px;
+        height: 100px;
+        background-color: var(--sidebar-color);
+        position: relative;
+        top: -10px;
+        left: 95px;
+        bottom: 20px;
+    }
+    
+    .caja23:hover{
+        box-shadow: 0px 0px 5px 4px var(--box-color);
+    }
+    
+    .caja33 {
+        position: relative;
+        left: 40px;
+    }
+    
+    .boton_crear {
+        padding: 20px 20px;
+        text-align: center;
+        text-decoration: none;
+        color: #fff;
+        background-color: #4CAF50;
+        border: none;
+        border-radius: 4px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    }
+    
+    .boton_crear {
+        background-color: #f0f0f0;
+        margin-top: 10px;
+        margin-bottom: 15px;
+        border: none;
+        color: #000000;
+        padding: 10px 20px;
+        border-radius: 10px;
+        border: 1px solid #fff;
+    }
+    
+    .container23 .imagenn1{
+        width: 90x;
+        height: 60px;
+        margin: 20px;
+        border-radius: 3px;
+    }
+    
+    .container23 .parrafos2{
+        margin: 10px;
+        position: relative;
+        left: 40px;
+        color: var(--text-color);
+    }
+    
+    .container23 .botones2{
+        position: relative;
+        left: 15%;
+        align-content: space-around;
+    }
+    
+    .botones2 {
+        text-align: center;
+        text-decoration: none;
+        background-color: #4CAF50;
+        border: none;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    }
+    
+    .botones2 {
+        background-color: var(--text-color);
+        margin-top: 10px;
+        margin-bottom: 15px;
+        border: none;
+        color: var(--body-color);
+        padding: 5px 10px;
+        border-radius: 2px;
+    }
+    
+    .container_crearproducto .input{
+        margin: 50px;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        
+    }
+    
+    .caja_crearproducto{
+        width: 250px;
+    }
+    
+    .caja_botoncancelar{
+        position: relative;
+        left: 10px;
+        width: 30px;
+    }
+    
+    /* .boton_cancelar{
+        text-decoration: none;
+        color: #397d3b;
+        margin-top: -17px;
+        width: 50px;
+      } */
+    
+    .caja_botoncancelar .imagen_cancelar{
+        width: 35px;
+    }
+
+    .Carousel {
+        width: 100%;
+        font-family: Arial, Helvetica, sans-serif;
+        display: flex;
+        width: 100%;
+        align-items: center;
+        position: relative;
+        left: 90px;
+        top: 10px;
+    }
+
+    .slick-prev {
+        left: 0px;
+    }
+    
+    .slick-next {
+        right: 89px;
+    }
+
+    .Carousel2 {
+        width: 100%;
+        font-family: Arial, Helvetica, sans-serif;
+        display: flex;
+        width: 100%;
+        align-items: center;
+        position: relative;
+        left: 90px;
+        top: 10px;
+    }
+
+    .slick-prev {
+        left: 0px;
+    }
+    
+    .slick-next {
+        right: 89px;
+    }
+
+    
+}

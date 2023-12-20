@@ -1,0 +1,690 @@
+.modal-open {
+  overflow: hidden;
+}
+
+.container-modal {
+  display: none;
+}
+
+#btn-modal {
+  display: none;
+}
+
+.container-modal {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(3px);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 3000000000000;
+}
+
+#btn-modal:checked ~ .container-modal {
+  display: flex;
+}
+
+#btn-modal:checked ~ .body {
+  overflow: hidden;
+}
+
+.content-modal {
+  width: 100%;
+  max-width: 750px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 4px;
+  position: relative;
+  left: 300px;
+  top: 140px;
+  overflow: hidden;
+}
+
+.content-modal h2 {
+  margin-bottom: 15px;
+}
+
+.content-modal p {
+  padding: 15px 0px;
+  border-top: 1px solid #dbdbdb;
+  border-bottom: 1px solid #dbdbdb;
+}
+
+.content-modal .btn-cerrar {
+  width: 100%;
+  margin-top: 15px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.content-modal .btn-cerrar label {
+  padding: 7px 10px;
+  background-color: #0e0e0e;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 300ms ease;
+}
+
+.content-modal .btn-cerrar label:hover {
+  background-color: #22b464;
+}
+
+.cerrar-modal {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+@media screen and (max-width: 800px) {
+  .content-modal {
+    width: 90%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 4px;
+  }
+}
+
+.container_parrafos {
+  padding: 10px;
+  text-align: center;
+}
+
+.container_parrafos .precio_descuento3 {
+  color: #258555;
+  font-weight: 800;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.container_parrafos .precio_descuento2 {
+  color: #ffffff;
+  font-weight: 800;
+  margin-top: 20px;
+  margin-bottom: -12px;
+  opacity: 0;
+}
+
+.position__boton {
+  position: relative;
+  top: -305px;
+  left: 640px;
+}
+
+a {
+  text-decoration: none;
+}
+
+#btn-modal {
+  display: none;
+}
+
+.container-modal {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(3px);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 3000000000000;
+}
+
+#btn-modal:checked ~ .container-modal {
+  display: flex;
+}
+
+.content-modal {
+  width: 100%;
+  max-width: 750px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 4px;
+  position: relative;
+  left: 300px;
+  top: 140px;
+}
+
+.content-modal h2 {
+  margin-bottom: 15px;
+}
+
+.content-modal p {
+  padding: 15px 0px;
+  border-top: 1px solid #dbdbdb;
+  border-bottom: 1px solid #dbdbdb;
+}
+
+.content-modal .btn-cerrar {
+  width: 100%;
+  margin-top: 15px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.content-modal .btn-cerrar label {
+  padding: 7px 10px;
+  background-color: #0e0e0e;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 300ms ease;
+}
+
+.content-modal .btn-cerrar label:hover {
+  background-color: #22b464;
+}
+
+.cerrar-modal {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+@media screen and (max-width: 800px) {
+  .content-modal {
+    width: 90%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 4px;
+  }
+}
+
+.Btn {
+  width: 35px;
+  height: 35px;
+  border: none;
+  border-radius: 50%;
+  background-color: rgb(255 255 255);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: fixed;
+  transition-duration: 0.3s;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.11);
+  top: 10px;
+  left: 10px;
+  z-index: 1000;
+}
+
+.Btn:hover {
+  background-color: #46c184;
+  transition-duration: 0.3s;
+}
+
+@keyframes slide-in-top {
+  0% {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+.btnes {
+  display: flex;
+  justify-content: space-between;
+  width: 235px;
+  position: static;
+  top: 10px;
+}
+
+/* ESTILOS DEL BOTON EDITAR */
+.button_editar {
+  --primary-color: #258555;
+  --secondary-color: #fff;
+  --hover-color: #111;
+  --arrow-width: 10px;
+  --arrow-stroke: 2px;
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 20px;
+  color: var(--secondary-color);
+  padding: 11px 15px;
+  background: var(--primary-color);
+  display: flex;
+  transition: 0.2s background;
+  align-items: center;
+  gap: 0.6em;
+  font-weight: bold;
+}
+
+.button_editar .arrow-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button_editar .arrow {
+  margin-top: 1px;
+  width: var(--arrow-width);
+  background: var(--primary-color);
+  height: var(--arrow-stroke);
+  position: relative;
+  transition: 0.2s;
+}
+
+.button_editar .arrow::before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  border: solid var(--secondary-color);
+  border-width: 0 var(--arrow-stroke) var(--arrow-stroke) 0;
+  display: inline-block;
+  top: -3px;
+  right: 3px;
+  transition: 0.2s;
+  padding: 3px;
+  transform: rotate(-45deg);
+}
+
+.button_editar:hover {
+  background-color: var(--hover-color);
+}
+
+.button_editar:hover .arrow {
+  background: var(--secondary-color);
+}
+
+.button_editar:hover .arrow:before {
+  right: 0;
+}
+
+/* ESTILOS DEL BOTON ELIMINAR */
+.button_eliminar {
+  --primary-color: #a10000;
+  --secondary-color: #fff;
+  --hover-color: #111;
+  --arrow-width: 10px;
+  --arrow-stroke: 2px;
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 20px;
+  color: var(--secondary-color);
+  padding: 11px 20px;
+  background: var(--primary-color);
+  display: flex;
+  transition: 0.2s background;
+  align-items: center;
+  gap: 0.6em;
+  font-weight: bold;
+}
+
+.button_eliminar .arrow-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button_eliminar .arrow {
+  margin-top: 1px;
+  width: var(--arrow-width);
+  background: var(--primary-color);
+  height: var(--arrow-stroke);
+  position: relative;
+  transition: 0.2s;
+}
+
+.button_eliminar .arrow::before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  border: solid var(--secondary-color);
+  border-width: 0 var(--arrow-stroke) var(--arrow-stroke) 0;
+  display: inline-block;
+  top: -3px;
+  right: 3px;
+  transition: 0.2s;
+  padding: 3px;
+  transform: rotate(-45deg);
+}
+
+.button_eliminar:hover {
+  background-color: var(--hover-color);
+}
+
+.button_eliminar:hover .arrow {
+  background: var(--secondary-color);
+}
+
+.button_eliminar:hover .arrow:before {
+  right: 0;
+}
+
+/* FINALIZA */
+
+.CartBtn {
+  width: 140px;
+  height: 40px;
+  border-radius: 12px;
+  border: none;
+  background-color: #22b464;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition-duration: 0.5s;
+  overflow: hidden;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.103);
+  position: relative;
+  left: 50px;
+}
+
+.IconContainer {
+  position: absolute;
+  left: -50px;
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 2;
+  transition-duration: 0.5s;
+}
+
+.icon {
+  border-radius: 1px;
+}
+
+.text {
+  height: 100%;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(17, 17, 17);
+  z-index: 1;
+  transition-duration: 0.5s;
+  font-size: 1.04em;
+  font-weight: 600;
+}
+
+.CartBtn:hover .IconContainer {
+  transform: translateX(58px);
+  border-radius: 40px;
+  transition-duration: 0.5s;
+}
+
+.CartBtn:hover .text {
+  transform: translate(10px, 0px);
+  transition-duration: 0.5s;
+}
+
+.CartBtn:active {
+  transform: scale(0.95);
+  transition-duration: 0.5s;
+}
+
+.container_producticos {
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 30px;
+  padding-top: 20px;
+  height: 100%;
+  text-decoration: none;
+  border-radius: 10px;
+  position: relative;
+  left: 170px;
+}
+
+.caja2 {
+  border-radius: 5px;
+  text-align: start;
+  margin: 25px;
+  width: 250px;
+  height: 400px;
+  background-color: var(--sidebar-color);
+  cursor: default;
+  transition: all 400ms ease;
+  overflow: hidden;
+}
+
+.caja2:hover {
+  box-shadow: 5px 5px 30px var(--box-color);
+  transform: translateY(-3%);
+}
+
+.container_producticos .imagenn {
+  width: 250px;
+  height: 215px;
+}
+
+.container_producticos .parrafos {
+  margin: 13px;
+  color: var(--text-color);
+}
+
+.container_producticos .botones {
+  position: relative;
+  left: 15%;
+  align-content: space-around;
+}
+
+/* Estilo para el botón principal del menú */
+.dropbtn {
+  background-color: #258555;
+  color: white;
+  padding: 13px;
+  border: none;
+  cursor: pointer;
+  margin: 30px;
+  font-weight: 600;
+  border-radius: 15px;
+}
+
+/* Estilo para el contenedor del menú desplegable */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Estilo para los botones dentro del menú desplegable */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 72px;
+  right: -25px;
+  background-color: #f9f9f9;
+  min-width: 150px;
+  height: 200px;
+  padding: 15px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 13px;
+}
+
+/* Mostrar el menú desplegable al hacer clic en el botón principal */
+.dropdown.active .dropdown-content {
+  display: block;
+}
+
+.category {
+  margin: 10px 0;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.category:hover {
+  background-color: #f0f0f0;
+}
+
+.subcategory {
+  display: none;
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.subcategory li {
+  text-align: center;
+  margin-top: 10px;
+  background-color: whitesmoke;
+  padding: 11px;
+  border-radius: 10px;
+}
+
+.subcategory li:hover {
+  background-color: #e0e0e0e6;
+}
+
+.no_hay_sub_categorias {
+  text-align: center;
+}
+
+.show-button {
+  background-color: #258555;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.show-button:hover {
+  background-color: #9b9b9b;
+}
+
+.category-list {
+  padding: 30px;
+  margin-left: 115px;
+  margin-top: 12px;
+  margin-right: 17px;
+  background-color: white;
+}
+
+.titulo_sub_categoria {
+  text-align: center;
+  font-size: 30px;
+  color: black;
+  margin-top: 35px;
+  z-index: -10;
+}
+
+@media (max-width: 900px) {
+  .container_producticos {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 30px;
+    padding-top: 20px;
+    height: 100%;
+    text-decoration: none;
+    border-radius: 10px;
+    position: relative;
+    left: 85px;
+  }
+
+  .titulo_producto {
+    position: relative;
+    top: 30px;
+    left: 116px;
+    font-size: 30px;
+    color: black;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .container_producticos {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 30px;
+    padding-top: 20px;
+    height: 100%;
+    text-decoration: none;
+    border-radius: 10px;
+    position: relative;
+    left: 85px;
+  }
+
+  .titulo_producto {
+    position: relative;
+    top: 30px;
+    left: 116px;
+    font-size: 30px;
+    color: black;
+  }
+}
+
+@media screen and (min-width: 1300px) {
+  .container_producticos {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 30px;
+    padding-top: 20px;
+    height: 100%;
+    text-decoration: none;
+    border-radius: 10px;
+    position: relative;
+    left: 100px;
+  }
+
+  .titulo_producto {
+    position: relative;
+    top: 30px;
+    left: 30px;
+    font-size: 30px;
+    color: black;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .container_producticos {
+    width: 95%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0px;
+    padding-top: 20px;
+    height: 100%;
+    text-decoration: none;
+    border-radius: 10px;
+    position: relative;
+    left: 100px;
+  }
+
+  .titulo_producto {
+    position: relative;
+    top: 30px;
+    left: 30px;
+    font-size: 30px;
+    color: black;
+  }
+
+  .caja {
+    position: relative;
+    left: 160px;
+  }
+}

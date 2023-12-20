@@ -1,0 +1,1869 @@
+.container_carrito .imagen_carrito {
+  max-width: 100px;
+  height: 100px;
+  padding: 10px;
+}
+
+body {
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* Internet Explorer y Edge */
+}
+
+/* Agrega un estilo personalizado al scroll (opcional) */
+body::-webkit-scrollbar {
+  width: 0px;
+}
+
+.table_carrito td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 3px solid #d1d1d1;
+}
+
+.table_carrito th {
+  padding: 8px;
+}
+
+.table_carrito th {
+  background-color: #dddddd;
+  text-align: center;
+}
+
+.table_carrito td {
+  font-size: 16px;
+  text-align: center;
+}
+
+.imagen_carrito {
+  max-width: 50px;
+  height: auto;
+}
+
+.container_carrito {
+  background-color: #fff;
+  padding: 20px;
+  border: 3px solid #bbbbbb;
+  border-radius: 5px;
+  position: relative;
+  top: 40px;
+  left: 175px;
+  margin-bottom: 100px;
+  width: 80%;
+  justify-content: center;
+}
+
+/* Estilos para la tabla del carrito */
+.table_carrito {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.tr_carrito td {
+  text-align: right;
+  font-weight: bold;
+}
+
+/* Estilos para los encabezados de la tabla */
+
+.botones_acciones {
+  align-items: space-between;
+  position: relative;
+  top: 120px;
+  margin-bottom: 180px;
+}
+
+.boton_vaciar_carrito {
+  position: relative;
+  left: 300px;
+  top: -30px;
+}
+
+.cantidad_carrito {
+  /* background-color: #258555; */
+  width: 70px;
+  display: flex;
+  position: relative;
+  left: 60px;
+  padding: 5px;
+  justify-content: space-between;
+}
+
+.cantidad p {
+  font-weight: 600;
+  font-size: 17px;
+}
+
+.boton_carrito {
+  position: relative;
+  left: 950px;
+  top: -100px;
+}
+
+.sumar_restar svg {
+  display: block;
+}
+
+.boton_carrito {
+  position: relative;
+  top: 100px;
+}
+
+.titulo_carrito {
+  position: relative;
+  top: 20px;
+  text-align: center;
+  font-size: 30px;
+  color: black;
+}
+
+.agregar_campos {
+  font-size: 17px;
+  color: #000;
+  font-family: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  position: relative;
+  top: -50px;
+  border: none;
+  background: none;
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: 400ms;
+  transition-property: color;
+}
+
+.agregar_campos:focus,
+.agregar_campos:hover {
+  color: #258555;
+}
+
+.agregar_campos:focus:after,
+.agregar_campos:hover:after {
+  width: 100%;
+  left: 0%;
+}
+
+.agregar_campos:after {
+  content: "";
+  pointer-events: none;
+  bottom: -2px;
+  left: 50%;
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background-color: #258555;
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: 400ms;
+  transition-property: width, left;
+}
+
+/* ---------------------------------------------- */
+
+/* ESTILOS DEL BOTON SEGUIR COMPRANDO */
+.seguir_comprando {
+  position: relative;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+  padding-block: 0.5rem;
+  padding-inline: 1.25rem;
+  background-color: #258555;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffff;
+  gap: 10px;
+  font-weight: bold;
+  border: 3px solid #ffffff4d;
+  outline: none;
+  overflow: hidden;
+  font-size: 15px;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  transition: all 0.3s ease-in-out;
+}
+
+.seguir_comprando:hover {
+  transform: scale(1.05);
+  border-color: #fff9;
+}
+
+.seguir_comprando:hover .icon {
+  transform: translate(4px);
+}
+
+.seguir_comprando:hover::before {
+  animation: shine 1.5s ease-out infinite;
+}
+
+.seguir_comprando::before {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 100%;
+  background-image: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 30%,
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0) 70%
+  );
+  top: 0;
+  left: -100px;
+  opacity: 0.6;
+}
+
+@keyframes shine {
+  0% {
+    left: -100px;
+  }
+
+  60% {
+    left: 100%;
+  }
+
+  to {
+    left: 100%;
+  }
+}
+
+/* ------------------------------------------ */
+/* ESTILOS BOTONES ACCIONES */
+
+/* BOTON VACIAR CARRITO */
+.vaciarCarrito {
+  width: 140px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(
+    to right,
+    #ac0000,
+    #ff747b,
+    #b40018,
+    #b43e20,
+    #4d0040,
+    #ad3b4e
+  );
+  background-size: 250%;
+  background-position: left;
+  color: #ffffff;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition-duration: 1s;
+  overflow: hidden;
+}
+
+.vaciarCarrito::before {
+  position: absolute;
+  content: "Vaciar carrito";
+  color: #000000;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 97%;
+  height: 90%;
+  border-radius: 8px;
+  transition-duration: 1s;
+  background-color: rgb(255 220 220 / 84%);
+  background-size: 200%;
+}
+
+.vaciarCarrito:hover {
+  background-position: right;
+  transition-duration: 1s;
+}
+
+.vaciarCarrito:hover::before {
+  background-position: right;
+  transition-duration: 1s;
+}
+
+.vaciarCarrito:active {
+  transform: scale(0.95);
+}
+
+/* BOTON CONTINUAR COMPRA */
+.seguirCompra {
+  width: 190px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(
+    to right,
+    #00ac4d,
+    #a2ff77,
+    #001347,
+    #70770a,
+    #77fff4,
+    #0a7744
+  );
+  background-size: 250%;
+  background-position: left;
+  color: #ffffff;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition-duration: 1s;
+  overflow: hidden;
+}
+
+.seguirCompra::before {
+  position: absolute;
+  content: "Añadir más productos";
+  color: #000000;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 98%;
+  height: 90%;
+  border-radius: 8px;
+  transition-duration: 1s;
+  background-color: rgb(195 255 193 / 84%);
+  background-size: 200%;
+}
+
+.seguirCompra:hover {
+  background-position: right;
+  transition-duration: 1s;
+}
+
+.seguirCompra:hover::before {
+  background-position: right;
+  transition-duration: 1s;
+}
+
+.seguirCompra:active {
+  transform: scale(0.95);
+}
+
+/* BOTON DEVOLVER A SEGUIR COMPRANDO */
+
+.seguirComprando {
+  width: 230px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(
+    to right,
+    #00ac4d,
+    #a2ff77,
+    #001347,
+    #70770a,
+    #77fff4,
+    #0a7744
+  );
+  background-size: 250%;
+  background-position: left;
+  color: #ffffff;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition-duration: 1s;
+  overflow: hidden;
+}
+
+.seguirComprando::before {
+  position: absolute;
+  content: "Agregar productos al carrito";
+  color: #000000;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 98%;
+  height: 90%;
+  border-radius: 8px;
+  transition-duration: 1s;
+  background-color: rgb(195 255 193 / 84%);
+  background-size: 200%;
+}
+
+.seguirComprando:hover {
+  background-position: right;
+  transition-duration: 1s;
+}
+
+.seguirComprando:hover::before {
+  background-position: right;
+  transition-duration: 1s;
+}
+
+.seguirComprando:active {
+  transform: scale(0.95);
+}
+
+/* BOTON FINALIZAR COMPRA */
+
+.finalizarCompra {
+  width: 160px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(
+    to right,
+    #00ac4d,
+    #a2ff77,
+    #001347,
+    #70770a,
+    #77fff4,
+    #0a7744
+  );
+  background-size: 250%;
+  background-position: left;
+  color: #ffffff;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition-duration: 1s;
+  overflow: hidden;
+}
+
+.finalizarCompra::before {
+  position: absolute;
+  content: "Finalizar compra";
+  color: #000000;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 98%;
+  height: 90%;
+  border-radius: 8px;
+  transition-duration: 1s;
+  background-color: rgb(195 255 193 / 84%);
+  background-size: 200%;
+}
+
+.finalizarCompra:hover {
+  background-position: right;
+  transition-duration: 1s;
+}
+
+.finalizarCompra:hover::before {
+  background-position: right;
+  transition-duration: 1s;
+}
+
+.finalizarCompra:active {
+  transform: scale(0.95);
+}
+
+/* BOTONES ACCIONES */
+
+.botones_acciones_carrito {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+
+.boton1,
+.boton2,
+.boton3 {
+  margin: 0 10px;
+}
+
+.boton_seguirComprando {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.tr_carrito {
+  background-color: #dddddd;
+  padding: 7px;
+  border-radius: 10px;
+}
+
+.primer_th {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.ultimo_th {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.tr_carrito p {
+  color: black;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.tr_carrito td {
+  font-size: 20px;
+  text-align: center;
+}
+
+.container_color i {
+  font-size: 35px;
+}
+
+.editar_ubicacion {
+  width: 190px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(
+    to right,
+    #00ac4d,
+    #a2ff77,
+    #001347,
+    #70770a,
+    #77fff4,
+    #0a7744
+  );
+  background-size: 250%;
+  background-position: left;
+  color: #ffffff;
+  position: relative;
+  left: 1%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition-duration: 1s;
+  overflow: hidden;
+  margin-top: 42px;
+  margin-bottom: 15px;
+}
+
+.editar_ubicacion::before {
+  position: absolute;
+  content: "Editar ubicación";
+  color: #000000;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 98%;
+  height: 90%;
+  border-radius: 8px;
+  transition-duration: 1s;
+  background-color: rgb(195 255 193 / 84%);
+  background-size: 200%;
+}
+
+.editar_ubicacion:hover {
+  background-position: right;
+  transition-duration: 1s;
+}
+
+.editar_ubicacion:hover::before {
+  background-position: right;
+  transition-duration: 1s;
+}
+
+.editar_ubicacion:active {
+  transform: scale(0.95);
+}
+
+/* ACTUALIZAR BOTON */
+.actualizar_ubicacion {
+  width: 190px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(
+    to right,
+    #00ac4d,
+    #a2ff77,
+    #001347,
+    #70770a,
+    #77fff4,
+    #0a7744
+  );
+  background-size: 250%;
+  background-position: left;
+  color: #ffffff;
+  position: relative;
+  left: 43%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition-duration: 1s;
+  overflow: hidden;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.actualizar_ubicacion::before {
+  position: absolute;
+  content: "Actualizar";
+  color: #000000;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 98%;
+  height: 90%;
+  border-radius: 8px;
+  transition-duration: 1s;
+  background-color: rgb(195 255 193 / 84%);
+  background-size: 200%;
+}
+
+.actualizar_ubicacion:hover {
+  background-position: right;
+  transition-duration: 1s;
+}
+
+.actualizar_ubicacion:hover::before {
+  background-position: right;
+  transition-duration: 1s;
+}
+
+.actualizar_ubicacion:active {
+  transform: scale(0.95);
+}
+
+/* BOTON DE SIGUIENTE */
+.btn_siguiente {
+  width: 190px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(
+    to right,
+    #00ac4d,
+    #a2ff77,
+    #001347,
+    #70770a,
+    #77fff4,
+    #0a7744
+  );
+  background-size: 250%;
+  background-position: left;
+  color: #ffffff;
+  position: relative;
+  left: 1%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition-duration: 1s;
+  overflow: hidden;
+  margin-top: 42px;
+  margin-bottom: 40px;
+}
+
+.btn_siguiente::before {
+  position: absolute;
+  content: "Siguiente";
+  color: #000000;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 98%;
+  height: 90%;
+  border-radius: 8px;
+  transition-duration: 1s;
+  background-color: rgb(195 255 193 / 84%);
+  background-size: 200%;
+}
+
+.btn_siguiente:hover {
+  background-position: right;
+  transition-duration: 1s;
+}
+
+.btn_siguiente:hover::before {
+  background-position: right;
+  transition-duration: 1s;
+}
+
+.btn_siguiente:active {
+  transform: scale(0.95);
+}
+
+/* BOTON DE VER UBICACION */
+.ver_ubicacion {
+  width: 190px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(
+    to right,
+    #00ac4d,
+    #a2ff77,
+    #001347,
+    #70770a,
+    #77fff4,
+    #0a7744
+  );
+  background-size: 250%;
+  background-position: left;
+  color: #ffffff;
+  position: relative;
+  left: 44%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition-duration: 1s;
+  overflow: hidden;
+  margin-top: 42px;
+  margin-bottom: 40px;
+}
+
+.ver_ubicacion::before {
+  position: absolute;
+  content: "Ver ubicación";
+  color: #000000;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 98%;
+  height: 90%;
+  border-radius: 8px;
+  transition-duration: 1s;
+  background-color: rgb(195 255 193 / 84%);
+  background-size: 200%;
+}
+
+.ver_ubicacion:hover {
+  background-position: right;
+  transition-duration: 1s;
+}
+
+.ver_ubicacion:hover::before {
+  background-position: right;
+  transition-duration: 1s;
+}
+
+.ver_ubicacion:active {
+  transform: scale(0.95);
+}
+
+/* Estilos para el paso de pago */
+
+.container-paso1 .paso-pago {
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  margin-left: 27px;
+  margin-right: 27px;
+  margin-top: 59px;
+}
+
+.container-paso1 .titulo_paso1 {
+  text-align: center;
+  position: relative;
+  top: 46px;
+  background-color: #f7f7f7;
+  border: 3px solid #d6d6d6;
+  padding: 13px;
+  font-size: 20px;
+  border-radius: 14px;
+  color: #6a2ea6;
+}
+
+.container-paso2 .titulo_paso2 {
+  text-align: center;
+  position: relative;
+  top: 46px;
+  background-color: #f7f7f7;
+  border: 3px solid #d6d6d6;
+  padding: 13px;
+  font-size: 20px;
+  border-radius: 14px;
+  color: #6a2ea6;
+}
+
+.container-paso3 .titulo_paso3 {
+  text-align: center;
+  position: relative;
+  top: 46px;
+  background-color: #f7f7f7;
+  border: 3px solid #d6d6d6;
+  padding: 13px;
+  font-size: 20px;
+  border-radius: 14px;
+  color: #6a2ea6;
+}
+
+.container-paso4 .titulo_paso4 {
+  text-align: center;
+  position: relative;
+  top: 46px;
+  margin-top: 38px;
+  font-size: 20px;
+  background-color: #f7f7f7;
+  border: 3px solid #d6d6d6;
+  padding: 13px;
+  border-radius: 14px;
+  color: #6a2ea6;
+}
+
+.paso-pago h2 {
+  font-size: 23px;
+  margin-bottom: 15px;
+  text-align: center;
+  color: #258555;
+}
+
+.productos_agregados {
+  font-size: 23px;
+  margin-top: 33px;
+  margin-bottom: 33px;
+  text-align: center;
+  color: #258555;
+}
+
+.paso-pago .sub_titulo {
+  color: black;
+  font-size: 22px;
+  margin: 13px 6px 17px 5px;
+  font-weight: 600;
+}
+
+.mi_ubicacion {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.mi_ubicacion2 {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 90px;
+}
+
+.container-paso1 .ubicacionnn {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 15px;
+  width: 48%;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.1);
+}
+
+.ubicacionnn p {
+  margin: 8px 0;
+  color: #666;
+}
+
+/* Estilos para el botón "Editar ubicación" */
+.btn-editar {
+  padding: 12px 24px;
+  font-size: 16px;
+  background-color: #ff6a00;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 15px;
+  display: inline-block;
+}
+
+.btn-editar:hover {
+  background-color: #ff8500;
+}
+
+/* Estilos para el resumen del producto */
+
+.container-paso2 .resumen-producto {
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  margin-left: 33px;
+  margin-top: 51px;
+  margin-right: 27px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.producto {
+  width: 218px;
+  margin: 14px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.producto:hover {
+  transform: translateY(-5px);
+  /* Efecto de elevación */
+  box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.2);
+  /* Sombra más pronunciada */
+}
+
+.producto img {
+  width: 165px;
+  height: 160px;
+}
+
+.producto p {
+  margin: 8px 0;
+  color: #333;
+}
+
+.Carousel {
+  width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  position: relative;
+  left: 50px;
+  top: 20px;
+  margin-bottom: 60px;
+}
+
+.Carousel h2 {
+  font-size: 26px;
+  line-height: 38px;
+  padding-bottom: 24px;
+  opacity: 0.9;
+  text-transform: uppercase;
+  letter-spacing: 10px;
+  text-align: center;
+}
+
+/* images */
+
+.slick-list {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  height: 304px;
+  padding: 10px 0px;
+  margin: 0px auto;
+  max-width: 90vw;
+  overflow: hidden;
+}
+
+.slick-track {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  transition: 0.5s ease-in-out;
+}
+
+.slick {
+  position: relative;
+  width: 275px;
+  padding: 0 18px;
+  float: left;
+  box-sizing: border-box;
+  display: flex;
+  height: 100%;
+}
+
+.slick h4 {
+  position: absolute;
+  z-index: 1;
+  font-size: 14px;
+  line-height: 23px;
+  color: #ffffff;
+  padding: 15px;
+  background: rgb(0 0 0 / 34%);
+  width: 73%;
+  border-radius: 10px 10px 0 0;
+}
+
+.slick h4 small {
+  font-size: 15px;
+  display: block;
+}
+
+.slick a img {
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.5);
+  transition: 0.3s ease-in-out;
+}
+
+.slick .tamaño_imagen_carrusel {
+  width: 200px;
+  height: 300px;
+  overflow: hidden;
+}
+
+.slick a img:hover {
+  opacity: 0.85;
+}
+
+/* buttons */
+
+.slick-arrow {
+  border-radius: 30px;
+  background-color: #fff;
+  position: absolute;
+  z-index: 4;
+  width: 48px;
+  height: 48px;
+  text-align: center;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.15);
+  border: 0;
+  cursor: pointer;
+}
+
+.slick-arrow:focus {
+  outline: 0;
+}
+
+.slick-arrow svg {
+  width: 12px;
+  height: 100%;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.slick-prev {
+  left: 0px;
+}
+
+.slick-next {
+  right: 0px;
+}
+
+.algunos_productos {
+  color: #000000;
+  text-align: center;
+  margin-top: 52px;
+  margin-bottom: 21px;
+}
+
+.color-option {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  transition: transform 0.2s ease-in-out;
+  border: 2px solid #00000096;
+}
+
+.paso1,
+.paso2,
+.paso3,
+.paso4 {
+  color: #22b464;
+  text-align: center;
+}
+
+.paso1 {
+  margin-top: 65px;
+}
+
+.paso2,
+.paso3,
+.paso4 {
+  margin-bottom: 35px;
+  margin-top: 50px;
+}
+
+.container-paso1,
+.container-paso2,
+.container-paso3,
+.container-paso4 {
+  width: 90%;
+  margin-left: 120px;
+  border-radius: 10px;
+}
+
+.titulo_proceso_compra {
+  position: relative;
+  top: 16px;
+  margin-top: 29px;
+  text-align: center;
+  font-size: 31px;
+  color: black;
+}
+
+.container-paso1 {
+  height: 490px;
+  margin-top: 30px;
+  margin-bottom: 45px;
+}
+
+.container-paso2 {
+  height: 520px;
+  margin-top: 30px;
+  overflow: auto;
+  margin-bottom: 45px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.container-paso2::-webkit-scrollbar {
+  width: 0px;
+}
+
+.container-paso3 {
+  height: 490px;
+  margin-top: 30px;
+  margin-bottom: 45px;
+}
+
+.container-paso4 {
+  height: 490px;
+  margin-top: 30px;
+  margin-bottom: 45px;
+}
+
+.container-paso3 .container_compra_terminada {
+  width: 87%;
+  margin-left: 65px;
+  padding: 20px;
+  margin-top: 93px;
+  margin-bottom: 40px;
+  border-radius: 8px;
+}
+
+.container-paso4 .container_compra_terminada {
+  width: 87%;
+  margin-left: 65px;
+  padding: 20px;
+  margin-top: 50px;
+  margin-bottom: 40px;
+  border-radius: 8px;
+}
+
+.container-paso4 .formulario {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 39px;
+  justify-content: space-around;
+  height: 179px;
+  height: 0;
+}
+
+.formulario {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 39px;
+  justify-content: space-around;
+  height: 179px;
+  width: 106%;
+}
+
+.non-editable {
+  pointer-events: none;
+  /* Esto deshabilitará la interacción con los campos de entrada */
+}
+
+.boton_paso1 {
+  position: relative;
+  top: -35px;
+  left: -30px;
+}
+
+.boton_paso2 {
+  position: relative;
+  top: -19px;
+  left: 20px;
+}
+
+.boton_paso3 {
+  position: relative;
+  top: -11px;
+  left: 20px;
+}
+
+.finalizar_compra {
+  position: relative;
+  top: 93px;
+  left: -46px;
+}
+
+.informacion_pago .formulariooooo input {
+  color: red;
+}
+
+.color-option {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  transition: transform 0.2s ease-in-out;
+  border: 2px solid #00000096;
+}
+
+.cssbuttons-io-button {
+  background: #633aa1;
+  color: white;
+  font-family: inherit;
+  padding: 0.35em;
+  padding-left: 1.2em;
+  font-size: 17px;
+  font-weight: 500;
+  border-radius: 0.9em;
+  border: none;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  box-shadow: inset 0 0 1.6em -0.6em #633aa1;
+  overflow: hidden;
+  position: absolute;
+  top: 592px;
+  left: 46%;
+  height: 2.8em;
+  padding-right: 3.3em;
+  cursor: pointer;
+}
+
+.cssbuttons-io-button .icon {
+  background: white;
+  margin-left: 1em;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.2em;
+  width: 2.2em;
+  border-radius: 0.7em;
+  box-shadow: 0.1em 0.1em 0.6em 0.2em #633aa1;
+  right: 0.3em;
+  transition: all 0.3s;
+}
+
+.cssbuttons-io-button:hover .icon {
+  width: calc(100% - 0.6em);
+}
+
+.cssbuttons-io-button .icon svg {
+  width: 1.1em;
+  transition: transform 0.3s;
+  color: #7b52b9;
+}
+
+.cssbuttons-io-button:hover .icon svg {
+  transform: translateX(0.1em);
+}
+
+.cssbuttons-io-button:active .icon {
+  transform: scale(0.95);
+}
+
+.container_compra_terminada h2 {
+  text-align: center;
+}
+
+/* Estilos para el modal */
+.modal_ubicacion_edit {
+  display: none;
+  /* El modal está oculto inicialmente */
+  position: fixed;
+  z-index: 100000000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(3px);
+}
+
+.modal_ubicacion_edit .modal-contenido {
+  background-color: #fefefe;
+  margin: 14% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  height: 446px;
+  border-radius: 8px;
+}
+
+.modal_ubicacion_edit .modal-contenido .mi_ubicacion {
+  padding: 20px;
+  margin-top: 54px;
+}
+
+.modal_ubicacion_edit .modal-contenido .actualizar_ubi {
+  position: relative;
+  top: 20px;
+  left: 28px;
+  width: 309px;
+  padding-bottom: 3px;
+  margin-top: 18px;
+}
+
+.modal_ubicacion_edit .cerrar-modal {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.modal_ubicacion_edit .cerrar-modal:hover,
+.modal_ubicacion_edit .cerrar-modal:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-contenido .btn_mi_perfill {
+  padding: 10px 35px;
+  cursor: pointer;
+  background-color: #212121;
+  border-radius: 6px;
+  border: 2px solid #212121;
+  box-shadow: 6px 6px 10px rgba(0, 0, 0, 1),
+    1px 1px 10px rgba(255, 255, 255, 0.6);
+  color: #fff;
+  font-size: 15px;
+  font-weight: bold;
+  transition: 0.35s;
+}
+
+.modal-contenido .btn_mi_perfill:hover {
+  transform: scale(1.05);
+  box-shadow: 6px 6px 10px rgba(0, 0, 0, 1),
+    1px 1px 10px rgba(255, 255, 255, 0.6), inset 2px 2px 10px rgba(0, 0, 0, 1),
+    inset -1px -1px 5px rgba(255, 255, 255, 0.6);
+}
+
+.modal-contenido .btn_mi_perfill:focus {
+  transform: scale(1.05);
+  box-shadow: 6px 6px 10px rgba(0, 0, 0, 1),
+    1px 1px 10px rgba(255, 255, 255, 0.6), inset 2px 2px 10px rgba(0, 0, 0, 1),
+    inset -1px -1px 5px rgba(255, 255, 255, 0.6);
+}
+
+.modal-contenido .caja_boton_actualizar_perfil {
+  margin: 30px;
+  position: relative;
+  top: -40px;
+  left: -4px;
+  display: flex;
+  justify-content: center;
+}
+
+.container-paso4 .descripcion_paso4 {
+  color: #533173;
+  font-size: 22px;
+  font-weight: 500;
+  margin-top: 96px;
+  width: 90%;
+  margin-left: 64px;
+  text-align: center;
+}
+
+.div_mostrar_pago {
+  border-radius: 11px;
+  text-align: center;
+  width: 100%;
+  padding: 21px;
+  height: 308px;
+  margin-top: 38px;
+  margin-left: -4px;
+}
+
+.div_mostrar_pago .titulo_procesos {
+  color: black;
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+.numero_transferencia .titulo_n {
+  margin-bottom: 41px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #6d1fb5;
+}
+
+.numero {
+  display: flex;
+  justify-content: center;
+}
+
+.numero .input1 {
+  margin-left: 20px;
+}
+
+.numero input,
+.transferencia input {
+  padding: 12px;
+  border: none;
+  border-radius: 11px;
+  width: 500px;
+  margin-bottom: 22px;
+  margin-top: 15px;
+  text-align: center;
+  box-shadow: 6px 6px 15px rgba(112, 112, 112, 0.5);
+}
+
+.label_cuenta,
+.label_comprobante {
+  color: #2d2d2d;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.label_comprobante {
+  margin-top: 10px;
+}
+
+/* Estilos para el número de transferencia */
+.divTransferenciaDaviplata .numero_transferencia {
+  margin-bottom: 10px;
+}
+
+/* Estilos para el input del número de transferencia */
+.divTransferenciaDaviplata .numero_transferencia input[type="text"] {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+}
+
+/* Estilos para el texto del comprobante de transferencia */
+.divTransferenciaDaviplata .comprobante_transferencia {
+  margin-bottom: 10px;
+}
+
+/* Estilos para el input del comprobante de transferencia */
+.divTransferenciaDaviplata .comprobante_transferencia input[type="file"] {
+  /* Aquí puedes aplicar estilos personalizados para el input de tipo file si lo deseas */
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+}
+
+.cssbuttons-io-button-finalizar-compra {
+  background: #633aa1;
+  color: white;
+  font-family: inherit;
+  padding: 0.35em;
+  padding-left: 1.2em;
+  font-size: 17px;
+  font-weight: 500;
+  border-radius: 0.9em;
+  border: none;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  box-shadow: inset 0 0 1.6em -0.6em #714da6;
+  overflow: hidden;
+  position: relative;
+  left: 44%;
+  margin-top: 35px;
+  height: 2.8em;
+  padding-right: 3.3em;
+  cursor: pointer;
+}
+
+.cssbuttons-io-button-finalizar-compra .icon {
+  background: white;
+  margin-left: 1em;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.2em;
+  width: 2.2em;
+  border-radius: 0.7em;
+  box-shadow: 0.1em 0.1em 0.6em 0.2em #7b52b9;
+  right: 0.3em;
+  transition: all 0.3s;
+}
+
+.cssbuttons-io-button-finalizar-compra:hover .icon {
+  width: calc(100% - 0.6em);
+}
+
+.cssbuttons-io-button-finalizar-compra .icon svg {
+  width: 1.1em;
+  transition: transform 0.3s;
+  color: #7b52b9;
+}
+
+.cssbuttons-io-button-finalizar-compra:hover .icon svg {
+  transform: translateX(0.1em);
+}
+
+.cssbuttons-io-button-finalizar-compra:active .icon {
+  transform: scale(0.95);
+}
+
+.total_compra {
+  border: 1px solid #bfbfbf;
+  border-radius: 5px;
+  background-color: #eeeeeeee;
+  width: 36%;
+  height: 100px;
+  text-align: center;
+  padding: 20px;
+  margin-top: -70px;
+}
+
+.total_compra .info {
+  font-weight: bold;
+}
+
+.total_compra .precio {
+  color: #38b100;
+  font-size: 21px;
+  font-weight: 800;
+}
+
+/* Estilos para el contenedor del número de transferencia */
+.numero_transferencia {
+  padding: 20px;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+  /* Ajusta otros estilos según sea necesario */
+}
+
+/* Estilos para la imagen QR */
+.imagenn {
+  width: 312px;
+  margin-bottom: 27px;
+  height: auto;
+  position: relative;
+  left: 4%;
+}
+
+/* Estilos para los contenedores de texto e input */
+.numero,
+.transferencia {
+  margin-top: 10px;
+  /* Ajusta otros estilos según sea necesario */
+}
+
+/* Estilos para el icono dentro del botón */
+.icon svg {
+  fill: white;
+  height: 20px;
+  width: 20px;
+  margin-left: 5px;
+  /* Ajusta otros estilos según sea necesario */
+}
+
+/* tooltip settings 👇 */
+
+.copy {
+  /* button */
+  --button-bg: #353434;
+  --button-hover-bg: #464646;
+  --button-text-color: #cccccc;
+  --button-hover-text-color: #8bb9fe;
+  --button-border-radius: 10px;
+  --button-diameter: 36px;
+  --button-outline-width: 1px;
+  --button-outline-color: rgb(141, 141, 141);
+  /* tooltip */
+  --tooltip-bg: #f4f3f3;
+  --toolptip-border-radius: 4px;
+  --tooltip-font-family: Menlo, Roboto Mono, monospace;
+  /* 👆 this field should not be empty */
+  --tooltip-font-size: 12px;
+  /* 👆 this field should not be empty */
+  --tootip-text-color: rgb(50, 50, 50);
+  --tooltip-padding-x: 7px;
+  --tooltip-padding-y: 7px;
+  --tooltip-offset: 8px;
+  /* --tooltip-transition-duration: 0.3s; */
+  /* 👆 if you need a transition, 
+  just remove the comment,
+  but I didn't like the transition :| */
+}
+
+.copy {
+  box-sizing: border-box;
+  width: var(--button-diameter);
+  height: var(--button-diameter);
+  border-radius: var(--button-border-radius);
+  background-color: var(--button-bg);
+  color: var(--button-text-color);
+  border: none;
+  cursor: pointer;
+  position: relative;
+  outline: none;
+}
+
+.tooltip {
+  position: absolute;
+  opacity: 0;
+  visibility: 0;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font: var(--tooltip-font-size) var(--tooltip-font-family);
+  color: var(--tootip-text-color);
+  background: var(--tooltip-bg);
+  padding: var(--tooltip-padding-y) var(--tooltip-padding-x);
+  border-radius: var(--toolptip-border-radius);
+  pointer-events: none;
+  transition: all var(--tooltip-transition-duration)
+    cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.tooltip::before {
+  content: attr(data-text-initial);
+}
+
+.tooltip::after {
+  content: "";
+  position: absolute;
+  bottom: calc(var(--tooltip-padding-y) / 2 * -1);
+  width: var(--tooltip-padding-y);
+  height: var(--tooltip-padding-y);
+  background: inherit;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  z-index: -999;
+  pointer-events: none;
+}
+
+.copy svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.checkmark {
+  display: none;
+}
+
+/* actions */
+
+.copy:hover .tooltip,
+.copy:focus:not(:focus-visible) .tooltip {
+  opacity: 1;
+  visibility: visible;
+  top: calc((100% + var(--tooltip-offset)) * -1);
+}
+
+.copy:focus:not(:focus-visible) .tooltip::before {
+  content: attr(data-text-end);
+}
+
+.copy:focus:not(:focus-visible) .clipboard {
+  display: none;
+}
+
+.copy:focus:not(:focus-visible) .checkmark {
+  display: block;
+}
+
+.copy:hover,
+.copy:focus {
+  background-color: var(--button-hover-bg);
+}
+
+.copy:active {
+  outline: var(--button-outline-width) solid var(--button-outline-color);
+}
+
+.copy:hover svg {
+  color: var(--button-hover-text-color);
+}
+
+@media (max-width: 400px) {
+  .container_carrito {
+    background-color: transparent;
+    padding: 20px;
+    border: 2px solid #bbbbbb;
+    border-radius: 5px;
+    position: relative;
+    top: 80px;
+    left: 110px;
+    margin-bottom: 100px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .table_carrito {
+    width: 100%;
+  }
+
+  .table_carrito tbody {
+    display: flex;
+    flex-direction: column;
+    width: 30px;
+  }
+
+  .table_carrito td {
+    width: 100%;
+    /* Hacer que las celdas ocupen el ancho completo de su contenedor */
+  }
+
+  .table_carrito th {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 911px) and (max-width: 1000px) {
+  .container_carrito {
+    background-color: #fff;
+    padding: 20px;
+    border: 2px solid #bbbbbb;
+    border-radius: 5px;
+    position: relative;
+    top: 40px;
+    left: 124px;
+    margin-bottom: 100px;
+    width: 84%;
+    /* Ajusta los estilos del contenedor del carrito para esta gama de pantalla */
+  }
+
+  .table_carrito {
+    overflow-x: auto;
+    display: block;
+  }
+
+  .table_carrito thead,
+  .table_carrito tbody,
+  .table_carrito th,
+  .table_carrito td,
+  .table_carrito tr {
+    display: block;
+  }
+
+  .table_carrito tbody tr {
+    margin-bottom: 15px;
+    background-color: #bfbfbf;
+    border: 1px solid #000;
+    border-radius: 12px;
+    padding: 16px;
+  }
+
+  .table_carrito thead tr th {
+    display: none;
+  }
+
+  .table_carrito td {
+    border: none;
+    position: relative;
+    padding-left: 50%;
+    text-align: left;
+  }
+
+  .table_carrito td:before {
+    position: absolute;
+    top: 0;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+  }
+
+  .table_carrito td:nth-of-type(1):before {
+    content: "Imagen:";
+  }
+
+  .table_carrito td:nth-of-type(2):before {
+    content: "Producto:";
+  }
+
+  .table_carrito td:nth-of-type(3):before {
+    content: "Precio:";
+  }
+
+  .table_carrito td:nth-of-type(4):before {
+    content: "Cantidad:";
+  }
+
+  .table_carrito td:nth-of-type(5):before {
+    content: "Color:";
+  }
+
+  .table_carrito td:nth-of-type(6):before {
+    content: "Subtotal:";
+  }
+
+  .table_carrito td:nth-of-type(7):before {
+    content: "";
+  }
+}
+
+@media (min-width: 1300px) and (max-width: 1499px) {
+  .container_carrito {
+    background-color: #fff;
+    padding: 20px;
+    border: 2px solid #bbbbbb;
+    border-radius: 5px;
+    position: relative;
+    top: 40px;
+    left: 175px;
+    margin-bottom: 100px;
+    width: 83%;
+    justify-content: center;
+  }
+
+  .modal_ubicacion_edit .modal-contenido {
+    background-color: #ffffff;
+    margin: 8% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    height: 446px;
+    border-radius: 8px;
+  }
+}
+
+@media (min-width: 1500px) and (max-width: 1699px) {
+  .container_carrito {
+    background-color: #fff;
+    padding: 20px;
+    border: 2px solid #bbbbbb;
+    border-radius: 5px;
+    position: relative;
+    top: 40px;
+    left: 175px;
+    margin-bottom: 100px;
+    width: 83%;
+    justify-content: center;
+  }
+
+  .modal_ubicacion_edit .modal-contenido {
+    background-color: #ffffff;
+    margin: 8% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    height: 446px;
+    border-radius: 8px;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .container_carrito {
+    background-color: #fff;
+    padding: 20px;
+    border: 2px solid #bbbbbb;
+    border-radius: 5px;
+    position: relative;
+    top: 40px;
+    left: 175px;
+    margin-bottom: 100px;
+    width: 86%;
+    justify-content: center;
+  }
+}
