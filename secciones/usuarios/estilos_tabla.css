@@ -22,6 +22,19 @@
   top: 15px;
 }
 
+.container_foto_usu .fotico {
+  border-radius: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  background-color: rgb(255, 255, 255);
+  height: 55px;
+  width: 55px;
+  margin-right: 10px;
+  margin-left: 10px;
+  align-items: center;
+}
+
 .container_categorias_agregadas {
   border: solid 1px rgba(255, 255, 255, 0.2);
 }
@@ -312,128 +325,9 @@ a {
   word-wrap: break-word;
 }
 
-.card_informacion_usuario {
-  height: 581px;
-  background: #2585551f;
-  transition: 1s ease-in-out;
-  border-top-left-radius: 43px;
-  border-bottom-left-radius: 43px;
-  display: flex;
-  flex-direction: column;
-  margin-left: 120px;
-  border: 2px solid #258555;
-  width: 30%;
-  padding: 20px;
-  box-sizing: border-box;
-}
-
-.card_informacion_usuario span {
-  font-weight: bold;
-  color: #258555;
-  text-align: center;
-  display: block;
-  font-size: 20px;
-  margin-bottom: 15px;
-}
-
-.card_informacion_usuario p {
-  word-wrap: break-word;
-  text-align: center;
-  margin-bottom: 14px;
-  border-bottom: 1px solid #999999;
-}
-
-.card_informacion_usuario .img {
-  width: 6.8em;
-  height: 6.8em;
-  background: white;
-  border-radius: 15px;
-  margin: auto;
-}
-
-.card_informacion_usuario .share {
-  margin-top: 1em;
-  display: flex;
-  justify-content: center;
-  gap: 1em;
-}
-
-.card_informacion_usuario a {
-  color: white;
-  transition: 0.4s ease-in-out;
-}
-
-.card_informacion_usuario a:hover {
-  color: red;
-}
-
-.card_informacion_usuario button {
-  padding: 0.8em 1.7em;
-  display: block;
-  margin: auto;
-  border-radius: 25px;
-  border: none;
-  font-weight: bold;
-  background: #258555;
-  color: rgb(255, 255, 255);
-  transition: 0.4s ease-in-out;
-  position: absolute;
-  top: 598px;
-  left: 274px;
-}
-
-.card_informacion_usuario button:hover {
-  background: rgb(0, 0, 0);
-  color: white;
-  cursor: pointer;
-}
-
 strong {
   color: #258555;
   font-weight: 600;
-}
-
-.container_todo_ver_usuario {
-  display: flex;
-  padding: 30px;
-  margin-top: 10px;
-}
-
-.informacionnnn {
-  width: 70%;
-  max-height: 582px; /* Por ejemplo, ajusta esto según tus necesidades */
-  overflow-y: auto;
-  padding: 20px;
-  box-sizing: border-box;
-  background-color: transparent;
-  margin-left: 10px;
-  border: 1px solid rgba(0, 0, 0, 0.397);
-  border-top-right-radius: 43px;
-  border-bottom-right-radius: 43px;
-}
-
-.informacionnnn {
-  overflow-x: hidden;
-}
-
-.informacionnnn {
-  scrollbar-width: none;
-  /* Firefox */
-  -ms-overflow-style: none;
-  /* Internet Explorer y Edge */
-}
-
-/* Agrega un estilo personalizado al scroll (opcional) */
-.informacionnnn::-webkit-scrollbar {
-  width: 0px;
-}
-
-.informacionnnn .titulo {
-  color: #258555;
-  font-weight: 600;
-  margin-bottom: 20px;
-  margin-top: -19px;
-  font-size: 24px;
 }
 
 /* Estilo para el botón principal del menú */
@@ -570,12 +464,12 @@ textarea {
   border-radius: 8px;
 }
 
-.inputBox input:valid ~ span,
-.inputBox input:focus ~ span,
-.inputBox select:valid ~ span,
-.inputBox select:focus ~ span,
-.inputBox textarea:valid ~ span,
-.inputBox textarea:focus ~ span {
+.inputBox input:valid~span,
+.inputBox input:focus~span,
+.inputBox select:valid~span,
+.inputBox select:focus~span,
+.inputBox textarea:valid~span,
+.inputBox textarea:focus~span {
   transform: translateX(113px) translateY(-15px);
   font-size: 12px;
   padding: 5px 10px;
@@ -1110,11 +1004,11 @@ textarea {
   z-index: 3000000000000;
 }
 
-#btn-modal:checked ~ .container-modal {
+#btn-modal:checked~.container-modal {
   display: flex;
 }
 
-#btn-modal:checked ~ .body {
+#btn-modal:checked~.body {
   overflow: hidden;
 }
 
@@ -1533,6 +1427,7 @@ textarea {
     color: black;
     margin-bottom: 22px;
   }
+
   .container-modal-compras .content-modal {
     width: 100%;
     max-width: 1110px;

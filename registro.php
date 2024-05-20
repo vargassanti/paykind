@@ -24,8 +24,8 @@ session_start();
       </a>
     </div>
     <div class="texto">
-      <p id="mostrarModalTerminos">Términos y Condiciones</p>
-      <p id="mostrarModalPreguntas">Preguntas Frecuentes</p>
+      <p id="botonMostrarModalTerminos1">Términos y Condiciones</p>
+      <p id="botonTratamientoDatos1">Tratamiento de Datos</p>
       <a href="index.php">
         <p>Regresar al sitio web</p>
       </a>
@@ -55,10 +55,10 @@ session_start();
       <!--Formulario de Login y registro-->
       <div class="contenedor__login-register">
         <!--Login-->
-        <form action="inicio_sesion.php" method="post" class="formulario__login">
+        <form action="inicio_sesion.php" method="post" class="formulario__login" onsubmit="return validarFormularioLogin()">
           <h2>Iniciar Sesión</h2>
-          <input type="email" placeholder="Correo:" name="correo" id="correo" required>
-          <input type="password" placeholder="Contraseña:" name="password" id="password" required>
+          <input type="email" placeholder="Correo:" name="correo" id="correo">
+          <input type="password" placeholder="Contraseña:" name="password" id="password">
           <img class="password-toggle" id="togglePassword" src="img/ocultar_contraseña.png" alt="Mostrar Contraseña">
 
           <button type="submit" name="btn_iniciar" id="btn2" class="button">
@@ -70,36 +70,34 @@ session_start();
               Ingresar
             </div>
           </button>
-          <a class="olvidaste_contraseña" href="codigo_contraseña/olvidaste_contraseña.php">¿Has olvidado tu contraseña?</a>
         </form>
 
-
         <!--Register-->
-        <form action="crear_user.php" class="formulario__register" method="POST" enctype="multipart/form-data">
+        <form action="crear_user.php" class="formulario__register" method="POST" enctype="multipart/form-data" onsubmit="return validarFormularioRegister()">
           <h2>Regístrarse</h2>
           <div class="caaaaja">
-            <input class="estilos_campos" type="text" placeholder="Nombres:" name="nombres_u" id="nombres_u" required onkeypress="return soloLetras(event)" onpaste="return soloLetras(event)">
-            <input class="estilos_campos" type="text" placeholder="Apellidos:" name="apellidos_u" id="apellidos_u" required onkeypress="return soloLetras(event)" onpaste="return soloLetras(event)">
+            <input class="estilos_campos" type="text" placeholder="Nombres:" name="nombres_u" id="nombres_u" onkeypress="return soloLetras(event)" onpaste="return soloLetras(event)">
+            <input class="estilos_campos" type="text" placeholder="Apellidos:" name="apellidos_u" id="apellidos_u" onkeypress="return soloLetras(event)" onpaste="return soloLetras(event)">
           </div>
-          <input class="estilos_campos" type="email" placeholder="Correo:" name="correo" id="correo2" required>
+          <input class="estilos_campos" type="email" placeholder="Correo:" name="correo" id="correo2">
 
-          <input type="password" placeholder="Contraseña:" name="password" id="contrasena" required>
-          <img class="toggle-password-button" id="toggleButton" src="img/ocultar_contraseña.png" alt="Mostrar Contraseña" required>
+          <input type="password" placeholder="Contraseña:" name="password" id="contrasena">
+          <img class="toggle-password-button" id="toggleButton" src="img/ocultar_contraseña.png" alt="Mostrar Contraseña">
 
           <div class="caaaaja">
-            <input class="estilos_campos" type="text" placeholder="Usuario:" name="usuario" id="usuario" required>
-            <input class="estilos_campos" type="text" placeholder="Celular:" name="celular" id="celular" required>
+            <input class="estilos_campos" type="text" placeholder="Usuario:" name="usuario" id="usuario">
+            <input class="estilos_campos" type="text" placeholder="Celular:" name="celular" id="celular">
           </div>
-          <select class="estilos_campos_select" name="tipo_documento_u" id="tipo_documento_u" required>
+          <select class="estilos_campos_select" name="tipo_documento_u" id="tipo_documento_u">
             <option class="estilos_option" value="" selected hidden>Tipo de identificación:</option>
             <option class="estilos_option" value="CC">Cedula Ciudadanía</option>
             <option class="estilos_option" value="TI">Tarjeta de Identidad</option>
           </select>
 
           <div class="caaaaja">
-            <input class="estilos_campos" type="text" placeholder="Identificacion:" name="id_usuario" id="id_usuario" required>
+            <input class="estilos_campos" type="text" placeholder="Identificacion:" name="id_usuario" id="id_usuario">
           </div>
-          <select class="estilos_campos_select" name="id_rol" id="id_rol" required>
+          <select class="estilos_campos_select" name="id_rol" id="id_rol">
             <option selected hidden>Tipo de usuario:</option>
             <option value="Cliente">Cliente</option>
             <option value="Vendedor">Vendedor</option>
@@ -107,17 +105,17 @@ session_start();
 
           <div class="container_checkbox">
             <div class="checkbox-wrapper-19">
-              <input id="cbtest-19" type="checkbox" required>
+              <input id="cbtest-19" type="checkbox">
               <label class="check-box" for="cbtest-19">
               </label>
             </div>
-            <p>Términos y Condiciones</p>
+            <p id="botonMostrarModalTerminos2">Términos y Condiciones</p>
             <div class="checkbox-wrapper-20">
-              <input id="cbtest-20" type="checkbox" required>
+              <input id="cbtest-20" type="checkbox">
               <label class="check-box-20" for="cbtest-20">
               </label>
             </div>
-            <p>Tratamiento de Datos</p>
+            <p id="botonTratamientoDatos2">Tratamiento de Datos</p>
           </div>
 
           <button type="submit" id="btn" name="btn_enviar_crear_cuenta" class="button2">
@@ -469,84 +467,17 @@ session_start();
     </div>
   </div>
 
-  <div id="modalPreguntas" class="modal_terminos_condiciones">
+  <div id="modalTratamientoTerminos" class="modal_terminos_condiciones">
     <div class="modal-contenido">
       <div class="contenido_preguntas">
-        <span class="cerrarModal">&times;</span>
-        <h2>Preguntas Frecuentes</h2>
+        <span class="cerrarModal" id="closeModal">&times;</span>
+        <h2>Tratamiento de Datos</h2>
         <div class="accordion">
-          <p class="question"> ¿Cuál es el tiempo estimado de entrega para este producto? <i class='bx bx-chevron-down arrowP'></i></p>
-          <div class="answer">
-            <p>El tiempo estimado de entrega es de 5 a 7 días hábiles.</p>
-          </div>
-
-          <p class="question"> ¿Ofrecen envío gratuito? <i class='bx bx-chevron-down arrowP'></i></p>
-          <div class="answer">
-            <p>Sí, ofrecemos envío gratuito para todos los pedidos.</p>
-          </div>
-
-          <p class="question"> ¿Puedo devolver el artículo si no estoy satisfecho? <i class='bx bx-chevron-down arrowP'></i></p>
-          <div class="answer">
-            <p>Sí, aceptamos devoluciones dentro de los 30 días posteriores a la compra si no estás satisfecho con el artículo.</p>
-          </div>
-
-          <p class="question"> ¿El producto viene con garantía? <i class='bx bx-chevron-down arrowP'></i></p>
-          <div class="answer">
-            <p>Sí, el producto está respaldado por una garantía de un año.</p>
-          </div>
-
-          <p class="question"> ¿Tienen disponibilidad en otros colores/tamaños? <i class='bx bx-chevron-down arrowP'></i></p>
-          <div class="answer">
-            <p>Sí, tenemos disponibles otros colores y tamaños para este producto.</p>
-          </div>
-
-          <p class="question"> ¿Cuáles son las instrucciones de cuidado para este producto? <i class='bx bx-chevron-down arrowP'></i></p>
-          <div class="answer">
-            <p>Las instrucciones de cuidado incluyen lavado a mano con agua fría y secado al aire.</p>
-          </div>
-
-          <p class="question"> ¿Hay algún descuento si compro varios artículos juntos? <i class='bx bx-chevron-down arrowP'></i></p>
-          <div class="answer">
-            <p>Sí, ofrecemos descuentos por compras múltiples. Contáctanos para obtener más detalles.</p>
-          </div>
-
-          <p class="question"> ¿Pueden proporcionar más detalles sobre las especificaciones técnicas del producto? <i class='bx bx-chevron-down arrowP'></i></p>
-          <div class="answer">
-            <p>Las especificaciones técnicas incluyen [detalles técnicos del producto].</p>
-          </div>
-
-          <p class="question"> ¿Cuál es la política de reembolso en caso de daños durante el envío? <i class='bx bx-chevron-down arrowP'></i></p>
-          <div class="answer">
-            <p>Si el artículo llega dañado, por favor contáctanos dentro de las 48 horas posteriores a la entrega para gestionar un reembolso o reemplazo.</p>
-          </div>
-
-          <p class="question"> ¿Se pueden realizar pagos en cuotas? <i class='bx bx-chevron-down arrowP'></i></p>
-          <div class="answer">
-            <p>Sí, ofrecemos opciones de pago a plazos. Puedes obtener más detalles durante el proceso de compra.</p>
-          </div>
-
-          <p class="question"> ¿Ofrecen servicio de instalación/montaje para este producto? <i class='bx bx-chevron-down arrowP'></i></p>
-          <div class="answer">
-            <p>Sí, ofrecemos servicios de instalación/montaje con un costo adicional. Contáctanos para programar una instalación.</p>
-          </div>
-
-          <p class="question"> ¿Cuál es la fecha de caducidad o vencimiento, si aplica, de este producto? <i class='bx bx-chevron-down arrowP'></i></p>
-          <div class="answer">
-            <p>Este producto no tiene una fecha de caducidad o vencimiento.</p>
-          </div>
-
-          <p class="question"> ¿El artículo viene con accesorios adicionales? <i class='bx bx-chevron-down arrowP'></i></p>
-          <div class="answer">
-            <p>Sí, el artículo viene con accesorios adicionales que incluyen [lista de accesorios].</p>
-          </div>
-
-          <p class="question"> ¿Hay alguna promoción especial o venta próximamente para este producto? <i class='bx bx-chevron-down arrowP'></i></p>
-          <div class="answer">
-            <p>Actualmente no hay promociones anunciadas. Te recomendamos estar atento a futuras ofertas y ventas.</p>
-          </div>
+          <p>Aquí puedes poner información sobre los tratamientos de datos.</p>
+          <p>Por ejemplo: cómo se recopilan, almacenan y utilizan.</p>
         </div>
         <div class="boton_cerrar_modal">
-          <button class="cerrarBtn">
+          <button class="cerrarBtn" id="closeModal">
             Cerrar preguntas
             <div class="icon">
               <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -569,6 +500,8 @@ session_start();
   <script src="js/valida_img.js"></script>
   <script src="js/modal_terminos.js"></script>
   <script src="js/preguntas.js"></script>
+  <script src="js/modal_tratamiento.js"></script>
+  <script src="js/validacion_register.js"></script>
 
   <script>
     // Verifica si se ha pasado un parámetro GET "alerta"

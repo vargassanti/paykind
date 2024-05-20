@@ -48,44 +48,38 @@ if (isset($_GET['nit_identificacion'])) {
 $sentencia = $conexion->prepare("SELECT * FROM tbl_tienda ");
 $sentencia->execute();
 $lista_tbl_tiendas = $sentencia->fetchAll(PDO::FETCH_ASSOC);
-?>
-<?php include("../../templates/header.php"); ?>
 
+include("../../templates/header.php"); ?>
 
-<h4 class="titulo_tienda">Tiendas registradas</h4>
+<h4 class="titulo_tienda">Tiendas</h4>
 <div class="container23">
-    <?php foreach ($lista_tbl_tiendas as $registro) { ?>
-        <div class="body">
-            <a class="card human-resources" href="mas_tienda.php?txtID=<?php echo $registro['nit_identificacion']; ?>&ruta=index.php">
-                <img class="imagen_tiendaa" src="./imagenes_tienda/<?php echo $registro['logo_tienda']; ?>" />
-                <p>
-                    <strong>
-                        <?php
-                        $contenido = $registro['nombre_tienda'];
-                        $limite_letras = 20;
+    <?php
+    if (empty($lista_tbl_tiendas)) {
+        echo "<p> No hay tiendas registradas. </p>";
+    } else {
+        foreach ($lista_tbl_tiendas as $registro) { ?>
+            <div class="body">
+                <a class="card_t human-resources" href="mas_tienda.php?txtID=<?php echo $registro['nit_identificacion']; ?>&ruta=index.php">
+                    <img class="imagen_tiendaa" src="./imagenes_tienda/<?php echo $registro['logo_tienda']; ?>" />
+                    <p>
+                        <strong>
+                            <?php
+                            $contenido = $registro['nombre_tienda'];
+                            $limite_letras = 20;
 
-                        if (strlen($contenido) > $limite_letras) {
-                            $contenido_limitado = substr($contenido, 0, $limite_letras) . '...';
-                            echo $contenido_limitado;
-                        } else {
-                            echo $contenido;
-                        }
-                        ?>
-                    </strong>
-                </p>
-            </a>
-        </div>
-    <?php } ?>
+                            if (strlen($contenido) > $limite_letras) {
+                                $contenido_limitado = substr($contenido, 0, $limite_letras) . '...';
+                                echo $contenido_limitado;
+                            } else {
+                                echo $contenido;
+                            }
+                            ?>
+                        </strong>
+                    </p>
+                </a>
+            </div>
+        <?php }
+        ?>
+    <?php
+    } ?>
 </div>
-<button class="boton_volver_arriba_p" onclick="scrollToTop()" id="btnVolverArriba" title="Volver Arriba">
-    <i class='bx bx-up-arrow-alt'></i>
-</button>
-<script>
-    // JavaScript para scroll suave hacia arriba
-    function scrollToTop() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    }
-</script>

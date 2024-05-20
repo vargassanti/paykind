@@ -190,122 +190,6 @@ body::-webkit-scrollbar {
   }
 }
 
-@media only screen and (max-width: 480px) {
-  .formulariooi {
-    max-width: 200px;
-    margin: 32px;
-    text-align: center;
-  }
-
-  .container {
-    background-color: #fff;
-    padding: 75px;
-    border: none;
-    border-radius: 30px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    position: relative;
-    left: 20px;
-    max-height: 180px;
-  }
-
-  .cuadro {
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    top: -50px;
-    height: 100vh;
-  }
-
-  .titulo {
-    font-size: 18px;
-    position: relative;
-    top: -50px;
-    right: -0px;
-  }
-
-  .labell {
-    font-size: 16px;
-    color: rgb(8, 60, 201);
-    position: relative;
-    left: -100%;
-    top: -65px;
-  }
-
-  .boton {
-    padding: 20px 20px;
-    text-align: center;
-    text-decoration: none;
-    color: #fff;
-    background-color: #4CAF50;
-    border: none;
-    border-radius: 4px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    position: relative;
-    left: -94px;
-    top: -20px;
-  }
-
-  .boton {
-    background-image: linear-gradient(to right, rgb(0, 85, 165), #a77c7c, #c9b0b0);
-    margin-top: 10px;
-    margin-bottom: 15px;
-    border: none;
-    color: #000000;
-    padding: 10px 20px;
-    border-radius: 10px;
-    border: 1px solid #fff;
-  }
-
-  .boton:hover {
-    background-image: linear-gradient(to right, #c9b0b0, #a77c7c, rgb(0, 85, 165));
-    box-shadow: 0px 0px 20px rgba(119, 81, 81, 0.8);
-  }
-
-  .boton2 {
-    padding: 20px 20px;
-    text-align: center;
-    text-decoration: none;
-    color: #fff;
-    background-color: #4CAF50;
-    border: none;
-    border-radius: 4px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    position: relative;
-    left: 30px;
-    top: -88px;
-  }
-
-  .boton2 {
-    background-image: linear-gradient(to right, rgb(0, 85, 165), #a77c7c, #c9b0b0);
-    margin-top: 10px;
-    margin-bottom: 15px;
-    border: none;
-    color: #000000;
-    padding: 10px 20px;
-    border-radius: 10px;
-    border: 1px solid #fff;
-  }
-
-  .boton2:hover {
-    background-image: linear-gradient(to right, #c9b0b0, #a77c7c, rgb(0, 85, 165));
-    box-shadow: 0px 0px 20px rgba(119, 81, 81, 0.8);
-  }
-
-  .estilo_input {
-    width: 300%;
-    text-align: center;
-    padding: 10px;
-    margin-bottom: 13px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    position: relative;
-    left: -83px;
-    top: -41px;
-  }
-}
-
-
 /* ESTILOS PARA LA EDICION DE CREAR CATEGORIA */
 /* EMPIEZA */
 .card_crear_nueva_categoriaa .singup {
@@ -416,9 +300,9 @@ body::-webkit-scrollbar {
   color: white;
 }
 
-.caja_productoos {
+/* .caja_productoos {
   display: flex;
-}
+} */
 
 .caja_productoos .inputBox {
   margin: 20px;

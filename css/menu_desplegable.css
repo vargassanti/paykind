@@ -565,11 +565,11 @@ body .sidebar i .toggle {
 }
 
 .previzualizar_imagen img {
-  width: 150px;
+  width: 180px;
   /* Establece el ancho máximo al 100% del contenedor */
-  height: 150px;
+  height: 180px;
   position: relative;
-  left: 40px;
+  left: 35px;
   top: 70px;
   padding: 5px;
   border: 2px solid #258555;
@@ -697,9 +697,9 @@ body .sidebar i .toggle {
   color: white;
 }
 
-.caja_productoos {
+/* .caja_productoos {
   display: flex;
-}
+} */
 
 .caja_productoos .inputBox {
   margin: 20px;
@@ -833,27 +833,25 @@ body .sidebar i .toggle {
     height: 181px;
     position: relative;
     left: 40px;
-    top: -24px;
+    top: 28px;
     padding: 5px;
     border: 2px solid #258555;
     border-radius: 5px;
   }
 
-  .card_editar_miperfil {
+  /* .card_editar_miperfil {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 390px;
-    width: 89%;
+    width: 86%;
     flex-direction: column;
     gap: 35px;
     border-radius: 8px;
-    border-radius: 8px;
     position: relative;
-    left: 9%;
     top: 34px;
     margin-bottom: 60px;
-  }
+  } */
 }
 
 @media screen and (min-width: 1900px) {

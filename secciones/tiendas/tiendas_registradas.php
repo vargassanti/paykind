@@ -50,12 +50,11 @@ $lista_tbl_tiendas = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <?php include("../../templates/header.php"); ?>
 
-
-<h4 class="titulo_tienda">Tiendas registradas</h4>
+<h4 class="titulo_tienda">Tiendas</h4>
 <div class="container23">
     <?php foreach ($lista_tbl_tiendas as $registro) { ?>
         <div class="body">
-            <a class="card human-resources" href="mas_tienda.php?txtID=<?php echo $registro['nit_identificacion']; ?>">
+            <a class="card_t human-resources" href="mas_tienda.php?txtID=<?php echo $registro['nit_identificacion']; ?>&ruta=tiendas_registradas.php">
                 <img class="imagen_tiendaa" src="./imagenes_tienda/<?php echo $registro['logo_tienda']; ?>" />
                 <p>
                     <strong>
@@ -76,17 +75,3 @@ $lista_tbl_tiendas = $sentencia->fetchAll(PDO::FETCH_ASSOC);
         </div>
     <?php } ?>
 </div>
-
-<button class="boton_volver_arriba2" onclick="scrollToTop()" id="btnVolverArriba" title="Volver Arriba">
-    <i class='bx bx-up-arrow-alt'></i>
-</button>
-
-<script>
-    // JavaScript para scroll suave hacia arriba
-    function scrollToTop() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    }
-</script>

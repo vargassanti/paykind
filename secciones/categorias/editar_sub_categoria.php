@@ -91,21 +91,6 @@ $tienda->execute();
                 </select>
                 <span>Categoria:</span>
             </div>
-
-        </div>
-
-        <div class="caja_productoos">
-            <div class="inputBox">
-                <select name="nit_identificacion" id="nit_identificacion" required="required">
-                    <option value=""></option>
-                    <?php foreach ($tienda as $tienda_item) { ?>
-                        <option value="<?php echo $tienda_item['nit_identificacion']; ?>" <?php if ($tienda_item['nit_identificacion'] === $sub_categoria['nit_identificacion']) echo 'selected'; ?>>
-                            <?php echo $tienda_item['nit_identificacion']; ?>
-                        </option>
-                    <?php } ?>
-                </select>
-                <span>Nit tienda:</span>
-            </div>
         </div>
 
         <div class="caja_boton1">

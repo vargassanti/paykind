@@ -1,16 +1,13 @@
-function mostrarImagenPreview(inputId, previewId, actualizarBtnId) {
-    const input = document.getElementById(inputId);
-    const preview = document.getElementById(previewId);
-    const actualizarBtn = document.getElementById(actualizarBtnId);
+function mostrarImagenSeleccionada(event) {
+    const imagenSeleccionada = event.target.files[0];
+    const imagenTag = document.getElementById('imagen_perfil');
+    const labelFotoPerfil = document.getElementById('label_fotoPerfil');
+    
+    const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i; // Expresión regular para las extensiones permitidas
 
-    const file = input.files[0];
-
-    if (file) {
-        // Verificar la extensión del archivo
-        var extensiones = /(.jpg|.png|.jpeg|.gif)$/i;
-        var extensionValida = extensiones.exec(file.name);
-
-        if (!extensionValida) {
+    if (imagenSeleccionada) {
+        if (!allowedExtensions.exec(imagenSeleccionada.name)) {
+            // Verificar si la extensión de la imagen no está permitida
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
@@ -24,49 +21,27 @@ function mostrarImagenPreview(inputId, previewId, actualizarBtnId) {
             })
             Toast.fire({
                 icon: 'error',
-                title: 'Debes subir solo imagenes tipo png, jpg o jpeg.'
+                title: 'Por favor, selecciona una imagen con formato JPG, JPEG o PNG.'
             })
-            input.value = ''; // Limpiar el input
-            actualizarBtn.disabled = true; // Desactivar el botón de actualización
-            preview.innerHTML = ''; // Limpiar la vista previa
-        } else {
-            const reader = new FileReader();
-
-            reader.onload = function (e) {
-                const img = new Image();
-                img.src = e.target.result;
-
-                img.onload = function () {
-                    // Calcula las dimensiones de la imagen
-                    const aspectRatio = img.width / img.height;
-                    let newWidth, newHeight;
-
-                    // Decide si redimensionar la imagen según el ancho o la altura
-                    if (aspectRatio >= 1) {
-                        newWidth = 300;
-                        newHeight = 300 / aspectRatio;
-                    } else {
-                        newWidth = 200 * aspectRatio;
-                        newHeight = 200;
-                    }
-
-                    // Establece las dimensiones calculadas en la vista previa
-                    preview.style.width = newWidth + 'px';
-                    preview.style.height = newHeight + 'px';
-
-                    // Muestra la imagen en la vista previa
-                    preview.innerHTML = '';
-                    preview.appendChild(img);
-                };
-            };
-
-            reader.readAsDataURL(file);
-
-            actualizarBtn.disabled = false; // Habilitar el botón de actualización si la extensión es válida
+            return;
         }
+
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            imagenTag.src = e.target.result;
+        };
+
+        reader.readAsDataURL(imagenSeleccionada);
+        labelFotoPerfil.textContent = 'Imagen seleccionada';
     } else {
-        // Limpiar la vista previa si no se selecciona ningún archivo
-        preview.innerHTML = '';
-        actualizarBtn.disabled = false; // Habilitar el botón de actualización
+        imagenTag.src = '../../imagen/Avatar-No-Background.png'; // Imagen predeterminada si no se selecciona ninguna imagen
+        labelFotoPerfil.textContent = 'Foto de perfil:';
     }
 }
+
+const previzualizarImagen = document.getElementById('previzualizar_imagen');
+previzualizarImagen.addEventListener('click', function() {
+    const inputFotoPerfil = document.getElementById('fotoPerfil');
+    inputFotoPerfil.click();
+});

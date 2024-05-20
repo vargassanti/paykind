@@ -33,7 +33,7 @@ foreach ($lista_tbl_sub_categorias as $sub_categoria) {
 <ul class="category-list" id="category-list">
     <?php foreach ($categorias_con_subcategorias as $categoria_con_subcategorias) { ?>
         <li class="category">
-            <a href="categoria.php?txtID=<?php echo $categoria_con_subcategorias['categoria']['id_categoria']; ?>">
+            <a href="categoria.php?txtID=<?php echo $categoria_con_subcategorias['categoria']['id_categoria']; ?>&ruta=categorias_sub.php">
                 <span> <?php echo $categoria_con_subcategorias['categoria']['nombre_categoria']; ?></span>
             </a>
             <button class="show-button">Ver sub categorias</button>
@@ -41,7 +41,7 @@ foreach ($lista_tbl_sub_categorias as $sub_categoria) {
         <?php if (!empty($categoria_con_subcategorias['subcategorias'])) { ?>
             <ul class="subcategory">
                 <?php foreach ($categoria_con_subcategorias['subcategorias'] as $sub_categoria) { ?>
-                    <a href="./sub_categoria.php?id=<?php echo $sub_categoria['id_sub_categoria']; ?>">
+                    <a href="./sub_categoria.php?id=<?php echo $sub_categoria['id_sub_categoria']; ?>&ruta=categorias_sub.php">
                         <li><?php echo $sub_categoria['nombre_sub_categoria']; ?></li>
                     </a>
                 <?php } ?>
@@ -51,17 +51,5 @@ foreach ($lista_tbl_sub_categorias as $sub_categoria) {
         <?php } ?>
     <?php } ?>
 </ul>
-<button class="boton_volver_arriba_p" onclick="scrollToTop()" id="btnVolverArriba" title="Volver Arriba">
-    <i class='bx bx-up-arrow-alt'></i>
-</button>
-<script>
-    // JavaScript para scroll suave hacia arriba
-    function scrollToTop() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    }
-</script>
 
 <script src="archivos.js/categorias_subcategorias.js"></script>

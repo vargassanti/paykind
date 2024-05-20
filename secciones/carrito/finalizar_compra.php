@@ -97,6 +97,15 @@ $ubi->bindParam(":id_usuario", $id_usuario);
 $ubi->execute();
 $registro_ubicacion = $ubi->fetchAll(PDO::FETCH_ASSOC);
 
+if (empty($registro_ubicacion)) {
+    // Si está vacío, redirige a la página para agregar ubicación
+    header("Location: agregar_ubicacion.php?alerta=agregar_ubicacion");
+    exit(); // Asegúrate de detener la ejecución después de redirigir
+} else {
+    // Si la consulta tiene resultados, permite el flujo normal del código
+    // Puedes seguir con tu lógica o código aquí
+}
+
 include("../../templates/header.php");
 
 ?>
@@ -267,7 +276,7 @@ include("../../templates/header.php");
 </div>
 
 <div class="container-paso3" style="display: none;">
-    <h2 class="titulo_paso3">Paso 3: ¿Están correctos los datos?</h2>
+    <h2 class="titulo_paso3">Paso 3: Datos personales y datos de la compra</h2>
     <div class="container_compra_terminada">
         <div class="formulario">
             <div class="inputBox">
@@ -366,7 +375,7 @@ include("../../templates/header.php");
                         </div>
                         <div class="input2">
                             <label>Comprobante de la transferencia:</label>
-                            <input type="file" name="imagen_tranferencia" id="imagen_transferencia_daviplata">
+                            <input type="file" name="imagen_tranferencia" id="imagen_transferencia_daviplata" accept=".jpg, .jpeg, .png">
                         </div>
                     </div>
                 </div>
@@ -408,7 +417,7 @@ include("../../templates/header.php");
                         </div>
                         <div class="input2">
                             <label>Comprobante de la transferencia:</label>
-                            <input type="file" name="imagen_tranferencia" id="imagen_transferencia_bancolombia">
+                            <input type="file" name="imagen_tranferencia" id="imagen_transferencia_bancolombia" accept=".jpg, .jpeg, .png">
                         </div>
                     </div>
                 </div>
@@ -466,3 +475,4 @@ include("../../templates/header.php");
 <script src="archivos.js/copiar_contenido.js"></script>
 <script src="archivos.js/validar_formulario.js"></script>
 <script src="archivos.js/ubicacion.js"></script>
+<script src="archivos.js/valida_img.js"></script>

@@ -20,15 +20,16 @@ function mostrarInformacion() {
 }
 
 function validarCampos() {
-  var selectElement = document.getElementById("metodo_pago");
-  var selectedOption = selectElement.options[selectElement.selectedIndex].value;
+  // Obtenemos el método de pago seleccionado
+  var metodoPago = document.getElementById("metodo_pago").value;
 
-  if (selectedOption === "Transferencia Daviplata") {
-    var fileInput = document.getElementById("imagen_transferencia_daviplata");
-    if (fileInput.style.display !== "none" && fileInput.value === "") {
+  // Validamos el campo de imagen de transferencia basado en el método de pago seleccionado
+  if (metodoPago === "Transferencia Daviplata") {
+    var imagenDaviplata = document.getElementById("imagen_transferencia_daviplata").value;
+    if (imagenDaviplata === "") {
       Swal.mixin({
         toast: true,
-        position: 'top-end', // Cambia la posición a la izquierda
+        position: 'top-end',
         showConfirmButton: false,
         timer: 4000,
         timerProgressBar: true,
@@ -38,16 +39,16 @@ function validarCampos() {
         }
       }).fire({
         icon: 'warning',
-        title: 'Recuerda subir el comprobante de pago de la transferencia.'
+        title: 'Adjunta el comprobante de la transferencia para Daviplata.'
       })
-      return false; // Evita el envío del formulario
+      return false; // Evita el envío del formulario si falta la imagen
     }
-  } else if (selectedOption === "Transferencia Ahorros Bancolombia") {
-    var fileInput = document.getElementById("imagen_transferencia_bancolombia");
-    if (fileInput.style.display !== "none" && fileInput.value === "") {
+  } else if (metodoPago === "Transferencia Ahorros Bancolombia") {
+    var imagenBancolombia = document.getElementById("imagen_transferencia_bancolombia").value;
+    if (imagenBancolombia === "") {
       Swal.mixin({
         toast: true,
-        position: 'top-end', // Cambia la posición a la izquierda
+        position: 'top-end',
         showConfirmButton: false,
         timer: 4000,
         timerProgressBar: true,
@@ -57,12 +58,11 @@ function validarCampos() {
         }
       }).fire({
         icon: 'warning',
-        title: 'Recuerda subir el comprobante de pago de la transferencia.'
+        title: 'Adjunta el comprobante de la transferencia para Bancolombia.'
       })
-      return false; // Evita el envío del formulario
+      return false; 
     }
   }
-  // Agregar validación para otras opciones si es necesario
 
-  return true; // Permite el envío del formulario si todos los campos están validados
+  return true;
 }

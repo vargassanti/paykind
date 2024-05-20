@@ -278,76 +278,6 @@ main {
   z-index: 100;
 }
 
-/* Estilos para la sección de comentarios */
-.comentarios {
-  margin-top: 20px;
-  border-top: 1px solid #ddd;
-  padding-top: 20px;
-}
-
-/* Estilos para cada comentario individual */
-.comentario {
-  margin-bottom: 20px;
-  padding: 9px;
-  padding-left: 30px;
-  padding-top: 21px;
-  border-radius: 8px;
-  background-color: #f9f9f9;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.comentarios .titulo_comentario {
-  color: #6ba745;
-  font-size: 20px;
-  margin: 26px;
-  text-align: center;
-  font-weight: 600;
-}
-
-/* Estilo para las estrellas vacías */
-.star {
-  font-size: 25px;
-  color: #ccc;
-  cursor: pointer;
-}
-
-/* Estilo para las estrellas llenas */
-.star.filled {
-  color: #ffdd00;
-  /* Cambia el color de las estrellas llenas según prefieras */
-}
-
-/* Estilos para la sección del usuario */
-.usuario {
-  display: flex;
-  align-items: center;
-  margin-bottom: 12px;
-}
-
-/* Estilos para la imagen del perfil */
-.foto-perfil {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  margin-right: 15px;
-  object-fit: cover;
-  box-shadow: 0 0 0 3px #fff, 0 0 0 5px #007bff;
-  /* Efecto borde en la imagen */
-}
-
-/* Estilos para la información del usuario */
-.info-usuario {
-  font-weight: bold;
-}
-
-/* Estilos para el nombre del usuario */
-.nombre {
-  color: #333;
-  font-size: 18px;
-  margin-bottom: 5px;
-  text-align: center;
-  width: 85px;
-}
 
 /* Estilos para el texto del comentario */
 .texto p {
@@ -1719,6 +1649,262 @@ input[type="radio"]:checked + label .color-option {
   }
 }
 
+@media screen and (min-width: 300px) and (max-width: 499px) {
+  main {
+    display: block;
+    gap: 30px;
+    margin-bottom: 80px;
+    width: 110%;
+    padding: 50px;
+    background-color: #ffffff;
+    position: relative;
+    left: -60px;
+    top: -70px;
+  }
+
+  .container-img {
+    background-color: #f7f7f9;
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .product {
+    width: 166%;
+    margin-left: 71px;
+    margin-bottom: 35px;
+  }
+
+  .product-small-img {
+    width: 12%;
+    display: flex;
+    margin-left: 21px;
+  }
+
+  .container_botones_pasar {
+    display: flex;
+    justify-content: center;
+    width: 100px;
+    position: relative;
+    top: -153px;
+    left: 512px;
+  }
+
+  .titulo_infoproducto {
+    color: #000000;
+    font-size: 30px;
+    font-weight: 750;
+    margin-bottom: -107px;
+    z-index: 100;
+  }
+
+  .caja_botoncancelar_infoproducto {
+    width: 35px;
+    position: relative;
+    top: -50px;
+    left: 25px;
+  }
+
+  .container-info-product {
+    display: flex;
+    flex-direction: column;
+    width: 783px;
+    height: 200px;
+    margin-left: -30px;
+    margin-top: -66px;
+    padding: 70px;
+  }
+
+  .info_tienda {
+    width: 260px;
+    border-radius: 13px;
+    padding: 9px;
+    margin-left: 31%;
+    margin-bottom: 20px;
+    cursor: pointer;
+    background-color: #fff;
+    border: 2px solid #c5c5c5;
+  }
+
+  .container-additional-information .imagen_tiendaa {
+    width: 115px;
+    height: 115px;
+    margin: 15px;
+    margin-left: 26px;
+    background-color: #fff;
+  }
+
+  .info_tienda p {
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  .boton_carrito {
+    position: relative;
+    left: 797px;
+    top: 9px;
+  }
+
+  .ver_productosR {
+    display: none;
+  }
+
+  .Carousel {
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    width: 72%;
+    align-items: center;
+    position: relative;
+    left: 145px;
+    top: 315px;
+  }
+
+  .modal_info_producto .modal-image {
+    width: 616px;
+    height: 505px;
+    margin-top: 166px;
+    border-radius: 15px;
+  }
+
+  .modal_info_producto .modal-content {
+    margin: auto;
+    display: block;
+    max-width: 50%;
+    max-height: 0%;
+  }
+}
+
+@media screen and (min-width: 500px) and (max-width: 576px) {
+  main {
+    display: block;
+    gap: 30px;
+    margin-bottom: 80px;
+    width: 110%;
+    padding: 50px;
+    background-color: #ffffff;
+    position: relative;
+    left: -60px;
+    top: -70px;
+  }
+
+  .container-img {
+    background-color: #f7f7f9;
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .product {
+    width: 116%;
+    margin-left: 71px;
+    margin-bottom: 35px;
+  }
+
+  .product-small-img {
+    width: 12%;
+    display: flex;
+    margin-left: 21px;
+  }
+
+  .container_botones_pasar {
+    display: flex;
+    justify-content: center;
+    width: 100px;
+    position: relative;
+    top: -153px;
+    left: 512px;
+  }
+
+  .titulo_infoproducto {
+    color: #000000;
+    font-size: 30px;
+    font-weight: 750;
+    margin-bottom: -107px;
+    z-index: 100;
+  }
+
+  .caja_botoncancelar_infoproducto {
+    width: 35px;
+    position: relative;
+    top: -50px;
+    left: 25px;
+  }
+
+  .container-info-product {
+    display: flex;
+    flex-direction: column;
+    width: 783px;
+    height: 200px;
+    margin-left: -30px;
+    margin-top: -66px;
+    padding: 70px;
+  }
+
+  .info_tienda {
+    width: 260px;
+    border-radius: 13px;
+    padding: 9px;
+    margin-left: 31%;
+    margin-bottom: 20px;
+    cursor: pointer;
+    background-color: #fff;
+    border: 2px solid #c5c5c5;
+  }
+
+  .container-additional-information .imagen_tiendaa {
+    width: 115px;
+    height: 115px;
+    margin: 15px;
+    margin-left: 26px;
+    background-color: #fff;
+  }
+
+  .info_tienda p {
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  .boton_carrito {
+    position: relative;
+    left: 797px;
+    top: 9px;
+  }
+
+  .ver_productosR {
+    display: none;
+  }
+
+  .Carousel {
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    width: 72%;
+    align-items: center;
+    position: relative;
+    left: 145px;
+    top: 315px;
+  }
+
+  .modal_info_producto .modal-image {
+    width: 616px;
+    height: 505px;
+    margin-top: 166px;
+    border-radius: 15px;
+  }
+
+  .modal_info_producto .modal-content {
+    margin: auto;
+    display: block;
+    max-width: 50%;
+    max-height: 0%;
+  }
+}
+
 @media screen and (min-width: 576px) and (max-width: 599px) {
   main {
     display: block;
@@ -2982,9 +3168,9 @@ input[type="radio"]:checked + label .color-option {
   }
 
   .modal_info_producto .modal-image {
-    width: 696px;
-    height: 546px;
-    margin-top: 131px;
+    width: 559px;
+    height: 559px;
+    margin-top: 0px;
     border-radius: 15px;
   }
 
@@ -3052,9 +3238,9 @@ input[type="radio"]:checked + label .color-option {
   }
 
   .modal_info_producto .modal-image {
-    width: 603px;
-    height: 612px;
-    margin-top: 57px;
+    width: 559px;
+    height: 559px;
+    margin-top: 0px;
     border-radius: 15px;
   }
 
@@ -3122,9 +3308,9 @@ input[type="radio"]:checked + label .color-option {
   }
 
   .modal_info_producto .modal-image {
-    width: 514px;
-    height: 612px;
-    margin-top: -16px;
+    width: 559px;
+    height: 559px;
+    margin-top: 0px;
     border-radius: 15px;
   }
 
@@ -3192,9 +3378,9 @@ input[type="radio"]:checked + label .color-option {
   }
 
   .modal_info_producto .modal-image {
-    width: 603px;
-    height: 612px;
-    margin-top: 57px;
+    width: 559px;
+    height: 559px;
+    margin-top: 0px;
     border-radius: 15px;
   }
 
@@ -3262,9 +3448,9 @@ input[type="radio"]:checked + label .color-option {
   }
 
   .modal_info_producto .modal-image {
-    width: 800px;
-    height: 750px;
-    margin-top: 56px;
+    width: 579px;
+    height: 579px;
+    margin-top: 30px;
     border-radius: 15px;
   }
 }

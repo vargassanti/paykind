@@ -28,8 +28,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $verificar_stmt_vendedor->execute();
   $existe_vendedor = $verificar_stmt_vendedor->fetch(PDO::FETCH_ASSOC);
 
+  // Verificar si el correo ya existe en tbl_administrador
+  $verificar_sql_administrador = "SELECT * FROM tbl_administrador WHERE correo = :correo OR id_usuario = :id_usuario";
+  $verificar_stmt_administrador = $conexion->prepare($verificar_sql_administrador);
+  $verificar_stmt_administrador->bindParam(':correo', $correo, PDO::PARAM_STR);
+  $verificar_stmt_administrador->bindParam(':id_usuario', $id_usuario, PDO::PARAM_INT);
+  $verificar_stmt_administrador->execute();
+  $existe_administrador= $verificar_stmt_administrador->fetch(PDO::FETCH_ASSOC);
+
   // Verificar si el correo existe en alguna de las tablas
-  if ($existe_usuario || $existe_vendedor) {
+  if ($existe_usuario || $existe_vendedor || $existe_administrador) {
     header("location: registro.php?alerta=cuenta_ya_existente");
   } else {
     // Determinar en qué tabla insertar según el rol y construir la consulta SQL

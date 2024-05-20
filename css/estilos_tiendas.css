@@ -325,16 +325,50 @@ hr {
   margin-top: 15px;
 }
 
+.container_mas_vendedor {
+  margin: 20px 0;
+  text-align: center;
+  background-color: transparent;
+  width: 783px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  margin-right: 40px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  background-color: #ffffff;
+  box-shadow: 6px 6px 10px rgba(46, 46, 46, 0.5);
+  position: relative;
+  left: 400px;
+}
+
+.container_mas_vendedor .nombre_mas_tienda {
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.container_mas_vendedor .imagen_mas_tienda {
+  max-width: 150px;
+  background-color: #fff;
+  margin: 20px;
+}
+
+.container_mas_vendedor .descripcion_mas_tienda {
+  font-size: 14px;
+}
+
 .container_posicion_productos {
   display: flex;
   flex-wrap: wrap;
-  width: 86%;
+  width: 92%;
   position: relative;
   justify-content: center;
-  left: 120px;
+  left: 73px;
   top: 10px;
   padding: 10px;
-  padding-left: 15px;
 }
 
 .precio_descuento2 {
@@ -350,7 +384,7 @@ hr {
 }
 
 .container_posicion_productos .caja_productos {
-  margin: 35px;
+  margin: 20px;
 }
 
 .caja_productos {
@@ -409,6 +443,7 @@ hr {
   color: #000000;
   font-weight: 700;
 }
+
 
 /* ESTILOS EDITAR MI PERFIL */
 /* Empieza */
@@ -481,15 +516,12 @@ hr {
   justify-content: center;
   align-items: center;
   min-height: 390px;
-  width: 86%;
+  width: 100%;
   flex-direction: column;
   gap: 35px;
   border-radius: 8px;
-  border-radius: 8px;
   position: relative;
-  left: 13%;
-  top: 70px;
-  margin-bottom: 60px;
+  top: -30px;
 }
 
 .inputBox {
@@ -530,12 +562,12 @@ hr {
   border-radius: 8px;
 }
 
-.inputBox input:valid ~ span,
-.inputBox input:focus ~ span,
-.inputBox select:valid ~ span,
-.inputBox select:focus ~ span,
-.inputBox textarea:valid ~ span,
-.inputBox textarea:focus ~ span {
+.inputBox input:valid~span,
+.inputBox input:focus~span,
+.inputBox select:valid~span,
+.inputBox select:focus~span,
+.inputBox textarea:valid~span,
+.inputBox textarea:focus~span {
   transform: translateX(113px) translateY(-15px);
   font-size: 12px;
   padding: 5px 10px;
@@ -577,60 +609,11 @@ hr {
 .caja_productoos {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .caja_productoos .inputBox {
   margin: 20px;
-}
-
-.button_retrocederrr {
-  display: block;
-  position: relative;
-  width: 56px;
-  height: 56px;
-  margin: 0;
-  overflow: hidden;
-  outline: none;
-  background-color: transparent;
-  border: 0;
-}
-
-.button_retrocederrr:before,
-.button_retrocederrr:after {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  inset: 7px;
-}
-
-.button_retrocederrr:before {
-  border: 4px solid #258555;
-  transition: opacity 0.4s cubic-bezier(0.77, 0, 0.175, 1) 80ms,
-    transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 80ms;
-}
-
-.button_retrocederrr:after {
-  border: 4px solid #258555;
-  transform: scale(1.3);
-  transition: opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
-    transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  opacity: 0;
-}
-
-.button_retrocederrr:hover:before,
-.button_retrocederrr:focus:before {
-  opacity: 0;
-  transform: scale(0.7);
-  transition: opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
-    transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.button_retrocederrr:hover:after,
-.button_retrocederrr:focus:after {
-  opacity: 1;
-  transform: scale(1);
-  transition: opacity 0.4s cubic-bezier(0.77, 0, 0.175, 1) 80ms,
-    transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 80ms;
 }
 
 .button-box {
@@ -647,12 +630,6 @@ hr {
   margin: 17px 18px 0 18px;
   transform: rotate(180deg);
   fill: #258555;
-}
-
-.button_retrocederrr:hover .button-box,
-.button_retrocederrr:focus .button-box {
-  transition: 0.4s;
-  transform: translateX(-56px);
 }
 
 .btnes {
@@ -889,7 +866,7 @@ hr {
 }
 
 .boton_volver_arriba_p {
-  background-color: #258555;
+  background-color: #78bd4d;
   margin-left: 143px;
   position: relative;
   top: 45px;
@@ -902,7 +879,7 @@ hr {
 
 .boton_volver_arriba_p i {
   font-size: 35px;
-  color: #ffff;
+  color: #000;
   margin-top: 3px;
 }
 
@@ -1098,36 +1075,48 @@ hr {
 
 .container_campos_mi_perfil {
   position: relative;
-  left: 100px;
 }
 
-.container_foto_perfil {
+.container_campos_mi_perfil .foto_perfil {
+  margin-top: 7px;
+}
+
+#mensaje_hover {
+  display: none;
   position: absolute;
-  left: 7%;
-  margin-top: -20px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 5px;
+  top: 6px;
+  border-radius: 5px;
+}
+
+#previzualizar_imagen:hover #mensaje_hover {
+  display: block;
 }
 
 .input_subir_imagen {
   position: relative;
-  top: 40px;
 }
 
 .caja_boton_actualizar_perfil {
-  margin: 30px;
-  position: relative;
-  top: -40px;
-  left: 230px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+  margin-top: 13px;
 }
 
-.previzualizar_imagen img {
-  width: 200px;
-  height: 200px;
+.container_campos_mi_perfil .previzualizar_imagen img {
+  width: 230px;
+  height: 230px;
   position: relative;
-  left: 20px;
-  top: -20px;
+  left: 35px;
+  top: -27px;
   padding: 5px;
   border: 2px solid #258555;
-  border-radius: 5px;
+  border-radius: 100%;
+  overflow: hidden;
 }
 
 .boton_editar_mi_perfil {
@@ -1217,7 +1206,7 @@ hr {
 .titulo_perfil {
   text-align: center;
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 40px
 }
 
 .svg {
@@ -1268,6 +1257,7 @@ hr {
   border-radius: 8px;
   max-width: 82%;
   position: relative;
+  overflow: auto;
 }
 
 .modal_editar_perfil .cerrar {
@@ -1275,6 +1265,9 @@ hr {
   float: right;
   font-size: 28px;
   font-weight: bold;
+  position: relative;
+  top: -17px;
+  left: 6px;
 }
 
 .modal_editar_perfil .cerrar:hover,
@@ -1326,6 +1319,7 @@ hr {
   top: 75px;
   left: 50%;
   width: 132px;
+  height: 132px;
   transform: translateX(-50%);
   border: 5px solid #59367a;
   border-radius: 26%;
@@ -1334,9 +1328,8 @@ hr {
 }
 
 .user-avatar img {
-  width: 120px;
-  height: 120px;
-  margin-top: 10px;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
 }
 
@@ -1398,6 +1391,23 @@ hr {
   color: black;
 }
 
+.container_proceso {
+  padding: 40px;
+  margin-left: -6%;
+  margin-top: -19px;
+}
+
+.container_proceso .texto_productos_proceso {
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.container_proceso .img_proceso {
+  width: 500px;
+  margin-top: 27px;
+}
+
 /* Estilos generales */
 .container_mis_productos {
   display: flex;
@@ -1413,8 +1423,8 @@ hr {
   box-shadow: 6px 6px 15px rgba(112, 112, 112, 0.5);
   padding: 20px;
   border-radius: 5px;
-  width: 302px;
-  height: 510px;
+  width: 308px;
+  height: 424px;
   text-align: center;
   margin-top: 25px;
   margin-bottom: 25px;
@@ -1429,13 +1439,19 @@ hr {
 }
 
 .product img {
-  width: 140px;
-  height: 140px;
-  margin-bottom: 25px;
+  width: 130px;
+  height: 130px;
+  margin-bottom: 35px;
+}
+
+.no-products-message {
+  background-color: white;
+  padding: 36px;
+  margin-bottom: 100px;
 }
 
 .no-products-message p {
-  color: #6d6d6d;
+  color: #232323;
   margin-top: 34px;
   font-size: 16px;
 }
@@ -1445,15 +1461,13 @@ hr {
   height: 40px;
   border: none;
   border-radius: 10px;
-  background: linear-gradient(
-    to right,
-    #00ac4d,
-    #a2ff77,
-    #001347,
-    #70770a,
-    #77fff4,
-    #0a7744
-  );
+  background: linear-gradient(to right,
+      #00ac4d,
+      #a2ff77,
+      #001347,
+      #70770a,
+      #77fff4,
+      #0a7744);
   background-size: 250%;
   background-position: left;
   color: #ffffff;
@@ -1527,12 +1541,13 @@ hr {
 .info-compra {
   border-radius: 8px;
   overflow: hidden;
-  margin: 20px;
-  width: 22%;
+  margin: 42px;
+  width: 325px;
   border: 2px solid #757575;
   margin-top: 30px;
   padding: 19px;
 }
+
 
 .titulo_info_compra {
   text-align: center;
@@ -1573,8 +1588,8 @@ hr {
 }
 
 .info-compra img {
-  width: 300px;
-  height: 300px;
+  width: 160px;
+  height: 160px;
 }
 
 .info p {
@@ -1735,6 +1750,118 @@ hr {
   transform: translateX(-56px);
 }
 
+.mensaje-cancelado {
+  background-color: #ffcccc;
+  border: 3px solid #ff0000;
+  padding: 52px;
+  margin: 10px 0;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.mensaje-cancelado p {
+  color: #ff0000;
+  font-weight: bold;
+}
+
+/* Estilos para la clase informacion_comprita */
+.informacion_comprita {
+  border: 1px solid #ccc;
+  padding: 40px;
+  border-radius: 8px;
+  width: 413px;
+  margin: 0 auto;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.informacion_comprita p {
+  margin: 10px 0;
+}
+
+/* Estilos específicos para cada párrafo */
+.informacion_comprita p:nth-child(1) {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Otros estilos específicos según el orden de los párrafos */
+.informacion_comprita p:nth-child(2) {
+  color: #333;
+}
+
+.informacion_comprita p:nth-child(3) {
+  color: #555;
+}
+
+.informacion_comprita p:nth-child(4) {
+  font-style: italic;
+}
+
+.informacion_comprita p:nth-child(5) {
+  font-size: 14px;
+  color: #777;
+}
+
+/* CAJA BOTON RETROCEDER DETALLE */
+
+.caja_botoncancelar_detalleP {
+  width: 35px;
+  position: relative;
+  top: -68px;
+  left: 239px;
+}
+
+.caja_botoncancelar_detalleP .button_retroceder_infoproducto {
+  display: block;
+  position: relative;
+  width: 56px;
+  height: 56px;
+  margin: 0;
+  overflow: hidden;
+  outline: none;
+  background-color: transparent;
+  border: 0;
+}
+
+.caja_botoncancelar_detalleP .button_retroceder_infoproducto:before,
+.caja_botoncancelar_detalleP .button_retroceder_infoproducto:after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  inset: 7px;
+}
+
+.caja_botoncancelar_detalleP .button_retroceder_infoproducto:before {
+  border: 4px solid #258555;
+  transition: opacity 0.4s cubic-bezier(0.77, 0, 0.175, 1) 80ms,
+    transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 80ms;
+}
+
+.caja_botoncancelar_detalleP .button_retroceder_infoproducto:after {
+  border: 4px solid #258555;
+  transform: scale(1.3);
+  transition: opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+    transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  opacity: 0;
+}
+
+.caja_botoncancelar_detalleP .button_retroceder_infoproducto:hover:before,
+.caja_botoncancelar_detalleP .button_retroceder_infoproducto:focus:before {
+  opacity: 0;
+  transform: scale(0.7);
+  transition: opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+    transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.caja_botoncancelar_detalleP .button_retroceder_infoproducto:hover:after,
+.caja_botoncancelar_detalleP .button_retroceder_infoproducto:focus:after {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.4s cubic-bezier(0.77, 0, 0.175, 1) 80ms,
+    transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 80ms;
+}
+
 .previzualizar_imagen img {
   width: 150px;
   /* Establece el ancho máximo al 100% del contenedor */
@@ -1831,12 +1958,12 @@ textarea {
   border-radius: 8px;
 }
 
-.inputBox input:valid ~ span,
-.inputBox input:focus ~ span,
-.inputBox select:valid ~ span,
-.inputBox select:focus ~ span,
-.inputBox textarea:valid ~ span,
-.inputBox textarea:focus ~ span {
+.inputBox input:valid~span,
+.inputBox input:focus~span,
+.inputBox select:valid~span,
+.inputBox select:focus~span,
+.inputBox textarea:valid~span,
+.inputBox textarea:focus~span {
   transform: translateX(113px) translateY(-15px);
   font-size: 12px;
   padding: 5px 10px;
@@ -1875,9 +2002,9 @@ textarea {
   color: white;
 }
 
-.caja_productoos {
+/* .caja_productoos {
   display: flex;
-}
+} */
 
 .caja_productoos .inputBox {
   margin: 20px;
@@ -2024,6 +2151,58 @@ textarea {
   transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
   transition-duration: 400ms;
   transition-property: width, left;
+}
+
+.no_hay_tiendas_vdes {
+  color: black;
+  text-align: center;
+  margin-top: 7%;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.perfil_vendedor {
+  border: 3px solid #8b8b8b;
+  background-color: #e7e7e7cf;
+  width: 342px;
+  border-radius: 11px;
+  height: 310px;
+  margin-top: 51px;
+  padding: 20px;
+  position: relative;
+  top: 20px;
+  left: 40%;
+  font-weight: 600;
+  text-align: center;
+  z-index: 5;
+}
+
+.perfil_vendedor img {
+  width: 100%;
+  height: 100%;
+}
+
+.perfil_vendedor .imagen_v {
+  width: 139px;
+  height: 138px;
+  overflow: hidden;
+  border-radius: 100%;
+  margin-left: 83px;
+  margin-bottom: 19px;
+  margin-top: 28px;
+}
+
+.container_mas_vendedor .perfil {
+  background-color: white;
+  margin: 31px;
+  padding: 20px;
+  border: 1px solid;
+  margin-top: 37px;
+  border-radius: 10px;
+}
+
+.no-scroll {
+  overflow: hidden;
 }
 
 /* estilo de las posiciones de los botones */
@@ -2185,12 +2364,12 @@ textarea {
   border-radius: 8px;
 }
 
-.inputBox input:valid ~ span,
-.inputBox input:focus ~ span,
-.inputBox select:valid ~ span,
-.inputBox select:focus ~ span,
-.inputBox textarea:valid ~ span,
-.inputBox textarea:focus ~ span {
+.inputBox input:valid~span,
+.inputBox input:focus~span,
+.inputBox select:valid~span,
+.inputBox select:focus~span,
+.inputBox textarea:valid~span,
+.inputBox textarea:focus~span {
   transform: translateX(113px) translateY(-15px);
   font-size: 12px;
   padding: 5px 10px;
@@ -2229,9 +2408,9 @@ textarea {
   color: white;
 }
 
-.caja_productoos {
+/* .caja_productoos {
   display: flex;
-}
+} */
 
 .caja_productoos .inputBox {
   margin: 20px;
@@ -2412,6 +2591,62 @@ textarea {
   margin-top: 19px;
   font-size: 19px;
   font-weight: 500;
+}
+
+.estado_carrito {
+  color: #258555;
+  margin-top: 13px;
+  margin-bottom: 52px;
+  font-weight: 700;
+}
+
+.barra-estados {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.paso {
+  position: relative;
+  width: 100px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.paso .nombre {
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.paso .bolita {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #ccc;
+  display: inline-block;
+  z-index: 1;
+  margin-top: 29px;
+  margin-left: 30px;
+}
+
+.paso.completado .bolita {
+  background-color: #27ae60;
+}
+
+.paso:not(:last-child) .linea {
+  position: absolute;
+  top: 120%;
+  left: calc(100% - 98px);
+  height: 3px;
+  width: 196px;
+  background-color: #27ae60;
+  z-index: 0;
 }
 
 @media (max-width: 900px) {

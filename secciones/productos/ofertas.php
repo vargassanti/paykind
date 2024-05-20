@@ -89,23 +89,12 @@ include("../../templates/header.php"); ?>
                         <?php } ?>
                     </div>
                 </a>
-    <?php
+        <?php
             }
-        }
+        } ?>
+    <?php
     }
     ?>
 </div>
-<button class="boton_volver_arriba_p" onclick="scrollToTop()" id="btnVolverArriba" title="Volver Arriba">
-    <i class='bx bx-up-arrow-alt'></i>
-</button>
-<script>
-    // JavaScript para scroll suave hacia arriba
-    function scrollToTop() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    }
-</script>
 
 <script src="archivos.js/hover_img.js"></script>

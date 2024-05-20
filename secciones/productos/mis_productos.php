@@ -169,26 +169,6 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
     <?php }
     } ?>
 </div>
-<?php
-if ($usuario_rol == 'Vendedor') {
-    if (count($tiendas_registro) > 0) { ?>
-        <button class="boton_volver_arriba_p" onclick="scrollToTop()" id="btnVolverArriba" title="Volver Arriba">
-            <i class='bx bx-up-arrow-alt'></i>
-        </button>
-<?php
-    }
-}
-?>
-
-<script>
-    // JavaScript para scroll suave hacia arriba
-    function scrollToTop() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    }
-</script>
 
 <?php
 if (isset($_GET['errorMensaje'])) {

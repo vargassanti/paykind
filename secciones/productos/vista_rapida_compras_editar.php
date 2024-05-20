@@ -77,21 +77,19 @@ if (isset($_GET['id_compra'])) {
                         $id_compra_aprobado = $detalles['id_compra'];
                         $total_compra_aprobado = $detalles['total_compra'];
                         $costo_envio_aprobado = $detalles['costo_envio'];
-                        $metodo_pago_aprobado = $detalles['metodo_pago'];
-                        $cantidad_aprobado = $detalles['cantidad']; ?>
+                        $metodo_pago_aprobado = $detalles['metodo_pago']; ?>
                         <h3><?php echo $detalles['nombre'] ?></h3>
                     <?php } ?>
                     <br>
                     <h3>Total compra: <?php echo number_format($total_compra_aprobado, 0, '.', ','); ?></h3>
                     <h3>Costo envio: <?php echo number_format($costo_envio_aprobado, 0, '.', ','); ?></h3>
                     <h3>Metodo pago: <?php echo $metodo_pago_aprobado ?></h3>
-                    <h3>Cantidad: <?php echo $cantidad_aprobado ?></h3>
-                    <form action="editar_carrito.php" method="POST">
+                    <form id="formulario" action="editar_carrito.php" method="POST" onsubmit="return validarFormularioEstado()">
                         <input type="hidden" name="id_compra" value="<?php echo $id_compra_aprobado ?>">
                         <div class="container-botones">
                             <div class="custom-select">
-                                <select name="estado_carrito" required>
-                                    <option selected hidden>Selecciona una opción: </option>
+                                <select name="estado_carrito" id="estado_carrito" required="required">
+                                    <option value="" selected hidden>Selecciona una opción: </option>
                                     <option value="espera_envio">En espera de envío</option>
                                 </select>
                                 <i class="bx bxs-chevron-down arrow_select"></i>
@@ -125,21 +123,19 @@ if (isset($_GET['id_compra'])) {
                         $id_compra_proceso = $detalles['id_compra'];
                         $total_compra_proceso = $detalles['total_compra'];
                         $costo_envio_proceso = $detalles['costo_envio'];
-                        $metodo_pago_proceso = $detalles['metodo_pago'];
-                        $cantidad_proceso = $detalles['cantidad']; ?>
+                        $metodo_pago_proceso = $detalles['metodo_pago']; ?>
                         <h3><?php echo $detalles['nombre'] ?></h3>
                     <?php } ?>
                     <br>
                     <h3>Total compra: <?php echo number_format($total_compra_proceso, 0, '.', ','); ?></h3>
                     <h3>Costo envio: <?php echo number_format($costo_envio_proceso, 0, '.', ','); ?></h3>
                     <h3>Metodo pago: <?php echo $metodo_pago_proceso ?></h3>
-                    <h3>Cantidad: <?php echo $cantidad_proceso ?></h3>
-                    <form action="editar_carrito.php" method="POST">
+                    <form id="formulario" action="editar_carrito.php" method="POST" onsubmit="return validarFormularioEstado()">
                         <input type="hidden" name="id_compra" value="<?php echo $id_compra_proceso ?>">
                         <div class="container-botones">
                             <div class="custom-select">
-                                <select name="estado_carrito" required>
-                                    <option selected hidden>Selecciona una opción: </option>
+                                <select name="estado_carrito" id="estado_carrito" required="required">
+                                    <option value="" selected hidden>Selecciona una opción: </option>
                                     <option value="aprobado">Aprobado</option>
                                 </select>
                                 <i class="bx bxs-chevron-down arrow_select"></i>
@@ -173,21 +169,19 @@ if (isset($_GET['id_compra'])) {
                         $id_compra_envio = $detalles['id_compra'];
                         $total_compra_envio = $detalles['total_compra'];
                         $costo_envio_envio = $detalles['costo_envio'];
-                        $metodo_pago_envio = $detalles['metodo_pago'];
-                        $cantidad_envio = $detalles['cantidad']; ?>
+                        $metodo_pago_envio = $detalles['metodo_pago']; ?>
                         <h3><?php echo $detalles['nombre'] ?></h3>
                     <?php } ?>
                     <br>
                     <h3>Total compra: <?php echo number_format($total_compra_envio, 0, '.', ','); ?></h3>
                     <h3>Costo envio: <?php echo number_format($costo_envio_envio, 0, '.', ','); ?></h3>
                     <h3>Metodo pago: <?php echo $metodo_pago_envio ?></h3>
-                    <h3>Cantidad: <?php echo $cantidad_envio ?></h3>
-                    <form action="editar_carrito.php" method="POST">
+                    <form id="formulario" action="editar_carrito.php" method="POST" onsubmit="return validarFormularioEstado()">
                         <input type="hidden" name="id_compra" value="<?php echo $id_compra_envio ?>">
                         <div class="container-botones">
                             <div class="custom-select">
-                                <select name="estado_carrito" required>
-                                    <option selected hidden>Selecciona una opción: </option>
+                                <select name="estado_carrito" id="estado_carrito" required="required">
+                                    <option value="" selected hidden>Selecciona una opción: </option>
                                     <option value="transito">En tránsito</option>
                                 </select>
                                 <i class="bx bxs-chevron-down arrow_select"></i>
@@ -221,21 +215,19 @@ if (isset($_GET['id_compra'])) {
                         $id_compra_transito = $detalles['id_compra'];
                         $total_compra_transito = $detalles['total_compra'];
                         $costo_envio_transito  = $detalles['costo_envio'];
-                        $metodo_pago_transito  = $detalles['metodo_pago'];
-                        $cantidad_transito  = $detalles['cantidad']; ?>
+                        $metodo_pago_transito  = $detalles['metodo_pago']; ?>
                         <h3><?php echo $detalles['nombre'] ?></h3>
                     <?php } ?>
                     <br>
-                    <h3>Total compra: <?php echo number_format($total_compra_transito , 0, '.', ','); ?></h3>
-                    <h3>Costo envio: <?php echo number_format($costo_envio_transito , 0, '.', ','); ?></h3>
+                    <h3>Total compra: <?php echo number_format($total_compra_transito, 0, '.', ','); ?></h3>
+                    <h3>Costo envio: <?php echo number_format($costo_envio_transito, 0, '.', ','); ?></h3>
                     <h3>Metodo pago: <?php echo $metodo_pago_transito ?></h3>
-                    <h3>Cantidad: <?php echo $cantidad_transito  ?></h3>
-                    <form action="editar_carrito.php" method="POST">
+                    <form id="formulario" action="editar_carrito.php" method="POST" onsubmit="return validarFormularioEstado()">
                         <input type="hidden" name="id_compra" value="<?php echo $id_compra_transito ?>">
                         <div class="container-botones">
                             <div class="custom-select">
-                                <select name="estado_carrito" required>
-                                    <option selected hidden>Selecciona una opción: </option>
+                                <select name="estado_carrito" id="estado_carrito" required="required">
+                                    <option value="" selected hidden>Selecciona una opción:</option>
                                     <option value="completado">Completado</option>
                                 </select>
                                 <i class="bx bxs-chevron-down arrow_select"></i>
@@ -248,32 +240,6 @@ if (isset($_GET['id_compra'])) {
                     </form>
                 </div>
             </div>
-        <?php
-            break;
-        case 'entregado':
-        ?>
-            <div class="container_detalle_compra">
-                <div class="informacion_detalle_compraa">
-                    <?php foreach ($informacion_compra as $detalles) { ?>
-                        <h4>Editar de la compra:</h4>
-                        <h3>Total compra: <?php echo number_format($detalles['total_compra'], 0, '.', ','); ?></h3>
-                        <h3>Costo envio: <?php echo number_format($detalles['costo_envio'], 0, '.', ','); ?></h3>
-                        <h3>Metodo pago: <?php echo $detalles['metodo_pago'] ?></h3>
-                        <h3>Cantidad: <?php echo $detalles['cantidad'] ?></h3>
-                        <h3>Nombre: <?php echo $detalles['nombre'] ?></h3>
-                        <form action="editar_carrito.php" method="POST">
-                            <input type="hidden" name="id_detalle_compra" value="<?php echo $detalles['id_detalle_compra'] ?>">
-                            <select name="estado_carrito" id="estado_carrito" required>
-                                <option value=""><?php echo $detalles['estado_carrito'] ?></option>
-                                <option value="completado">Completado</option>
-                            </select>
-                            <button type="submit">
-                                enviar
-                            </button>
-                        </form>
-                    <?php } ?>
-                </div>
-            </div>
 <?php
             break;
         default:
@@ -283,3 +249,5 @@ if (isset($_GET['id_compra'])) {
 }
 
 ?>
+
+<script src="archivos.js/alerta_estado.js"></script>

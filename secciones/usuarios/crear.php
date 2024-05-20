@@ -5,7 +5,6 @@ session_start();
 if (isset($_SESSION["usuario_rol"]) && ($_SESSION["usuario_rol"] === "Administrador")) {
   // El usuario ha iniciado sesión y su rol es "Administrador", permite el acceso al contenido actual
   // Coloca el código de la página actual a continuación
-  $_SESSION['pagina_anterior'] = $_SERVER['REQUEST_URI'];
 } else {
   header("Location: ../../registro.php?alerta=iniciar_sesion_primero");
   exit();
@@ -40,19 +39,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $verificar_stmt_vendedor->execute();
   $existe_vendedor = $verificar_stmt_vendedor->fetch(PDO::FETCH_ASSOC);
 
+  // Verificar si el correo ya existe en tbl_administrador
+  $verificar_sql_administrador = "SELECT * FROM tbl_administrador WHERE correo = :correo OR id_usuario = :id_usuario";
+  $verificar_stmt_administrador = $conexion->prepare($verificar_sql_administrador);
+  $verificar_stmt_administrador->bindParam(':correo', $correo, PDO::PARAM_STR);
+  $verificar_stmt_administrador->bindParam(':id_usuario', $id_usuario, PDO::PARAM_INT);
+  $verificar_stmt_administrador->execute();
+  $existe_administrador= $verificar_stmt_administrador->fetch(PDO::FETCH_ASSOC);
+
   // Verificar si el correo existe en alguna de las tablas
-  if ($existe_usuario || $existe_vendedor) {
+  if ($existe_usuario || $existe_vendedor || $existe_administrador) {
     header("location: index.php?alerta=cuenta_ya_existente");
   } else {
     // Determinar en qué tabla insertar según el rol y construir la consulta SQL
     if ($id_rol == 'Administrador') {
-      $tabla = 'tbl_usuario';
+      $tabla = 'tbl_administrador';
     } else {
       // Manejar el caso en que el rol no sea válido
       echo "El rol seleccionado no es válido.";
       exit;
     }
-
+  
     // Preparar y ejecutar la consulta SQL para insertar el nuevo usuario
     $sql = "INSERT INTO $tabla (usuario, id_usuario, tipo_documento_u, correo, celular, nombres_u, apellidos_u, password, id_rol) VALUES (:usuario, :id_usuario, :tipo_documento_u, :correo, :celular, :nombres_u, :apellidos_u, :password, :id_rol)";
     $stmt = $conexion->prepare($sql);
@@ -84,7 +91,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <?php include("../../templates/header.php"); ?>
 
-
 <div class="caja_botoncancelar">
   <button class="button_retrocederrr" id="redireccionarButtonDevolver">
     <div class="button-box">
@@ -102,7 +108,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   </button>
 </div>
 <form action="" method="post" enctype="multipart/form-data">
-  <!-- Campos visibles por defecto -->
   <div class="card_crear_producto">
     <a class="singup">Crear Administrador</a>
     <div class="caja_productoos">
@@ -157,9 +162,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       </div>
     </div>
 
-    <div class="inputBox">
-      <select name="id_rol" id="id_rol" required="required">
-        <option value="Administrador" selected disabled>Administrador</option>
+    <div class="inputBox" style="display: none;">
+      <select hidden name="id_rol" id="id_rol" required="required">
+        <option value="Administrador">Administrador</option>
       </select>
       <span>Tipo de usuario:</span>
     </div>

@@ -66,39 +66,44 @@ $lista_tbl_sub_categorias = $nombre_sub_categoria->fetchAll(PDO::FETCH_ASSOC);
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($lista_tbl_categorias as $registro) { ?>
-                    <tr class="">
-                        <td scope="row"><?php echo $registro['id_categoria']; ?></td>
-                        <td><?php echo $registro['nombre_categoria']; ?></td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="dropbtn" id="dropdownBtn">Opciones</button>
-                                <div class="dropdown-content" id="myDropdown">
-                                    <button class="animated-button-ver">
-                                        <a href="./categoria.php?txtID=<?php echo $registro['id_categoria']; ?>">
-                                            <span>Ver</span>
-                                            <span></span>
-                                        </a>
-                                    </button>
+                <?php
+                if (empty($lista_tbl_categorias)) {
+                    echo "<tr><td colspan='3'>No hay categorias registradas.</td></tr>";
+                } else {
+                    foreach ($lista_tbl_categorias as $registro) { ?>
+                        <tr class="">
+                            <td scope="row"><?php echo $registro['id_categoria']; ?></td>
+                            <td><?php echo $registro['nombre_categoria']; ?></td>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="dropbtn" id="dropdownBtn">Opciones</button>
+                                    <div class="dropdown-content" id="myDropdown">
+                                        <button class="animated-button-ver">
+                                            <a href="./categoria.php?txtID=<?php echo $registro['id_categoria']; ?>">
+                                                <span>Ver</span>
+                                                <span></span>
+                                            </a>
+                                        </button>
 
-                                    <button class="animated-button-editar">
-                                        <a href="editar.php?id=<?php echo $registro['id_categoria']; ?>">
-                                            <span>Editar</span>
-                                            <span></span>
-                                        </a>
-                                    </button>
+                                        <button class="animated-button-editar">
+                                            <a href="editar.php?id=<?php echo $registro['id_categoria']; ?>">
+                                                <span>Editar</span>
+                                                <span></span>
+                                            </a>
+                                        </button>
 
-                                    <button class="animated-button-eliminar">
-                                        <a href="javascript:borrar(<?php echo $registro['id_categoria']; ?>);">
-                                            <span>Eliminar</span>
-                                            <span></span>
-                                        </a>
-                                    </button>
+                                        <button class="animated-button-eliminar">
+                                            <a href="javascript:borrar(<?php echo $registro['id_categoria']; ?>);">
+                                                <span>Eliminar</span>
+                                                <span></span>
+                                            </a>
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                    </tr>
-                <?php } ?>
+                            </td>
+                        </tr>
+                <?php }
+                } ?>
             </tbody>
         </table>
     </div>
@@ -123,50 +128,55 @@ $lista_tbl_sub_categorias = $nombre_sub_categoria->fetchAll(PDO::FETCH_ASSOC);
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($lista_tbl_sub_categorias as $registro) { ?>
-                    <tr class="">
-                        <td scope="row"><?php echo $registro['id_sub_categoria']; ?></td>
-                        <td><?php echo $registro['nombre_sub_categoria']; ?></td>
-                        <?php
-                        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-                            if (isset($_SESSION['usuario_rol'])) {
-                                $usuario_rol = $_SESSION['usuario_rol'];
-                                if ($usuario_rol == 'Vendedor' || $usuario_rol == 'Administrador') {
-                        ?>
-                                    <td>
-                                        <div class="dropdown">
-                                            <button class="dropbtn" id="dropdownBtn">Opciones</button>
-                                            <div class="dropdown-content" id="myDropdown">
-                                                <button class="animated-button-ver">
-                                                    <a href="./sub_categoria.php?id=<?php echo $registro['id_sub_categoria']; ?>">
-                                                        <span>Ver</span>
-                                                        <span></span>
-                                                    </a>
-                                                </button>
+                <?php
+                if (empty($lista_tbl_sub_categorias)) {
+                    echo "<tr><td colspan='3'>No hay sub categorias registradas.</td></tr>";
+                } else {
+                    foreach ($lista_tbl_sub_categorias as $registro) { ?>
+                        <tr class="">
+                            <td scope="row"><?php echo $registro['id_sub_categoria']; ?></td>
+                            <td><?php echo $registro['nombre_sub_categoria']; ?></td>
+                            <?php
+                            if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+                                if (isset($_SESSION['usuario_rol'])) {
+                                    $usuario_rol = $_SESSION['usuario_rol'];
+                                    if ($usuario_rol == 'Vendedor' || $usuario_rol == 'Administrador') {
+                            ?>
+                                        <td>
+                                            <div class="dropdown">
+                                                <button class="dropbtn" id="dropdownBtn">Opciones</button>
+                                                <div class="dropdown-content" id="myDropdown">
+                                                    <button class="animated-button-ver">
+                                                        <a href="./sub_categoria.php?id=<?php echo $registro['id_sub_categoria']; ?>">
+                                                            <span>Ver</span>
+                                                            <span></span>
+                                                        </a>
+                                                    </button>
 
-                                                <button class="animated-button-editar">
-                                                    <a href="editar_sub_categoria.php?id=<?php echo $registro['id_sub_categoria']; ?>">
-                                                        <span>Editar</span>
-                                                        <span></span>
-                                                    </a>
-                                                </button>
+                                                    <button class="animated-button-editar">
+                                                        <a href="editar_sub_categoria.php?id=<?php echo $registro['id_sub_categoria']; ?>">
+                                                            <span>Editar</span>
+                                                            <span></span>
+                                                        </a>
+                                                    </button>
 
-                                                <button class="animated-button-eliminar">
-                                                    <a href="javascript:borrar(<?php echo $registro['id_sub_categoria']; ?>);">
-                                                        <span>Eliminar</span>
-                                                        <span></span>
-                                                    </a>
-                                                </button>
+                                                    <button class="animated-button-eliminar">
+                                                        <a href="javascript:borrar(<?php echo $registro['id_sub_categoria']; ?>);">
+                                                            <span>Eliminar</span>
+                                                            <span></span>
+                                                        </a>
+                                                    </button>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                        <?php
+                                        </td>
+                            <?php
+                                    }
                                 }
                             }
-                        }
-                        ?>
-                    </tr>
-                <?php } ?>
+                            ?>
+                        </tr>
+                <?php }
+                } ?>
             </tbody>
         </table>
     </div>

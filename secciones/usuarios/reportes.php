@@ -16,7 +16,7 @@ if (isset($_SESSION["usuario_rol"]) && ($_SESSION["usuario_rol"] === "Administra
     exit();
 }
 
-$total_ventas = $conexion->prepare("SELECT COUNT(*) AS total_ventas FROM tbl_compra");
+$total_ventas = $conexion->prepare("SELECT COUNT(*) AS total_ventas FROM tbl_venta");
 $total_ventas->execute();
 
 $total_inventario = $conexion->prepare("SELECT COUNT(*) AS total_inventario FROM tbl_productos");
@@ -49,7 +49,6 @@ $total_tiendas->execute();
         <section id="reporte-ventas" class="reporte">
             <div class="info-reporte">
                 <h2>Reporte de Ventas</h2>
-                <!-- Contenido del reporte de ventas -->
                 <p>Información de las ventas aquí...</p>
                 <p><strong>Total de ventas:</strong>
                     <?php foreach ($total_ventas as $ventas) {
@@ -65,7 +64,7 @@ $total_tiendas->execute();
                     </span>
                 </button>
 
-                <a href="descargar_pdf.php">
+                <a href="descargar_pdf.php?P=Ventas">
                     <button class="button_ver_r">
                         <span class="button_lg">
                             <span class="button_sl"></span>
@@ -74,19 +73,20 @@ $total_tiendas->execute();
                     </button>
                 </a>
 
-                <button class="button_ver_r">
-                    <span class="button_lg">
-                        <span class="button_sl"></span>
-                        <span class="button_text">Descargar excel</span>
-                    </span>
-                </button>
+                <a href="descargar_excel.php?type=Ventas">
+                    <button class="button_ver_r">
+                        <span class="button_lg">
+                            <span class="button_sl"></span>
+                            <span class="button_text">Descargar excel</span>
+                        </span>
+                    </button>
+                </a>
             </div>
         </section>
 
         <section id="reporte-inventario" class="reporte">
             <div class="info-reporte">
                 <h2>Reporte de Inventario</h2>
-                <!-- Contenido del reporte de inventario -->
                 <p>Información de inventario aquí...</p>
                 <p><strong>Total de inventario:</strong>
                     <?php foreach ($total_inventario as $inventario) {
@@ -102,26 +102,29 @@ $total_tiendas->execute();
                     </span>
                 </button>
 
-                <button class="button_ver_r">
-                    <span class="button_lg">
-                        <span class="button_sl"></span>
-                        <span class="button_text">Descargar pdf</span>
-                    </span>
-                </button>
+                <a href="descargar_pdf.php?P=Inventario">
+                    <button class="button_ver_r">
+                        <span class="button_lg">
+                            <span class="button_sl"></span>
+                            <span class="button_text">Descargar pdf</span>
+                        </span>
+                    </button>
+                </a>
 
-                <button class="button_ver_r">
-                    <span class="button_lg">
-                        <span class="button_sl"></span>
-                        <span class="button_text">Descargar excel</span>
-                    </span>
-                </button>
+                <a href="descargar_excel.php?type=Inventario">
+                    <button class="button_ver_r">
+                        <span class="button_lg">
+                            <span class="button_sl"></span>
+                            <span class="button_text">Descargar excel</span>
+                        </span>
+                    </button>
+                </a>
             </div>
         </section>
 
         <section id="reporte-clientes" class="reporte">
             <div class="info-reporte">
                 <h2>Reporte de Clientes</h2>
-                <!-- Contenido del reporte de usuarios -->
                 <p>Información de clientes aquí...</p>
                 <p><strong>Total de clientes:</strong>
                     <?php foreach ($total_clientes as $clientes) {
@@ -137,26 +140,29 @@ $total_tiendas->execute();
                     </span>
                 </button>
 
-                <button class="button_ver_r">
-                    <span class="button_lg">
-                        <span class="button_sl"></span>
-                        <span class="button_text">Descargar pdf</span>
-                    </span>
-                </button>
+                <a href="descargar_pdf.php?P=Clientes">
+                    <button class="button_ver_r">
+                        <span class="button_lg">
+                            <span class="button_sl"></span>
+                            <span class="button_text">Descargar pdf</span>
+                        </span>
+                    </button>
+                </a>
 
-                <button class="button_ver_r">
-                    <span class="button_lg">
-                        <span class="button_sl"></span>
-                        <span class="button_text">Descargar excel</span>
-                    </span>
-                </button>
+                <a href="descargar_excel.php?type=Clientes">
+                    <button class="button_ver_r">
+                        <span class="button_lg">
+                            <span class="button_sl"></span>
+                            <span class="button_text">Descargar excel</span>
+                        </span>
+                    </button>
+                </a>
             </div>
         </section>
 
         <section id="reporte-vendedores" class="reporte">
             <div class="info-reporte">
                 <h2>Reporte de Vendedores</h2>
-                <!-- Contenido del reporte de usuarios -->
                 <p>Información de vendedores aquí...</p>
                 <p><strong>Total de vendedores:</strong>
                     <?php foreach ($total_vendedores as $vendedores) {
@@ -172,26 +178,29 @@ $total_tiendas->execute();
                     </span>
                 </button>
 
-                <button class="button_ver_r">
-                    <span class="button_lg">
-                        <span class="button_sl"></span>
-                        <span class="button_text">Descargar pdf</span>
-                    </span>
-                </button>
+                <a href="descargar_pdf.php?P=Vendedores">
+                    <button class="button_ver_r">
+                        <span class="button_lg">
+                            <span class="button_sl"></span>
+                            <span class="button_text">Descargar pdf</span>
+                        </span>
+                    </button>
+                </a>
 
-                <button class="button_ver_r">
-                    <span class="button_lg">
-                        <span class="button_sl"></span>
-                        <span class="button_text">Descargar excel</span>
-                    </span>
-                </button>
+                <a href="descargar_excel.php?type=Vendedores">
+                    <button class="button_ver_r">
+                        <span class="button_lg">
+                            <span class="button_sl"></span>
+                            <span class="button_text">Descargar excel</span>
+                        </span>
+                    </button>
+                </a>
             </div>
         </section>
 
         <section id="reporte-tiendas" class="reporte">
             <div class="info-reporte">
                 <h2>Reporte de Tiendas</h2>
-                <!-- Contenido del reporte de tiendas -->
                 <p>Información de tiendas aquí...</p>
                 <p><strong>Total de tiendas:</strong>
                     <?php foreach ($total_tiendas as $tiendas) {
@@ -207,19 +216,23 @@ $total_tiendas->execute();
                     </span>
                 </button>
 
-                <button class="button_ver_r">
-                    <span class="button_lg">
-                        <span class="button_sl"></span>
-                        <span class="button_text">Descargar pdf</span>
-                    </span>
-                </button>
+                <a href="descargar_pdf.php?P=Tiendas">
+                    <button class="button_ver_r">
+                        <span class="button_lg">
+                            <span class="button_sl"></span>
+                            <span class="button_text">Descargar pdf</span>
+                        </span>
+                    </button>
+                </a>
 
-                <button class="button_ver_r">
-                    <span class="button_lg">
-                        <span class="button_sl"></span>
-                        <span class="button_text">Descargar excel</span>
-                    </span>
-                </button>
+                <a href="descargar_excel.php?type=Tiendas">
+                    <button class="button_ver_r">
+                        <span class="button_lg">
+                            <span class="button_sl"></span>
+                            <span class="button_text">Descargar excel</span>
+                        </span>
+                    </button>
+                </a>
             </div>
         </section>
     </main>
@@ -229,7 +242,6 @@ $total_tiendas->execute();
 </div>
 
 <script>
-    // JavaScript para scroll suave hacia arriba
     function scrollToTop() {
         window.scrollTo({
             top: 0,
@@ -240,14 +252,9 @@ $total_tiendas->execute();
 
 <script>
     function seleccionar(elemento) {
-        // Eliminar la clase 'active' de todos los enlaces
         const enlaces = document.querySelectorAll('.nav_reportes ul li a');
         enlaces.forEach(enlace => enlace.classList.remove('active'));
-
-        // Agregar la clase 'active' al enlace clicado
         elemento.classList.add('active');
-
-        // Scroll hacia la sección correspondiente
         const seccionId = elemento.getAttribute('href');
         document.querySelector(seccionId).scrollIntoView({
             behavior: 'smooth'
@@ -271,13 +278,11 @@ $total_tiendas->execute();
         const seccionId = elemento.getAttribute('href');
         const seccion = document.querySelector(seccionId);
 
-        // Añadir clase resaltada a la sección y luego quitarla después de 2 segundos
         seccion.classList.add('resaltado');
         setTimeout(function() {
             seccion.classList.remove('resaltado');
         }, 2000);
 
-        // Scroll hacia la sección correspondiente
         seccion.scrollIntoView({
             behavior: 'smooth'
         });

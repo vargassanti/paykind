@@ -53,10 +53,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $insert_compra_producto->execute();
         }
 
-        $eliminar_carrito = $conexion->prepare("DELETE FROM tbl_carrito");
+        $consultas_c = "SELECT c.*, p.*, s.*
+        FROM tbl_compra as c
+        INNER JOIN tbl_compra_producto as p ON p.id_compra = c.id_compra
+        INNER JOIN tbl_stock as s ON s.id_stock = p.id_stock
+        WHERE c.id_compra = :id_compra";
+        $consultas_cantidad_st = $conexion->prepare($consultas_c);
+        $consultas_cantidad_st->bindParam(':id_compra', $id_compra);
+        $consultas_cantidad_st->execute();
+        $productos_c = $consultas_cantidad_st->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($productos_c as $cantidad_s) {
+            $id_producto = $cantidad_s['id_producto'];
+            $cantidad = $cantidad_s['cantidad'];
+            $cantidad_disponible = $cantidad_s['cantidad_disponible'];
+            $id_stock = $cantidad_s['id_stock'];
+
+            if ($cantidad_disponible >= $cantidad) {
+                $nuevaCantidad = $cantidad_disponible - $cantidad;
+
+                // Actualizar la cantidad disponible en la base de datos
+                $updateStock = $conexion->prepare("UPDATE tbl_stock SET cantidad_disponible = :nuevaCantidad WHERE id_producto = :id_producto AND id_stock = :id_stock");
+                $updateStock->bindParam(':nuevaCantidad', $nuevaCantidad);
+                $updateStock->bindParam(':id_producto', $id_producto);
+                $updateStock->bindParam(':id_stock', $id_stock);
+                $updateStock->execute();
+            } else {
+                echo "No hay suficiente cantidad disponible para realizar la compra.";
+            }
+        }
+
+        $eliminar_carrito = $conexion->prepare("DELETE FROM tbl_carrito WHERE id_usuario = :id_usuario");
+        $eliminar_carrito->bindParam(':id_usuario', $id_usuario);
         $eliminar_carrito->execute();
 
-        header("Location: ../../index.php?alerta=compra_realizada");
+        // header("Location: ../../index.php?alerta=compra_realizada");
+        $mensaje = "Compra terminada correctamente." ;
+        header("Location: ver_factura.php?compra=" . urlencode($id_compra) . "&mensaje=" . urlencode($mensaje));
         exit();
     } else {
         echo "Error: El campo id_detalle_compra no está presente o no es un array válido.";

@@ -18,7 +18,6 @@ include("../../bd.php");
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     //Recolectamos los datos del metodo POST
     $nombre = (isset($_POST["nombre"]) ? $_POST["nombre"] : "");
-
     $descripcion = (isset($_POST["descripcion"]) ? $_POST["descripcion"] : "");
     $precio = (isset($_POST["precio"]) ? $_POST["precio"] : "");
     $id_sub_categoria = (isset($_POST["id_sub_categoria"]) ? $_POST["id_sub_categoria"] : "");

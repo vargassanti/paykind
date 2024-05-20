@@ -127,6 +127,8 @@ $info_u->bindParam(":id_usuario", $id_usuario);
 $info_u->execute();
 $informacion = $info_u->fetchAll(PDO::FETCH_ASSOC);
 
+include("../../templates/header.php"); 
+
 ?>
 <input type="checkbox" id="btn-modal">
 <div class="container-modal-compras" id="modal">
@@ -151,7 +153,7 @@ if (isset($_GET['c'])) {
 ?>
             <div class="container_compras">
                 <p class="titulo_desc">Estado pendiente:</p>
-                <p class="descripcion_estado">Este estado de compra indica que la compra ha sido iniciada pero aún no se ha completado. Puede significar que el cliente ha agregado productos al carrito pero no ha finalizado el proceso de pago.</p>
+                <!-- <p class="descripcion_estado">Este estado de compra indica que la compra ha sido iniciada pero aún no se ha completado. Puede significar que el cliente ha agregado productos al carrito pero no ha finalizado el proceso de pago.</p> -->
                 <div class="cabecera_principal">
                     <div class="logo_img">
                         <img src="../../img/logo.png" alt="">
@@ -251,7 +253,7 @@ if (isset($_GET['c'])) {
         ?>
             <div class="container_compras">
                 <p class="titulo_desc">Estado en proceso:</p>
-                <p class="descripcion_estado">Una vez que el cliente ha realizado el pago, la compra pasa al estado "En proceso". Esto indica que la transacción está siendo verificada y procesada. Puede involucrar la confirmación del pago, la verificación de la disponibilidad de los productos, etc.</p>
+                <!-- <p class="descripcion_estado">Una vez que el cliente ha realizado el pago, la compra pasa al estado "En proceso". Esto indica que la transacción está siendo verificada y procesada. Puede involucrar la confirmación del pago, la verificación de la disponibilidad de los productos, etc.</p> -->
                 <div class="cabecera_principal">
                     <div class="logo_img">
                         <img src="../../img/logo.png" alt="">
@@ -363,7 +365,7 @@ if (isset($_GET['c'])) {
         ?>
             <div class="container_compras">
                 <p class="titulo_desc">Estado aprobado:</p>
-                <p class="descripcion_estado">La compra ha sido aprobada y aceptada. Esto significa que se ha completado con éxito el proceso de pago y que los productos o servicios están listos para ser entregados o utilizados.</p>
+                <!-- <p class="descripcion_estado">La compra ha sido aprobada y aceptada. Esto significa que se ha completado con éxito el proceso de pago y que los productos o servicios están listos para ser entregados o utilizados.</p> -->
                 <div class="cabecera_principal">
                     <div class="logo_img">
                         <img src="../../img/logo.png" alt="">
@@ -475,7 +477,7 @@ if (isset($_GET['c'])) {
         ?>
             <div class="container_compras">
                 <p class="titulo_desc">Estado en espera de envío:</p>
-                <p class="descripcion_estado"> En el caso de productos físicos, una vez que la compra ha sido aprobada, puede entrar en el estado "En espera de envío". Esto indica que los productos están listos para ser enviados, pero aún no han salido del almacén o no se ha generado la etiqueta de envío.</p>
+                <!-- <p class="descripcion_estado"> En el caso de productos físicos, una vez que la compra ha sido aprobada, puede entrar en el estado "En espera de envío". Esto indica que los productos están listos para ser enviados, pero aún no han salido del almacén o no se ha generado la etiqueta de envío.</p> -->
                 <div class="cabecera_principal">
                     <div class="logo_img">
                         <img src="../../img/logo.png" alt="">
@@ -568,7 +570,7 @@ if (isset($_GET['c'])) {
                                                     <i class='bx bx-edit'></i>
                                                 </div>
                                             </a>
-                                            <a onclick="eliminarCompra(<?php echo $ap['id_compra']; ?>)" data-tooltip="Cancelar compra">
+                                            <a onclick="eliminarCompra(<?php echo $ep['id_compra']; ?>)" data-tooltip="Cancelar compra">
                                                 <div class="ver_compra_lupa">
                                                     <i class='bx bx-x-circle'></i>
                                                 </div>
@@ -587,7 +589,7 @@ if (isset($_GET['c'])) {
         ?>
             <div class="container_compras">
                 <p class="titulo_desc">En tránsito:</p>
-                <p class="descripcion_estado"> Los productos han sido enviados y se encuentran en camino hacia la dirección de entrega proporcionada por el cliente.</p>
+                <!-- <p class="descripcion_estado"> Los productos han sido enviados y se encuentran en camino hacia la dirección de entrega proporcionada por el cliente.</p> -->
                 <div class="cabecera_principal">
                     <div class="logo_img">
                         <img src="../../img/logo.png" alt="">
@@ -699,7 +701,7 @@ if (isset($_GET['c'])) {
         ?>
             <div class="container_compras">
                 <p class="titulo_desc">Completado:</p>
-                <p class="descripcion_estado"> Este estado indica que todo el proceso de la compra ha finalizado con éxito. Los productos o servicios han sido entregados y se considera que la transacción está cerrada.</p>
+                <!-- <p class="descripcion_estado"> Este estado indica que todo el proceso de la compra ha finalizado con éxito. Los productos o servicios han sido entregados y se considera que la transacción está cerrada.</p> -->
                 <div class="cabecera_principal">
                     <div class="logo_img">
                         <img src="../../img/logo.png" alt="">
@@ -801,7 +803,7 @@ if (isset($_GET['c'])) {
         ?>
             <div class="container_compras">
                 <p class="titulo_desc">Cancelado:</p>
-                <p class="descripcion_estado"> En algunos casos, una compra puede ser cancelada, ya sea por el cliente antes de su envío o por el vendedor debido a problemas como falta de stock, problemas de pago, etc.</p>
+                <!-- <p class="descripcion_estado"> En algunos casos, una compra puede ser cancelada, ya sea por el cliente antes de su envío o por el vendedor debido a problemas como falta de stock, problemas de pago, etc.</p> -->
                 <div class="cabecera_principal">
                     <div class="logo_img">
                         <img src="../../img/logo.png" alt="">
@@ -907,7 +909,7 @@ if (isset($_GET['c'])) {
     echo "Error.";
 }
 
-include("../../templates/header.php"); ?>
+?>
 
 <script src="../../js/jquery-3.7.1.min.js"></script>
 <script src="archivos.js/custom-tooltip.js"></script>
@@ -916,3 +918,4 @@ include("../../templates/header.php"); ?>
 <script src="archivos.js/eliminar_compra.js"></script>
 <script src="archivos.js/resaltar_boton.js"></script>
 <script src="archivos.js/buscador_compras_estados.js"></script>
+<script src="archivos.js/alerta_estado.js"></script>

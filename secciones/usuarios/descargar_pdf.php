@@ -16,69 +16,449 @@ if (isset($_SESSION["usuario_rol"]) && ($_SESSION["usuario_rol"] === "Administra
 
 $id_usuario = $_SESSION['usuario_id'];
 
-// Configuración de la página
-$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+if (isset($_GET['P'])) {
+    $P = (isset($_GET['P'])) ? $_GET['P'] : "";
 
-// Configura la información del documento
-$pdf->SetCreator(PDF_CREATOR);
-$pdf->SetAuthor('Nombre del Autor');
-$pdf->SetTitle('Reporte de Compras');
-$pdf->SetSubject('Asunto del PDF');
-$pdf->SetKeywords('TCPDF, PDF, ejemplo, demo');
+    switch ($P) {
+        case 'Ventas':
+            $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
-// Establece márgenes
-$pdf->SetMargins(10, 10, 10);
-$pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
-$pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+            $pdf->SetCreator(PDF_CREATOR);
+            $pdf->SetAuthor('Nombre del Autor');
+            $pdf->SetTitle('Reporte de Compras');
+            $pdf->SetSubject('Asunto del PDF');
+            $pdf->SetKeywords('TCPDF, PDF, ejemplo, demo');
 
-// Configura la fuente predeterminada y el tamaño del texto
-$pdf->SetFont('times', '', 12);
+            $pdf->SetMargins(10, 10, 10);
+            $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+            $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
 
-// Agrega una página
-$pdf->AddPage();
+            $pdf->SetFont('times', '', 12);
+            $pdf->AddPage();
 
-$data = $conexion->prepare("SELECT c.*, d.*, p.nombre, p.precio, p.img_producto, s.color_producto, u.usuario
-FROM tbl_compra as c
-INNER JOIN tbl_detalle_compra as d ON d.id_detalle_compra = c.id_detalle_compra
-INNER JOIN tbl_productos as p ON p.id_producto = d.id_producto
-INNER JOIN tbl_stock as s ON s.id_stock = d.id_stock
-INNER JOIN tbl_usuario as u ON u.id_usuario = d.id_usuario");
-$data->execute();
-$compras_data = $data->fetchAll(PDO::FETCH_ASSOC);
+            // Título
+            $pdf->SetFont('times', 'B', 16);
+            $pdf->Cell(0, 10, 'Informe de Compras', 0, 1, 'C');
+            $pdf->Ln(10); // Añadir espacio después del título
 
-// Datos
-$pdf->SetFont('times', '', 12); // Restaurar la fuente normal
-foreach ($compras_data as $row) {
-    $pdf->MultiCell(0, 10, 'Nombre Producto: ', 0, 'L');
-    $pdf->MultiCell(0, 10, $row['nombre'], 0, 'L');
-    $pdf->MultiCell(0, 10, 'ID Usuario: ', 0, 'L');
-    $pdf->MultiCell(0, 10, $row['id_usuario'], 0, 'L');
-    $pdf->MultiCell(0, 10, 'Usuario: ', 0, 'L');
-    $pdf->MultiCell(0, 10, $row['usuario'], 0, 'L');
-    $pdf->MultiCell(0, 10, 'Total compra: ', 0, 'L');
-    $pdf->MultiCell(0, 10, $row['total_compra'], 0, 'L');
-    $pdf->MultiCell(0, 10, 'Direccion: ', 0, 'L');
-    $pdf->MultiCell(0, 10, $row['direccion'], 0, 'L');
-    $pdf->MultiCell(0, 10, 'Costo envio: ', 0, 'L');
-    $pdf->MultiCell(0, 10, $row['costo_envio'], 0, 'L');
-    $pdf->MultiCell(0, 10, 'Metodo pago: ', 0, 'L');
-    $pdf->MultiCell(0, 10, $row['metodo_pago'], 0, 'L');
-    $pdf->MultiCell(0, 10, 'Cantidad: ', 0, 'L');
-    $pdf->MultiCell(0, 10, $row['cantidad'], 0, 'L');
-    $pdf->MultiCell(0, 10, 'Estado de la compra: ', 0, 'L');
-    $pdf->MultiCell(0, 10, $row['estado_carrito'], 0, 'L');
+            // Descripción
+            $pdf->SetFont('times', '', 12);
+            $pdf->MultiCell(0, 10, 'Este informe contiene detalles sobre las compras realizadas y la información personal del cliente comprador.', 0, 'L');
+            $pdf->Ln(10); // Añadir espacio después de la descripción
 
-    $pdf->SetLineStyle(array('width' => 0.2, 'color' => array(0, 0, 0))); // Establecer el estilo de la línea
-    $pdf->Line($pdf->GetX(), $pdf->GetY(), $pdf->GetX() + 170, $pdf->GetY()); // Dibujar una línea horizontal
+            $data = $conexion->prepare("SELECT * FROM tbl_venta");
+            $data->execute();
+            $compras_data = $data->fetchAll(PDO::FETCH_ASSOC);
 
-    $pdf->Ln(); // Salto de línea después de cada conjunto de datos
+            $header = array('Campos', 'Información');
+            $pdf->SetFont('times', 'B', 12);
+            $pdf->SetFillColor(200, 220, 255);
+
+            foreach ($header as $col) {
+                $pdf->Cell(95, 10, $col, 1, 0, 'C', 1);
+            }
+
+            $pdf->Ln();
+
+            $pdf->SetFont('times', '', 12);
+            foreach ($compras_data as $row) {
+                $pdf->Cell(95, 10, 'Id venta:', 1);
+                $pdf->Cell(95, 10, $row['id_venta'], 1);
+                $pdf->Ln();
+
+                $pdf->Cell(95, 10, 'Nombres:', 1);
+                $pdf->Cell(95, 10, $row['nombres_u'], 1);
+                $pdf->Ln();
+
+                $pdf->Cell(95, 10, 'Apellidos:', 1);
+                $pdf->Cell(95, 10, $row['apellidos_u'], 1);
+                $pdf->Ln();
+
+                $pdf->Cell(95, 10, 'Identificación:', 1);
+                $pdf->Cell(95, 10, $row['id_usuario'], 1);
+                $pdf->Ln();
+
+                $pdf->Cell(95, 10, 'Correo:', 1);
+                $pdf->Cell(95, 10, $row['correo'], 1);
+                $pdf->Ln();
+
+                $pdf->Cell(95, 10, 'Dirección:', 1);
+                $pdf->Cell(95, 10, $row['direccion'], 1);
+                $pdf->Ln();
+
+                $totalCompraFormateado = number_format($row['total_compra'], 0, '.', ',');
+
+                $pdf->Cell(95, 10, 'Total compra:', 1);
+                $pdf->Cell(95, 10, '$' . $totalCompraFormateado, 1);
+                $pdf->Ln();
+
+                $pdf->Cell(95, 10, 'Metodo pago:', 1);
+                $pdf->Cell(95, 10, $row['metodo_pago'], 1);
+                $pdf->Ln();
+
+                $pdf->Cell(95, 10, 'Estado de la compra:', 1);
+                $pdf->Cell(95, 10, $row['estado'], 1);
+                $pdf->Ln();
+
+                $CostoFormateado = number_format($row['costo_envio'], 0, '.', ',');
+
+                $pdf->Cell(95, 10, 'Costo envío:', 1);
+                $pdf->Cell(95, 10, '$' . $CostoFormateado, 1);
+                $pdf->Ln();
+
+                $pdf->Cell(95, 10, 'Fecha compra:', 1);
+                $pdf->Cell(95, 10, $row['fecha_compra'], 1);
+                $pdf->Ln();
+
+                $pdf->SetLineStyle(array('width' => 0.2, 'color' => array(0, 0, 0)));
+                $pdf->Line($pdf->GetX(), $pdf->GetY(), $pdf->GetX() + 80, $pdf->GetY());
+
+                $pdf->Ln();
+            }
+
+            $pdf->Output('Reporte_ventas.pdf', 'D');
+            break;
+        case 'Inventario':
+            $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+
+            $pdf->SetCreator(PDF_CREATOR);
+            $pdf->SetAuthor('Nombre del Autor');
+            $pdf->SetTitle('Reporte de Compras');
+            $pdf->SetSubject('Asunto del PDF');
+            $pdf->SetKeywords('TCPDF, PDF, ejemplo, demo');
+
+            $pdf->SetMargins(10, 10, 10);
+            $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+            $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+
+            $pdf->SetFont('times', '', 12);
+            $pdf->AddPage();
+
+            // Título
+            $pdf->SetFont('times', 'B', 16);
+            $pdf->Cell(0, 10, 'Informe del inventario', 0, 1, 'C');
+            $pdf->Ln(10); // Añadir espacio después del título
+
+            // Descripción
+            $pdf->SetFont('times', '', 12);
+            $pdf->MultiCell(0, 10, 'Este informe contiene detalles sobre el inventario de cada tienda que hay registrada.', 0, 'L');
+            $pdf->Ln(10); // Añadir espacio después de la descripción
+
+            $data = $conexion->prepare("SELECT p.*, s.*, t.nombre_tienda,t.nit_identificacion
+            FROM tbl_productos as p 
+            INNER JOIN tbl_stock as s ON s.id_producto = p.id_producto
+            INNER JOIN tbl_tienda as t ON t.nit_identificacion = p.nit_identificacion");
+            $data->execute();
+            $compras_data = $data->fetchAll(PDO::FETCH_ASSOC);
+
+            $header = array('Campos', 'Información');
+            $pdf->SetFont('times', 'B', 12);
+            $pdf->SetFillColor(200, 220, 255);
+
+            foreach ($header as $col) {
+                $pdf->Cell(95, 10, $col, 1, 0, 'C', 1);
+            }
+
+            $pdf->Ln();
+
+            $pdf->SetFont('times', '', 12);
+            foreach ($compras_data as $row) {
+                $pdf->Cell(95, 10, 'Id producto:', 1);
+                $pdf->Cell(95, 10, $row['id_producto'], 1);
+                $pdf->Ln();
+
+                $pdf->Cell(95, 10, 'Nombre:', 1);
+                $pdf->Cell(95, 10, $row['nombre'], 1);
+                $pdf->Ln();
+
+                $PrecioProductoFormateado = number_format($row['precio'], 0, '.', ',');
+
+                $pdf->Cell(95, 10, 'Precio:', 1);
+                $pdf->Cell(95, 10, '$' . $PrecioProductoFormateado, 1);
+                $pdf->Ln();
+
+
+                $pdf->Cell(95, 10, 'Nit tienda:', 1);
+                $pdf->Cell(95, 10, $row['nit_identificacion'], 1);
+                $pdf->Ln();
+
+                $pdf->Cell(95, 10, 'Nombre tienda:', 1);
+                $pdf->Cell(95, 10, $row['nombre_tienda'], 1);
+                $pdf->Ln();
+
+                $pdf->Cell(95, 10, 'Estado producto:', 1);
+                $pdf->Cell(95, 10, $row['estado_producto'], 1);
+                $pdf->Ln();
+
+                $pdf->Cell(95, 10, 'Cantidad:', 1);
+                $pdf->Cell(95, 10, $row['cantidad_disponible'], 1);
+                $pdf->Ln();
+
+                $pdf->Cell(95, 10, 'Color:', 1);
+                $pdf->Cell(95, 10, $row['color_producto'], 1);
+                $pdf->Ln();
+
+                $pdf->Cell(95, 10, 'Fecha registro:', 1);
+                $pdf->Cell(95, 10, $row['fecha_registro'], 1);
+                $pdf->Ln();
+
+                $pdf->SetLineStyle(array('width' => 0.2, 'color' => array(0, 0, 0)));
+                $pdf->Line($pdf->GetX(), $pdf->GetY(), $pdf->GetX() + 80, $pdf->GetY());
+
+                $pdf->Ln();
+            }
+
+            $pdf->Output('Reporte_inventario.pdf', 'D');
+            break;
+        case 'Clientes':
+            $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+
+            $pdf->SetCreator(PDF_CREATOR);
+            $pdf->SetAuthor('Nombre del Autor');
+            $pdf->SetTitle('Reporte de Compras');
+            $pdf->SetSubject('Asunto del PDF');
+            $pdf->SetKeywords('TCPDF, PDF, ejemplo, demo');
+
+            $pdf->SetMargins(10, 10, 10);
+            $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+            $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+
+            $pdf->SetFont('times', '', 12);
+            $pdf->AddPage();
+
+            // Título
+            $pdf->SetFont('times', 'B', 16);
+            $pdf->Cell(0, 10, 'Informe de los Clientes', 0, 1, 'C');
+            $pdf->Ln(10); // Añadir espacio después del título
+
+            // Descripción
+            $pdf->SetFont('times', '', 12);
+            $pdf->MultiCell(0, 10, 'Este informe contiene detalles sobre los usuarios clientes que se encuentran registrados.', 0, 'L');
+            $pdf->Ln(10); // Añadir espacio después de la descripción
+
+            $data = $conexion->prepare("SELECT * FROM tbl_usuario WHERE id_rol = 'Cliente'");
+            $data->execute();
+            $compras_data = $data->fetchAll(PDO::FETCH_ASSOC);
+
+            $header = array('Campos', 'Información');
+            $pdf->SetFont('times', 'B', 12);
+            $pdf->SetFillColor(200, 220, 255);
+
+            foreach ($header as $col) {
+                $pdf->Cell(95, 10, $col, 1, 0, 'C', 1);
+            }
+
+            $pdf->Ln();
+
+            $pdf->SetFont('times', '', 12);
+            foreach ($compras_data as $row) {
+                $pdf->Cell(95, 10, 'Identificación:', 1);
+                $pdf->Cell(95, 10, $row['id_usuario'], 1);
+                $pdf->Ln();
+
+                $pdf->Cell(95, 10, 'Usuario:', 1);
+                $pdf->Cell(95, 10, $row['usuario'], 1);
+                $pdf->Ln();
+
+                $pdf->Cell(95, 10, 'Tipo documento:', 1);
+                $pdf->Cell(95, 10, $row['tipo_documento_u'], 1);
+                $pdf->Ln();
+
+                $pdf->Cell(95, 10, 'Nombres:', 1);
+                $pdf->Cell(95, 10, $row['nombres_u'], 1);
+                $pdf->Ln();
+
+                $pdf->Cell(95, 10, 'Apellidos:', 1);
+                $pdf->Cell(95, 10, $row['apellidos_u'], 1);
+                $pdf->Ln();
+
+                $pdf->Cell(95, 10, 'Correo:', 1);
+                $pdf->Cell(95, 10, $row['correo'], 1);
+                $pdf->Ln();
+
+                $pdf->Cell(95, 10, 'Celular:', 1);
+                $pdf->Cell(95, 10, $row['celular'], 1);
+                $pdf->Ln();
+
+                $pdf->Cell(95, 10, 'Dirección', 1);
+                $pdf->Cell(95, 10, $row['direccion'], 1);
+                $pdf->Ln();
+
+                $pdf->Cell(95, 10, 'Rol', 1);
+                $pdf->Cell(95, 10, $row['id_rol'], 1);
+                $pdf->Ln();
+
+                $pdf->SetLineStyle(array('width' => 0.2, 'color' => array(0, 0, 0)));
+                $pdf->Line($pdf->GetX(), $pdf->GetY(), $pdf->GetX() + 80, $pdf->GetY());
+
+                $pdf->Ln();
+            }
+
+            $pdf->Output('Reporte_clientes.pdf', 'D');
+            break;
+        case 'Vendedores':
+            $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+
+            $pdf->SetCreator(PDF_CREATOR);
+            $pdf->SetAuthor('Nombre del Autor');
+            $pdf->SetTitle('Reporte de Compras');
+            $pdf->SetSubject('Asunto del PDF');
+            $pdf->SetKeywords('TCPDF, PDF, ejemplo, demo');
+
+            $pdf->SetMargins(10, 10, 10);
+            $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+            $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+
+            $pdf->SetFont('times', '', 12);
+            $pdf->AddPage();
+
+            // Título
+            $pdf->SetFont('times', 'B', 16);
+            $pdf->Cell(0, 10, 'Informe de los Vendedores', 0, 1, 'C');
+            $pdf->Ln(10); // Añadir espacio después del título
+
+            // Descripción
+            $pdf->SetFont('times', '', 12);
+            $pdf->MultiCell(0, 10, 'Este informe contiene detalles sobre los usuarios vendedores que se encuentran registrados.', 0, 'L');
+            $pdf->Ln(10); // Añadir espacio después de la descripción
+
+            $data = $conexion->prepare("SELECT * FROM tbl_vendedor WHERE id_rol = 'Vendedor'");
+            $data->execute();
+            $compras_data = $data->fetchAll(PDO::FETCH_ASSOC);
+
+            $header = array('Campos', 'Información');
+            $pdf->SetFont('times', 'B', 12);
+            $pdf->SetFillColor(200, 220, 255);
+
+            foreach ($header as $col) {
+                $pdf->Cell(95, 10, $col, 1, 0, 'C', 1);
+            }
+
+            $pdf->Ln();
+
+            $pdf->SetFont('times', '', 12);
+            foreach ($compras_data as $row) {
+                $pdf->Cell(95, 10, 'Identificación:', 1);
+                $pdf->Cell(95, 10, $row['id_usuario'], 1);
+                $pdf->Ln();
+
+                $pdf->Cell(95, 10, 'Usuario:', 1);
+                $pdf->Cell(95, 10, $row['usuario'], 1);
+                $pdf->Ln();
+
+                $pdf->Cell(95, 10, 'Tipo documento:', 1);
+                $pdf->Cell(95, 10, $row['tipo_documento_u'], 1);
+                $pdf->Ln();
+
+                $pdf->Cell(95, 10, 'Nombres:', 1);
+                $pdf->Cell(95, 10, $row['nombres_u'], 1);
+                $pdf->Ln();
+
+                $pdf->Cell(95, 10, 'Apellidos:', 1);
+                $pdf->Cell(95, 10, $row['apellidos_u'], 1);
+                $pdf->Ln();
+
+                $pdf->Cell(95, 10, 'Correo:', 1);
+                $pdf->Cell(95, 10, $row['correo'], 1);
+                $pdf->Ln();
+
+                $pdf->Cell(95, 10, 'Celular:', 1);
+                $pdf->Cell(95, 10, $row['celular'], 1);
+                $pdf->Ln();
+
+                $pdf->Cell(95, 10, 'Dirección', 1);
+                $pdf->Cell(95, 10, $row['direccion'], 1);
+                $pdf->Ln();
+
+                $pdf->Cell(95, 10, 'Rol', 1);
+                $pdf->Cell(95, 10, $row['id_rol'], 1);
+                $pdf->Ln();
+
+                $pdf->SetLineStyle(array('width' => 0.2, 'color' => array(0, 0, 0)));
+                $pdf->Line($pdf->GetX(), $pdf->GetY(), $pdf->GetX() + 80, $pdf->GetY());
+
+                $pdf->Ln();
+            }
+
+            $pdf->Output('Reporte_vendedores.pdf', 'D');
+            break;
+        case 'Tiendas':
+            $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+
+            $pdf->SetCreator(PDF_CREATOR);
+            $pdf->SetAuthor('Nombre del Autor');
+            $pdf->SetTitle('Reporte de Compras');
+            $pdf->SetSubject('Asunto del PDF');
+            $pdf->SetKeywords('TCPDF, PDF, ejemplo, demo');
+
+            $pdf->SetMargins(10, 10, 10);
+            $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+            $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+
+            $pdf->SetFont('times', '', 12);
+            $pdf->AddPage();
+
+            // Título
+            $pdf->SetFont('times', 'B', 16);
+            $pdf->Cell(0, 10, 'Informe de las tiendas', 0, 1, 'C');
+            $pdf->Ln(10); // Añadir espacio después del título
+
+            // Descripción
+            $pdf->SetFont('times', '', 12);
+            $pdf->MultiCell(0, 10, 'Este informe contiene detalles sobre las tiendas y los vendedores que la registraron.', 0, 'L');
+            $pdf->Ln(10); // Añadir espacio después de la descripción
+
+            $data = $conexion->prepare("SELECT t.*, v.nombres_u, v.apellidos_u, v.correo
+            FROM tbl_tienda as t 
+            INNER JOIN tbl_vendedor as v ON v.id_usuario = t.id_usuario");
+            $data->execute();
+            $compras_data = $data->fetchAll(PDO::FETCH_ASSOC);
+
+            $header = array('Campos', 'Información');
+            $pdf->SetFont('times', 'B', 12);
+            $pdf->SetFillColor(200, 220, 255);
+
+            foreach ($header as $col) {
+                $pdf->Cell(95, 10, $col, 1, 0, 'C', 1);
+            }
+
+            $pdf->Ln();
+
+            $pdf->SetFont('times', '', 12);
+            foreach ($compras_data as $row) {
+                $pdf->Cell(95, 10, 'Identificación:', 1);
+                $pdf->Cell(95, 10, $row['id_usuario'], 1);
+                $pdf->Ln();
+
+                $pdf->Cell(95, 10, 'Nombres:', 1);
+                $pdf->Cell(95, 10, $row['nombres_u'], 1);
+                $pdf->Ln();
+
+                $pdf->Cell(95, 10, 'Apellidos:', 1);
+                $pdf->Cell(95, 10, $row['apellidos_u'], 1);
+                $pdf->Ln();
+
+                $pdf->Cell(95, 10, 'Correo:', 1);
+                $pdf->Cell(95, 10, $row['correo'], 1);
+                $pdf->Ln();
+
+                $pdf->Cell(95, 10, 'Nit tienda:', 1);
+                $pdf->Cell(95, 10, $row['nit_identificacion'], 1);
+                $pdf->Ln();
+
+                $pdf->Cell(95, 10, 'Nombre tienda:', 1);
+                $pdf->Cell(95, 10, $row['nombre_tienda'], 1);
+                $pdf->Ln();
+
+                $pdf->SetLineStyle(array('width' => 0.2, 'color' => array(0, 0, 0)));
+                $pdf->Line($pdf->GetX(), $pdf->GetY(), $pdf->GetX() + 80, $pdf->GetY());
+
+                $pdf->Ln();
+            }
+
+            $pdf->Output('Reporte_tiendas.pdf', 'D');
+            break;
+        default:
+            break;
+    }
 }
-
-// Cierra y genera el archivo PDF
-$pdf->Output('datos.pdf', 'D'); // 'D' para descargar el archivo
-
-echo '<script>
-    setTimeout(function() {
-        window.location.href = "reportes.php"; // Reemplaza con la URL de tu página de destino
-    }, 3000); // Redireccionar después de 3 segundos (puedes ajustar este tiempo)
-</script>';

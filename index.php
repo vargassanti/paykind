@@ -83,9 +83,7 @@ $total_c_flotante = $productos_c->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="css/estilos_productos.css">
     <link rel="stylesheet" href="css/estilos_tiendas.css">
     <link rel="stylesheet" href="css/menu_desplegable.css">
-    <link rel="stylesheet" href="css/estilos_carrusel.css">
     <link rel="stylesheet" href="css/styles_carrusel.css">
-    <!-- <link rel="stylesheet" href="css/medias.css"> -->
     <link rel="stylesheet" href="css/estilos_footer.css">
     <script src="js/jquery-3.7.1.min.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -302,6 +300,15 @@ $total_c_flotante = $productos_c->fetchAll(PDO::FETCH_ASSOC);
                 </a>
                 <ul class="sub-menu blank">
                     <li><a class="link-name" href="secciones/productos/index.php">Productos</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="secciones/tiendas/vendedores.php">
+                    <i class='bx bxs-user-pin'></i>
+                    <span class="link-name">Vendedores</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link-name" href="secciones/tiendas/vendedores.php">Vendedores</a></li>
                 </ul>
             </li>
             <?php
@@ -580,7 +587,7 @@ $total_c_flotante = $productos_c->fetchAll(PDO::FETCH_ASSOC);
                     } elseif ($id_rol == 'Vendedor') {
                         $tabla = 'tbl_vendedor';
                     } elseif ($id_rol == 'Administrador') {
-                        $tabla = 'tbl_usuario';
+                        $tabla = 'tbl_administrador';
                     } else {
                         // Maneja el caso en que el rol no sea válido
                         echo "El rol seleccionado no es válido.";
@@ -593,6 +600,10 @@ $total_c_flotante = $productos_c->fetchAll(PDO::FETCH_ASSOC);
                     $stmt->execute();
                     $registro_recuperado_foto_perfil = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+                    foreach ($registro_recuperado_foto_perfil as $info) {
+                        $nombres_u = $info['nombres_u'];
+                        $id_rol = $info['id_rol'];
+                    }
                     // Variable para almacenar el nombre de la foto de perfil
                     $nombre_foto_perfil = '';
 
@@ -612,8 +623,8 @@ $total_c_flotante = $productos_c->fetchAll(PDO::FETCH_ASSOC);
                     ?>
                 </div>
                 <div class="name-job">
-                    <div class="profile_name"><?php echo $_SESSION['usuario_nombre'] ?></div>
-                    <div class="job"><?php echo $_SESSION['usuario_rol'] ?></div>
+                    <div class="profile_name"><?php echo $nombres_u ?></div>
+                    <div class="job"><?php echo $id_rol ?></div>
                 </div>
             </div>
             <!-- </a> -->
@@ -658,6 +669,9 @@ $total_c_flotante = $productos_c->fetchAll(PDO::FETCH_ASSOC);
                     } else { ?>
                         <div class="contaner_img_profile">
                             <img src="imagen/Avatar-No-Background.png" alt="Imagen Predeterminada">
+                        </div>
+                        <div class="posicion_bt_editar">
+                            <i class='bx bx-edit-alt'></i>
                         </div>
                     <?php } ?>
                 </a>
@@ -734,6 +748,10 @@ $total_c_flotante = $productos_c->fetchAll(PDO::FETCH_ASSOC);
                     <div class="mensaje-carrito-vacio">
                         <img src="imagen/pngwing.com.png">
                         <p>Tú carrito está actualmente vacío.</p>
+                        <a href="secciones/productos/index.php">
+                            <button class="seguirComprando">
+                            </button>
+                        </a>
                     </div>
                 <?php
                 }
@@ -960,7 +978,7 @@ $total_c_flotante = $productos_c->fetchAll(PDO::FETCH_ASSOC);
                 }
             }).fire({
                 icon: 'success',
-                title: 'Compra realizada correctamente :)'
+                title: 'Su compra fue exitosa y se encuentra en proceso :)'
             })
 
         }

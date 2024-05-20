@@ -1,4 +1,4 @@
-function borrar(id) {
+function borrar(id, rol_usuario_e) {
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -20,7 +20,7 @@ function borrar(id) {
     }).then((result) => {
         if (result.isConfirmed) {
             // El usuario hizo clic en "Sí"
-            window.location = "index.php?txtID=" + id;
+            window.location = "index.php?txtID=" + id + "&rol_usuario_e=" + rol_usuario_e;
         } else {
             // El usuario hizo clic en "No" o cerró la alerta
             // Puedes realizar alguna acción adicional aquí si es necesario

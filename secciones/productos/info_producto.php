@@ -65,15 +65,6 @@ if (isset($_GET['txtID'])) {
     $stmt->bindParam(':id_producto', $txtID, PDO::PARAM_INT);
     $stmt->execute();
     $productos_relacionados = $stmt->fetchAll();
-
-    $coment = $conexion->prepare("SELECT c.*, u.*
-    FROM tbl_productos as p
-    INNER JOIN tbl_calificacion as c ON p.id_producto = c.id_producto
-    INNER JOIN tbl_usuario as u ON u.id_usuario = c.id_usuario
-    WHERE p.id_producto = :id_producto");
-    $coment->bindParam(':id_producto', $txtID, PDO::PARAM_INT);
-    $coment->execute();
-    $comentarios_producto = $coment->fetchAll(PDO::FETCH_ASSOC);
 }
 
 ?>
@@ -326,38 +317,6 @@ if (isset($_GET['txtID'])) {
             </div>
         <?php endif; ?>
     </div>
-
-    <?php if (!empty($comentarios_producto)) { ?>
-        <div class="comentarios">
-            <p class="titulo_comentario">Reseñas sobre este producto:</p>
-            <?php foreach ($comentarios_producto as $comen) { ?>
-                <div class="comentario">
-                    <div class="usuario">
-                        <?php if (!empty($comen['fotoPerfil'])) { ?>
-                            <img src="../miperfil/imagenes_producto/<?php echo $comen['fotoPerfil'] ?>" class="foto-perfil">
-                        <?php } else { ?>
-                            <img src="../../imagen/Avatar-No-Background.png" class="foto-perfil">
-                        <?php } ?>
-                        <div class="info-usuario">
-                            <div class="nombre"><?php echo $comen['usuario'] ?></div>
-                        </div>
-                    </div>
-                    <div class="texto">
-                        <p><?php echo $comen['texto'] ?></p>
-                    </div>
-
-                    <?php
-                    for ($i = 0; $i < 5; $i++) {
-                        if ($comen['calificacion'] > $i) {
-                            echo '<span class="star filled">&#9733;</span>'; // Estrella llena
-                        } else {
-                            echo '<span class="star">&#9733;</span>'; // Estrella vacía
-                        }
-                    } ?>
-                </div>
-            <?php } ?>
-        </div>
-    <?php } ?>
 
     <script>
         var imagenActual = 0; // Índice de la imagen actual

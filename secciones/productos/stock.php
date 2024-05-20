@@ -46,7 +46,7 @@ $lista_tbl_mis_r_tiendas = $sentencia->fetchAll(PDO::FETCH_ASSOC);
         <?php } else {
         foreach ($lista_tbl_mis_r_tiendas as $registro) { ?>
             <div class="body">
-                <a class="card human-resources" href="stock_descripcion.php?nit_Tienda=<?php echo $registro['nit_identificacion']; ?>">
+                <a class="card_t human-resources" href="stock_descripcion.php?nit_Tienda=<?php echo $registro['nit_identificacion']; ?>">
                     <img class="imagen_tiendaa" src="../tiendas/imagenes_tienda/<?php echo $registro['logo_tienda']; ?>" />
                     <p><strong><?php echo $registro['nombre_tienda']; ?></strong></p>
                 </a>

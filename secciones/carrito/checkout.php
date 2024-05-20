@@ -65,147 +65,115 @@ include("../../templates/header.php");
 
 <h4 class="titulo_carrito">Mi carrito de compras</h4>
 
-<?php
-foreach ($total_p as $productos) {
-    $estado_carrito = $productos['estado_carrito'];
-}
-
-if (isset($estado_carrito)) {
-    if ($estado_carrito == "Pendiente") { ?>
-        <div class="container_carrito">
-            <table class="table_carrito">
-                <thead>
-                    <tr>
-                        <th class="primer_th">Imagen</th>
-                        <th>Producto</th>
-                        <th>Precio</th>
-                        <th>Cantidad</th>
-                        <th>Color</th>
-                        <th>Subtotal</th>
-                        <th class="ultimo_th">Opciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $total = 0;
-                    foreach ($total_p as $producto) {
-                        $estado_carrito = $producto['estado_carrito'];
-                        $estado_producto = $productos['estado_producto'];
-
-                        if ($estado_carrito == "Pendiente") {
-                            $id_producto = $producto['id_producto'];
-                            $nombre = $producto['nombre'];
-                            $precio = $producto['precio'];
-                            $cantidad = $producto['cantidad'];
-                            $color_producto = $producto['color_producto'];
-                            $descuento = $producto['descuento_producto'];
-                            $img_producto = $producto['img_producto'];
-                            $precio_desc = $precio - (($precio * $descuento) / 100);
-                            $subtotal = $cantidad * $precio_desc;
-                            $total += $subtotal;
-                            $id_carrito = $producto['id_carrito'];
-                            $id_stock = $producto['id_stock'];
-                    ?>
-                            <tr data-producto="<?php echo $id_producto; ?>">
-                                <td>
-                                    <img class="imagen_carrito" src="../productos/imagenes_producto/<?php echo $img_producto; ?>" alt="">
-                                </td>
-                                <td><strong><?php echo $nombre; ?></strong></td>
-                                <td>$<?php echo number_format($precio_desc, 0, '.', ','); ?></td>
-                                <td>
-                                    <div class="cantidad_carrito">
-                                        <div class="cantidad">
-                                            <p><?php echo $cantidad ?></p>
-                                        </div>
-                                        <div class="sumar_restar">
-                                            <a href="actualizar_compras.php?cantidad=<?php echo "sumar"; ?>&id_producto=<?php echo $id_producto ?>&id_carrito=<?php echo $id_carrito; ?>&id_stock=<?php echo $id_stock ?>">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);">
-                                                    <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
-                                                </svg>
-                                            </a>
-                                            <a href="actualizar_compras.php?cantidad=<?php echo "restar" ?>&id_producto=<?php echo $id_producto ?>&id_carrito=<?php echo $id_carrito; ?>&id_stock=<?php echo $id_stock ?>">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);">
-                                                    <path d="M5 11h14v2H5z"></path>
-                                                </svg>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="container_color">
-                                        <i class='bx bxs-color-fill' style='color: <?php echo $color_producto ?>'></i>
-                                    </div>
-                                </td>
-                                </td>
-                                <td>
-                                    <div id="subtotal_<?php echo $id_producto; ?>" name="subtotal[]">
-                                        $<?php echo number_format($subtotal, 0, '.', ','); ?>
-                                    </div>
-                                </td>
-                                <td>
-                                    <a onclick="eliminarProducto();" data-id="<?php echo $id_carrito; ?>">
-                                        <button class="animated-button-eliminar-producto">
-                                            <span>Eliminar</span>
-                                            <span></span>
-                                        </button>
-                                    </a>
-                                </td>
-                            </tr>
-                    <?php
-                        }
-                    }
-                    ?>
-                </tbody>
-            </table>
-            <div class="tr_carrito">
-                <p>Total: $<?php echo number_format($total, 0, '.', ','); ?></strong></p>
-            </div>
-
-            <div class="botones_acciones_carrito">
-                <div class="boton1">
-                    <button class="vaciarCarrito" onclick="vaciar_carrito();">
-                    </button>
-                </div>
-                <br>
-                <div class="boton2">
-                    <button class="seguirCompra" id="seguir_comprando">
-                    </button>
-                </div>
-                <br>
-                <div class="boton2">
-                    <a href="finalizar_compra.php">
-                        <button class="finalizarCompra">
-                        </button>
-                    </a>
-                </div>
-            </div>
-        </div>
-    <?php
-    } else { ?>
-        <div class="container_carrito">
-            <table class="table_carrito">
+<?php if (!empty($total_p)) { ?>
+    <div class="container_carrito">
+        <table class="table_carrito">
+            <thead>
                 <tr>
-                    <td>
-                        <img src="../../imagen/pngwing.com.png" style="width: 300px;"><br>
-                        <div class="carrito_vacio">
-                            <b>
-                                <?php foreach ($nombre_usuario as $nombre_u) {
-                                    echo $nombre_u["nombres_u"];
-                                } ?>
-                                tu carrito está actualmente vacío
-                            </b>
-                        </div>
-                        <div class="boton_seguirComprando">
-                            <button class="seguirComprando" id="seguir_comprando">
-                            </button>
-                        </div>
-                    </td>
+                    <th class="primer_th">Imagen</th>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Color</th>
+                    <th>Subtotal</th>
+                    <th class="ultimo_th">Opciones</th>
                 </tr>
-            </table>
+            </thead>
+            <tbody>
+                <?php
+                $total = 0;
+                foreach ($total_p as $producto) {
+                    $id_producto = $producto['id_producto'];
+                    $nombre = $producto['nombre'];
+                    $precio = $producto['precio'];
+                    $cantidad = $producto['cantidad'];
+                    $color_producto = $producto['color_producto'];
+                    $descuento = $producto['descuento_producto'];
+                    $img_producto = $producto['img_producto'];
+                    $precio_desc = $precio - (($precio * $descuento) / 100);
+                    $subtotal = $cantidad * $precio_desc;
+                    $total += $subtotal;
+                    $id_carrito = $producto['id_carrito'];
+                    $id_stock = $producto['id_stock'];
+                ?>
+                    <tr data-producto="<?php echo $id_producto; ?>">
+                        <td>
+                            <div class="container_img_carrito">
+                                <img class="imagen_carrito" src="../productos/imagenes_producto/<?php echo $img_producto; ?>" alt="">
+                            </div>
+                        </td>
+                        <td><strong><?php echo $nombre; ?></strong></td>
+                        <td>$<?php echo number_format($precio_desc, 0, '.', ','); ?></td>
+                        <td>
+                            <div class="cantidad_carrito">
+                                <div class="cantidad">
+                                    <p><?php echo $cantidad ?></p>
+                                </div>
+                                <div class="sumar_restar">
+                                    <a href="actualizar_compras.php?cantidad=<?php echo "sumar"; ?>&id_producto=<?php echo $id_producto ?>&id_carrito=<?php echo $id_carrito; ?>&id_stock=<?php echo $id_stock ?>">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);">
+                                            <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
+                                        </svg>
+                                    </a>
+                                    <a href="actualizar_compras.php?cantidad=<?php echo "restar" ?>&id_producto=<?php echo $id_producto ?>&id_carrito=<?php echo $id_carrito; ?>&id_stock=<?php echo $id_stock ?>">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);">
+                                            <path d="M5 11h14v2H5z"></path>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="container_color">
+                                <i class='bx bxs-color-fill' style='color: <?php echo $color_producto ?>'></i>
+                            </div>
+                        </td>
+                        </td>
+                        <td>
+                            <div id="subtotal_<?php echo $id_producto; ?>" name="subtotal[]">
+                                $<?php echo number_format($subtotal, 0, '.', ','); ?>
+                            </div>
+                        </td>
+                        <td>
+                            <a href="eliminar_producto.php?id_carrito=<?php echo $id_carrito; ?>">
+                                <button class="animated-button-eliminar-producto">
+                                    <span>Eliminar</span>
+                                    <span></span>
+                                </button>
+                            </a>
+                        </td>
+                    </tr>
+                <?php
+                }
+                ?>
+            </tbody>
+        </table>
+        <div class="tr_carrito">
+            <p>Total: $<?php echo number_format($total, 0, '.', ','); ?></strong></p>
         </div>
-    <?php
-    }
-} else { ?>
+
+        <div class="botones_acciones_carrito">
+            <div class="boton1">
+                <a href="vaciar_carrito.php">
+                    <button class="vaciarCarrito">
+                    </button>
+                </a>
+            </div>
+            <br>
+            <div class="boton2">
+                <button class="seguirCompra" id="seguir_comprando">
+                </button>
+            </div>
+            <br>
+            <div class="boton2">
+                <a href="finalizar_compra.php">
+                    <button class="finalizarCompra">
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+<?php } else { ?>
     <div class="container_carrito">
         <table class="table_carrito">
             <tr>
@@ -227,14 +195,117 @@ if (isset($estado_carrito)) {
             </tr>
         </table>
     </div>
-<?php
-}
-?>
+<?php } ?>
+
+<div class="container_info_carrito">
+    <?php if (!empty($total_c_flotante)) { ?>
+        <div class="modal__body">
+            <div class="modal__list">
+                <?php
+                $total = 0;
+                foreach ($total_c_flotante as $flotante) {
+                    $id_producto = $flotante['id_producto'];
+                    $nombre = $flotante['nombre'];
+                    $precio = $flotante['precio'];
+                    $cantidad = $flotante['cantidad'];
+                    $color_producto = $flotante['color_producto'];
+                    $descuento = $flotante['descuento_producto'];
+                    $img_producto = $flotante['img_producto'];
+                    $precio_desc = $precio - (($precio * $descuento) / 100);
+                    $subtotal = $cantidad * $precio_desc;
+                    $total += $subtotal;
+                    $id_carrito = $flotante['id_carrito'];
+                    $id_stock = $flotante['id_stock'];
+                ?>
+                    <div class="modal__item">
+                        <div class="modal__thumb">
+                            <img src="../../secciones/productos/imagenes_producto/<?php echo $img_producto ?>" alt="Naranja">
+                        </div>
+                        <div class="modal__text-product">
+                            <p><?php echo $nombre ?></p>
+                            <p><strong>$ <?php echo number_format($precio_desc, 0, '.', ','); ?></strong></p>
+                            <p>Cantidad: <?php echo $cantidad ?></p>
+                            <div class="container_color">
+                                <i class='bx bxs-color-fill' style='color: <?php echo $color_producto ?>'></i>
+                            </div>
+                            <div class="sumar_restar">
+                                <a href="actualizar_compras.php?cantidad=<?php echo "sumar"; ?>&id_producto=<?php echo $id_producto ?>&id_carrito=<?php echo $id_carrito; ?>&id_stock=<?php echo $id_stock ?>">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);">
+                                        <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
+                                    </svg>
+                                </a>
+                                <a href="actualizar_compras.php?cantidad=<?php echo "restar" ?>&id_producto=<?php echo $id_producto ?>&id_carrito=<?php echo $id_carrito; ?>&id_stock=<?php echo $id_stock ?>">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);">
+                                        <path d="M5 11h14v2H5z"></path>
+                                    </svg>
+                                </a>
+                                <a class="boton_eliminar_producto" href="eliminar_producto.php?id_carrito=<?php echo $id_carrito; ?>">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);">
+                                        <path d="M19,6.41,17.59,5,12,10.59,6.41,5,5,6.41,10.59,12,5,17.59,6.41,19,12,13.41,17.59,19,19,17.59,13.41,12Z" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+
+        <div class="modal__footer">
+            <div class="modal__list-price">
+                <ul>
+                    <li>Productos agregados:
+                        <strong>
+                            <?php foreach ($contador as $cont) {
+                                echo $cont['contador'];
+                            } ?>
+                        </strong>
+                    </li>
+                </ul>
+                <h4 class="modal__total-cart"> Total: <?php echo number_format($total, 0, '.', ','); ?></h4>
+            </div>
+
+            <div class="modal__btns">
+                <div class="botones_acciones_carrito">
+                    <div class="boton1">
+                        <a href="vaciar_carrito.php">
+                            <button class="vaciarCarrito">
+                            </button>
+                        </a>
+                    </div>
+                    <br>
+                    <div class="boton2">
+                        <button class="seguirCompra" id="seguir_comprando">
+                        </button>
+                    </div>
+                    <br>
+                    <div class="boton2">
+                        <a href="finalizar_compra.php">
+                            <button class="finalizarCompra">
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php
+    } else {
+    ?>
+        <div class="mensaje-carrito-vacio">
+            <img src="../../imagen/pngwing.com.png">
+            <p>Tú carrito está actualmente vacío.</p>
+            <a href="../../secciones/productos/index.php">
+                <button class="seguirComprando">
+                </button>
+            </a>
+        </div>
+    <?php
+    }
+    ?>
+</div>
 
 <script src="../../js/carrusel_productos.js"></script>
 <script src="archivos.js/redireccionarBoton.js"></script>
-<script src="archivos.js/vaciar_carrito.js"></script>
-<script src="archivos.js/eliminar_producto.js"></script>
 <script>
     // Verifica si se ha pasado un parámetro GET "alerta"
     var urlParams = new URLSearchParams(window.location.search);

@@ -14,99 +14,12 @@ include("../../bd.php");
 
 $id_usuario = $_SESSION['usuario_id'];
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $usuario = $_POST['usuario'];
-    $nombres_u = $_POST['nombres_u'];
-    $apellidos_u = $_POST['apellidos_u'];
-    $tipo_documento_u = $_POST['tipo_documento_u'];
-    $correo = $_POST['correo'];
-    $celular = $_POST['celular'];
-    $direccion = $_POST['direccion'];
-    $barrio = $_POST['barrio'];
-
-    if ($id_rol == 'Cliente') {
-        $tabla = 'tbl_usuario';
-    } elseif ($id_rol == 'Vendedor') {
-        $tabla = 'tbl_vendedor';
-    } elseif ($id_rol == 'Administrador') {
-        $tabla = 'tbl_usuario';
-    } else {
-        // Maneja el caso en que el rol no sea válido
-        echo "El rol seleccionado no es válido.";
-        exit;
-    }
-
-    // Construye la consulta SQL sin la columna fotoPerfil
-    $sql = "UPDATE $tabla SET usuario = :usuario, nombres_u = :nombres_u, apellidos_u = :apellidos_u, tipo_documento_u = :tipo_documento_u, correo = :correo, celular = :celular, direccion = :direccion, barrio = :barrio WHERE id_usuario = :id_usuario";
-
-    // Prepara y ejecuta la consulta sin la columna fotoPerfil
-    $stmt = $conexion->prepare($sql);
-    $stmt->bindParam(':usuario', $usuario);
-    $stmt->bindParam(':nombres_u', $nombres_u);
-    $stmt->bindParam(':apellidos_u', $apellidos_u);
-    $stmt->bindParam(':tipo_documento_u', $tipo_documento_u);
-    $stmt->bindParam(':correo', $correo);
-    $stmt->bindParam(':celular', $celular);
-    $stmt->bindParam(':direccion', $direccion);
-    $stmt->bindParam(':barrio', $barrio);
-    $stmt->bindParam(':id_usuario', $id_usuario); // Suponiendo que tienes una sesión de usuario
-
-    if ($stmt->execute()) {
-        // Actualización exitosa sin la columna fotoPerfil
-        // Ahora manejaremos la imagen de perfil
-        $fecha_ = new DateTime();
-        $nombreArchivo_fotoPerfil = '';
-
-        // Si se subió una imagen de perfil
-        if (!empty($_FILES["fotoPerfil"]["name"])) {
-            $nombreArchivo_fotoPerfil = $fecha_->getTimestamp() . "_" . $_FILES["fotoPerfil"]["name"];
-            $tmp_img_fotoPerfil = $_FILES["fotoPerfil"]['tmp_name'];
-
-            // Ruta completa de destino para la imagen de perfil
-            $ruta_destino = "./imagenes_producto/" . $nombreArchivo_fotoPerfil;
-
-            // Mueve la imagen de perfil a la carpeta de destino
-            if (move_uploaded_file($tmp_img_fotoPerfil, $ruta_destino)) {
-                // Actualiza la columna fotoPerfil en la base de datos
-                $sql_actualizar_fotoPerfil = "UPDATE $tabla SET fotoPerfil = :fotoPerfil WHERE id_usuario = :id_usuario";
-                $stmt_actualizar_fotoPerfil = $conexion->prepare($sql_actualizar_fotoPerfil);
-                $stmt_actualizar_fotoPerfil->bindParam(':fotoPerfil', $nombreArchivo_fotoPerfil);
-                $stmt_actualizar_fotoPerfil->bindParam(':id_usuario', $id_usuario);
-
-                // Ejecuta la consulta para actualizar la columna fotoPerfil
-                if ($stmt_actualizar_fotoPerfil->execute()) {
-                    // Redirige a la página con éxito
-                    header("location:index.php?alerta=datos_actualizados");
-                    exit();
-                } else {
-                    // Error al actualizar la columna fotoPerfil en la base de datos
-                    header("location:index.php?alerta=error_actualizar_fotoPerfil");
-                    exit();
-                }
-            } else {
-                // Error al mover la imagen de perfil a la carpeta de destino
-                header("location:index.php?alerta=error_subir_imagen");
-                exit();
-            }
-        } else {
-            // No se subió una nueva imagen de perfil, simplemente redirige a la página con éxito
-            header("location:index.php?alerta=datos_actualizados");
-            exit();
-        }
-    } else {
-        // Error al ejecutar la consulta SQL sin la columna fotoPerfil
-        header("location:index.php?alerta=datos_no_actualizados");
-        exit();
-    }
-    $_SESSION['fotoPerfil'] = $nombreArchivo_fotoPerfil;
-}
-
 if ($id_rol == 'Cliente') {
     $tabla = 'tbl_usuario';
 } elseif ($id_rol == 'Vendedor') {
     $tabla = 'tbl_vendedor';
 } elseif ($id_rol == 'Administrador') {
-    $tabla = 'tbl_usuario';
+    $tabla = 'tbl_administrador';
 } else {
     // Maneja el caso en que el rol no sea válido
     echo "El rol seleccionado no es válido.";
@@ -145,9 +58,7 @@ $ubi->bindParam(":id_usuario", $id_usuario);
 $ubi->execute();
 $registro_ubicacion = $ubi->fetchAll(PDO::FETCH_ASSOC);
 
-$id_usuario = $_SESSION['usuario_id'];
-
-$sentencia = $conexion->prepare("SELECT c.*, COUNT(p.id_compra) AS total_productos
+$sentencia = $conexion->prepare("SELECT c.*, p.estado_carrito, COUNT(p.id_compra) AS total_productos
 FROM tbl_compra as c
 INNER JOIN tbl_usuario AS u ON u.id_usuario = c.id_usuario
 INNER JOIN tbl_compra_producto AS p ON p.id_compra = c.id_compra
@@ -157,29 +68,14 @@ $sentencia->bindParam(":id_usuario", $id_usuario);
 $sentencia->execute();
 $lista_mis_compras = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
-$sentencia = $conexion->prepare("SELECT c.*, d.*, p.*, s.*, u.*
-FROM tbl_compra as c
-INNER JOIN tbl_compra_producto as d ON d.id_compra = c.id_compra
-INNER JOIN tbl_productos as p ON p.id_producto = d.id_producto
-INNER JOIN tbl_usuario AS u ON u.id_usuario = c.id_usuario
-INNER JOIN tbl_stock as s ON p.id_producto = s.id_producto
-WHERE u.id_usuario = :id_usuario AND d.estado_carrito = 'En proceso' AND s.id_stock = d.id_stock;");
-$sentencia->bindParam(":id_usuario", $id_usuario);
-$sentencia->execute();
-$lista_mis_compras_en_proceso = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+foreach ($lista_mis_compras as $compras) {
+    $estado_carrito = $compras['estado_carrito'];
+}
 
 $tbl_compra = $conexion->prepare("SELECT COUNT(c.id_compra) AS total_compras FROM tbl_compra AS c WHERE c.id_usuario =:id_usuario");
 $tbl_compra->bindParam(":id_usuario", $id_usuario);
 $tbl_compra->execute();
 $tot_compras = $tbl_compra->fetchAll(PDO::FETCH_ASSOC);
-
-$tbl_compra = $conexion->prepare("SELECT COUNT(c.id_compra) AS total_compras 
-FROM tbl_compra AS c
-INNER JOIN tbl_compra_producto AS d ON d.id_compra = c.id_compra
-WHERE c.id_usuario =:id_usuario AND d.estado_carrito = 'En proceso'");
-$tbl_compra->bindParam(":id_usuario", $id_usuario);
-$tbl_compra->execute();
-$tot_compras_en_proceso = $tbl_compra->fetchAll(PDO::FETCH_ASSOC);
 
 include("../../templates/header.php"); ?>
 <h1 class="titulo_perfil"> Mi perfil </h1>
@@ -190,7 +86,7 @@ include("../../templates/header.php"); ?>
             </div>
             <div class="user-avatar">
                 <?php if (!empty($registro_recuperado["fotoPerfil"])) : ?>
-                    <img src="../../secciones/miperfil/imagenes_producto/<?php echo $registro_recuperado["fotoPerfil"]; ?>" alt="Foto de perfil actual">
+                    <img src="./imagenes_producto/<?php echo $registro_recuperado["fotoPerfil"]; ?>" alt="Foto de perfil actual">
                 <?php else : ?>
                     <img src="../../imagen/Avatar-No-Background.png" alt="Imagen predeterminada">
                 <?php endif; ?>
@@ -224,11 +120,38 @@ include("../../templates/header.php"); ?>
 <div class="modal_editar_perfil" id="miModal">
     <div class="modal-contenido">
         <span class="cerrar" onclick="cerrarModal()">&times;</span>
-        <form action="" method="POST" enctype="multipart/form-data">
+        <form action="actualizar_datos.php" method="POST" enctype="multipart/form-data">
             <div class="card_editar_miperfil">
                 <a class="singup">Editar Perfil</a>
                 <div class="container_campos_mi_perfil">
                     <div class="caja_productoos">
+                        <div class="foto_perfil">
+                            <div class="previzualizar_imagen" id="previzualizar_imagen">
+                                <?php if (!empty($registro_recuperado["fotoPerfil"])) : ?>
+                                    <img src="../../secciones/miperfil/imagenes_producto/<?php echo $registro_recuperado["fotoPerfil"]; ?>" alt="Foto de perfil actual" id="imagen_perfil">
+                                <?php else : ?>
+                                    <img src="../../imagen/Avatar-No-Background.png" alt="Imagen predeterminada" id="imagen_perfil">
+                                <?php endif; ?>
+                                <span class="mensaje_hover" id="mensaje_hover">Haz clic para cambiar la foto de perfil</span>
+                            </div>
+                            <div class="input_subir_imagen">
+                                <div class="inputBox">
+                                    <input type="file" id="fotoPerfil" name="fotoPerfil" style="display: none;" onchange="mostrarImagenSeleccionada(event)">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="caja_productoos">
+                        <div class="inputBox" style="display: none;">
+                            <input type="hidden" name="id_usuario" value="<?php echo $user['id_usuario']; ?>" required="required">
+                            <span>Id_usuario:</span>
+                        </div>
+
+                        <div class="inputBox" style="display: none;">
+                            <input type="hidden" name="id_rol" value="<?php echo $user['id_rol']; ?>" required="required">
+                            <span>Id rol:</span>
+                        </div>
+
                         <div class="inputBox">
                             <input type="text" name="usuario" value="<?php echo $user['usuario']; ?>" required="required">
                             <span>Usuario:</span>
@@ -325,23 +248,6 @@ include("../../templates/header.php"); ?>
                         <button type="submit" class="btn_mi_perfill">Guardar cambios</button>
                     </div>
                 </div>
-                <div class="container_foto_perfil">
-                    <div class="foto_perfil">
-                        <div class="previzualizar_imagen" id="imagenPreview_miperfil">
-                            <?php if (!empty($registro_recuperado["fotoPerfil"])) : ?>
-                                <img src="../../secciones/miperfil/imagenes_producto/<?php echo $registro_recuperado["fotoPerfil"]; ?>" alt="Foto de perfil actual">
-                            <?php else : ?>
-                                <img src="../../imagen/Avatar-No-Background.png" alt="Imagen predeterminada">
-                            <?php endif; ?>
-                        </div>
-                        <div class="input_subir_imagen">
-                            <div class="inputBox">
-                                <input type="file" id="fotoPerfil" name="fotoPerfil" onchange="mostrarImagenPreview('fotoPerfil', 'imagenPreview_miperfil')" value="<?php echo $registro_recuperado['fotoPerfil']; ?>">
-                                <span>Foto de perfil:</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </form>
     </div>
@@ -363,76 +269,30 @@ if ($_SESSION["usuario_rol"] === "Cliente") { ?>
             <?php if (empty($lista_mis_compras)) { ?>
                 <div class="no-products-message">
                     <p>No haz realizado ninguna compra.</p>
-                    <div class="boton_seguirComprando">
-                        <a href="../productos/index.php">
-                            <button class="seguirComprando">
-                            </button>
-                        </a>
-                    </div>
                 </div>
             <?php } else { ?>
-                <?php 
+                <?php
                 $contador = 1;
                 foreach ($lista_mis_compras as $compras) { ?>
                     <a href="ver_misproductos.php?id_compra=<?php echo $compras['id_compra'] ?>">
                         <div class="product">
                             <p class="estado_compra"><?php echo $contador . " . " . "Compra:" ?></p>
                             <?php $contador++; ?>
-                            <img src="../../imagen/compra_segura.png" alt="">
+                            <?php if ($compras['estado_carrito'] == "Cancelado") { ?>
+                                <img src="../../imagen/compra_cancelada-removebg-preview.png" alt="">
+                            <?php } else { ?>
+                                <img src="../../imagen/compra_segura.png" alt="">
+                            <?php } ?>
                             <p><strong>Productos comprados:</strong> <?php echo $compras['total_productos'] ?></p>
-                            <p class="price"><strong>Total: </strong> $<?php echo number_format($compras['total_compra'], 0); ?></p>
-                            <p><strong>Metodo de pago: </strong><?php echo $compras['metodo_pago'] ?></p>
-                            <p class="descipcion"><strong>Dirección:</strong> <?php echo $compras['direccion'] ?></p>
                             <p><strong>Fecha compra: </strong><?php echo $compras['fecha_compra'] ?></p>
+                            <p class="estado_carrito">Estado: <?php echo $compras['estado_carrito'] ?></p>
                         </div>
                     </a>
-                <?php } ?>
-            <?php } ?>
-        </div>
-        <br><br>
-        <h4 class="titulo_mis_compras">Compras en proceso</h4>
-        <?php
-        if (!empty($tot_compras_en_proceso) && $tot_compras_en_proceso[0]['total_compras'] > 0) {
-            foreach ($tot_compras_en_proceso as $compras_u_proceso) { ?>
-                <p class="tot_compras">Tienes <?php echo $compras_u_proceso['total_compras']; ?> compras en proceso</p>
-        <?php
-            }
-        }
-        ?>
-        <div class="container_mis_productos">
-            <?php if (empty($lista_mis_compras_en_proceso)) { ?>
-                <div class="no-products-message">
-                    <p>No tienes ninguna compra en proceso.</p>
-                </div>
-            <?php } else { ?>
-                <?php foreach ($lista_mis_compras_en_proceso as $proceso) { ?>
-                    <div class="product">
-                        <p class="estado_compra">Estado compra: <?php echo $proceso['estado_carrito'] ?></p>
-                        <img src="../productos/imagenes_producto/<?php echo $proceso['img_producto']; ?>" alt="Producto">
-                        <h2>
-                            <?php
-                            $contenido = $proceso['nombre'];
-                            $limite_letras = 15;
-
-                            if (strlen($contenido) > $limite_letras) {
-                                $contenido_limitado = substr($contenido, 0, $limite_letras) . '...';
-                                echo $contenido_limitado;
-                            } else {
-                                echo $contenido;
-                            }
-                            ?>
-                        </h2>
-                        <p class="descipcion">Cantidad: <?php echo $proceso['cantidad'] ?></p>
-                        <p class="price">Precio: $<?php echo number_format($proceso['precio'], 2); ?></p>
-                        <p><?php echo $proceso['fecha_compra'] ?></p>
-                        <p>Color:</p>
-                        <span class="color-option-compras" style="background-color: <?php echo $proceso['color_producto'] ?>;">
-                    </div>
-                <?php } ?>
-            <?php } ?>
+            <?php
+                }
+            } ?>
         </div>
     </div>
-    <br><br>
 <?php
 }
 ?>
@@ -476,26 +336,10 @@ if ($_SESSION["usuario_rol"] === "Cliente") { ?>
                 toast.addEventListener('mouseleave', Swal.resumeTimer)
             }
         }).fire({
-            icon: 'success',
-            title: 'Cuenta como usuario cliente registrada, ya puedes iniciar sesión.'
+            icon: 'warning',
+            title: 'Datos no actualizados.'
         })
     }
     history.replaceState({}, document.title, window.location.pathname);
 </script>
-<script>
-    function mostrarModal() {
-        var modal = document.getElementById('miModal');
-        modal.style.display = 'block';
-        // Evento para cerrar el modal al hacer clic fuera de él
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = 'none';
-            }
-        };
-    }
-
-    function cerrarModal() {
-        var modal = document.getElementById('miModal');
-        modal.style.display = 'none';
-    }
-</script>
+<script src="archivos.js/modal_mi_perfil.js"></script>

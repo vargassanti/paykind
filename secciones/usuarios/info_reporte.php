@@ -22,11 +22,19 @@ $tiendas = $conexion->prepare("SELECT * FROM tbl_tienda");
 $tiendas->execute();
 $tiendas_admin = $tiendas->fetchAll(PDO::FETCH_ASSOC);
 
-$clientes = $conexion->prepare("SELECT * FROM tbl_usuario WHERE id_rol = 'Cliente'");
+$clientes = $conexion->prepare("SELECT b.nombre_barrio, c.nombre_comuna, m.nombre_municipio, u.* FROM tbl_usuario as u  
+INNER JOIN tbl_barrio as b ON u.barrio = b.id_barrio
+INNER JOIN tbl_comuna as c ON c.id_comuna = b.id_comuna
+INNER JOIN tbl_municipio as m ON m.id_municipio = c.id_municipio
+WHERE u.id_rol = 'Cliente';");
 $clientes->execute();
 $clientes_admin = $clientes->fetchAll(PDO::FETCH_ASSOC);
 
-$vendedores = $conexion->prepare("SELECT * FROM tbl_vendedor WHERE id_rol = 'Vendedor'");
+$vendedores = $conexion->prepare("SELECT b.nombre_barrio, c.nombre_comuna, m.nombre_municipio, u.* FROM tbl_vendedor as u  
+INNER JOIN tbl_barrio as b ON u.barrio = b.id_barrio
+INNER JOIN tbl_comuna as c ON c.id_comuna = b.id_comuna
+INNER JOIN tbl_municipio as m ON m.id_municipio = c.id_municipio
+WHERE id_rol = 'Vendedor'");
 $vendedores->execute();
 $vendedores_admin = $vendedores->fetchAll(PDO::FETCH_ASSOC);
 
@@ -137,7 +145,6 @@ if (isset($_GET['type'])) {
         <?php
             break;
         case 'inventario':
-            // Lógica para mostrar información de inventario
         ?>
             <div class="container_compras">
                 <div class="caja_botoncancelar_infoproducto">
@@ -212,7 +219,6 @@ if (isset($_GET['type'])) {
         <?php
             break;
         case 'clientes':
-            // Lógica para mostrar información de los clientes
         ?>
             <div class="container_compras">
                 <div class="caja_botoncancelar_infoproducto">
@@ -258,8 +264,8 @@ if (isset($_GET['type'])) {
                             <th>Correo</th>
                             <th>Celular</th>
                             <th>Municipio</th>
-                            <th>Barrio</th>
                             <th>Comuna</th>
+                            <th>Barrio</th>
                             <th>Direccion</th>
                             <th class="ultimo_th">Rol</th>
                     </thead>
@@ -360,9 +366,9 @@ if (isset($_GET['type'])) {
                                     }
                                     ?>
                                 </td>
-                                <td>Medellin</td>
-                                <td>Barrio</td>
-                                <td>Comuna</td>
+                                <td><?php echo $clientes['nombre_municipio'] ?></td>
+                                <td><?php echo $clientes['nombre_comuna'] ?></td>
+                                <td><?php echo $clientes['nombre_barrio'] ?></td>
                                 <td>
                                     <?php
                                     $contenido = $clientes['direccion'];
@@ -441,13 +447,13 @@ if (isset($_GET['type'])) {
                     </thead>
                     <tbody>
                         <?php
-                        foreach ($vendedores_admin as $clientes) { ?>
+                        foreach ($vendedores_admin as $vendedores) { ?>
                             <tr>
                                 <td>
                                     <?php
-                                    $ruta_foto = "../miperfil/imagenes_producto/" . $clientes['fotoPerfil'];
+                                    $ruta_foto = "../miperfil/imagenes_producto/" . $vendedores['fotoPerfil'];
 
-                                    if (empty($clientes['fotoPerfil']) || !file_exists($ruta_foto)) {
+                                    if (empty($vendedores['fotoPerfil']) || !file_exists($ruta_foto)) {
                                         // Si no hay foto de perfil o el archivo no existe, muestra una imagen predeterminada
                                         $imagen_predeterminada = "../../imagen/Avatar-No-Background.png"; // Reemplaza con la ruta de tu imagen predeterminada
                                         echo '<img src="' . $imagen_predeterminada . '" width="70px" height="70px">';
@@ -459,7 +465,7 @@ if (isset($_GET['type'])) {
                                 </td>
                                 <td>
                                     <?php
-                                    $numero = $clientes['id_usuario'];
+                                    $numero = $vendedores['id_usuario'];
                                     $limite_digitos = 7;
 
                                     if (strlen((string)$numero) > $limite_digitos) {
@@ -472,7 +478,7 @@ if (isset($_GET['type'])) {
                                 </td>
                                 <td>
                                     <?php
-                                    $contenido = $clientes['usuario'];
+                                    $contenido = $vendedores['usuario'];
                                     $limite_letras = 7;
 
                                     if (strlen($contenido) > $limite_letras) {
@@ -483,23 +489,10 @@ if (isset($_GET['type'])) {
                                     }
                                     ?>
                                 </td>
-                                <td><?php echo $clientes['tipo_documento_u'] ?></td>
+                                <td><?php echo $vendedores['tipo_documento_u'] ?></td>
                                 <td>
                                     <?php
-                                    $contenido = $clientes['nombres_u'];
-                                    $limite_letras = 7;
-
-                                    if (strlen($contenido) > $limite_letras) {
-                                        $contenido_limitado = substr($contenido, 0, $limite_letras) . '...';
-                                        echo $contenido_limitado;
-                                    } else {
-                                        echo $contenido;
-                                    }
-                                    ?>
-                                </td>
-                                <td>
-                                    <?php
-                                    $contenido = $clientes['apellidos_u'];
+                                    $contenido = $vendedores['nombres_u'];
                                     $limite_letras = 7;
 
                                     if (strlen($contenido) > $limite_letras) {
@@ -512,7 +505,20 @@ if (isset($_GET['type'])) {
                                 </td>
                                 <td>
                                     <?php
-                                    $contenido = $clientes['correo'];
+                                    $contenido = $vendedores['apellidos_u'];
+                                    $limite_letras = 7;
+
+                                    if (strlen($contenido) > $limite_letras) {
+                                        $contenido_limitado = substr($contenido, 0, $limite_letras) . '...';
+                                        echo $contenido_limitado;
+                                    } else {
+                                        echo $contenido;
+                                    }
+                                    ?>
+                                </td>
+                                <td>
+                                    <?php
+                                    $contenido = $vendedores['correo'];
                                     $limite_letras = 8;
 
                                     if (strlen($contenido) > $limite_letras) {
@@ -525,7 +531,7 @@ if (isset($_GET['type'])) {
                                 </td>
                                 <td>
                                     <?php
-                                    $numero = $clientes['celular'];
+                                    $numero = $vendedores['celular'];
                                     $limite_digitos = 7;
 
                                     if (strlen((string)$numero) > $limite_digitos) {
@@ -536,12 +542,12 @@ if (isset($_GET['type'])) {
                                     }
                                     ?>
                                 </td>
-                                <td>Medellin</td>
-                                <td>Barrio</td>
-                                <td>Comuna</td>
+                                <td><?php echo $vendedores['nombre_municipio'] ?></td>
+                                <td><?php echo $vendedores['nombre_comuna'] ?></td>
+                                <td><?php echo $vendedores['nombre_barrio'] ?></td>
                                 <td>
                                     <?php
-                                    $contenido = $clientes['direccion'];
+                                    $contenido = $vendedores['direccion'];
                                     $limite_letras = 8;
 
                                     if (strlen($contenido) > $limite_letras) {
@@ -553,7 +559,7 @@ if (isset($_GET['type'])) {
                                     ?>
                                 </td>
 
-                                <td><?php echo $clientes['id_rol'] ?></td>
+                                <td><?php echo $vendedores['id_rol'] ?></td>
                             </tr>
                         <?php
                         }

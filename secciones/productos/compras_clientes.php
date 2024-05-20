@@ -77,12 +77,12 @@ include("../../templates/header.php"); ?>
             </div>
         </div>
         <div class="inputs">
-            <div class="inputs">
+            <div class="info_usuario_inputs">
                 <?php foreach ($informacion as $info) { ?>
-                    <input type="text" value="<?php echo $info['nombres_u'] ?>" class="non-editable">
+                    <p><?php echo $info['nombres_u'] ?> <?php echo $info['apellidos_u'] ?></p>
             </div>
-            <div class="inputs">
-                <input type="text" value="<?php echo $info['apellidos_u'] ?>" class="non-editable">
+            <div class="info_usuario_inputs">
+                <p><?php echo $info['correo'] ?></p>
             <?php
                 } ?>
             </div>
@@ -158,7 +158,19 @@ include("../../templates/header.php"); ?>
                         <td>$<?php echo number_format($c['costo_envio'], 0, '.', ','); ?></td>
                         <td><?php echo $c['usuario'] ?></td>
                         <td><?php echo $c['id_usuario'] ?></td>
-                        <td><?php echo $c['correo'] ?></td>
+                        <td>
+                            <?php
+                            $contenido = $c['correo'];
+                            $limite_letras = 15;
+
+                            if (strlen($contenido) > $limite_letras) {
+                                $contenido_limitado = substr($contenido, 0, $limite_letras) . '...';
+                                echo $contenido_limitado;
+                            } else {
+                                echo $contenido;
+                            }
+                            ?>
+                        </td>
                         <td><?php echo $c['metodo_pago'] ?></td>
                         <td><?php echo $c['fecha_compra'] ?></td>
                         <td>
@@ -175,11 +187,9 @@ include("../../templates/header.php"); ?>
             <?php } ?>
         </tbody>
     </table>
-    <div id="paginacion"></div>
 </div>
 
 <script src="../../js/jquery-3.7.1.min.js"></script>
 <script src="archivos.js/modal_compras.js"></script>
 <script src="archivos.js/buscar_todas_compras.js"></script>
-<script src="archivos.js/paginacion.js"></script>
 <script src="archivos.js/ampliar_imagen.js"></script>

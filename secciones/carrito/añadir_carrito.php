@@ -47,15 +47,8 @@ if (isset($_SESSION["usuario_rol"]) && ($_SESSION["usuario_rol"] === "Cliente"))
         $sql->bindParam(":id_usuario", $id_usuario);
         $sql->execute();
     }
-
-    $mensaje = "Producto añadido al carrito correctamente.";
-    $id_producto;
-    $token = hash_hmac('sha1', $id_producto, KEY_TOKEN);
-    $ruta = "index.php";
-
-    $mensaje_codificado = urlencode($mensaje);
-
-    header("Location: ../productos/info_producto.php?txtID=$id_producto&token=$token&mensaje=$mensaje_codificado&ruta=$ruta");
+    $mensaje = "Producto añadido correctamente.";
+    header("Location: ../productos/productos_carrito.php?mensaje=" . $mensaje);
 } else {
     header("Location:../../registro.php?alerta=iniciar_sesion_primero");
     exit();

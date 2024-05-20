@@ -75,8 +75,8 @@ $nombre_usuario = $usuario->fetchAll(PDO::FETCH_ASSOC);
             <?php
         } else {
             foreach ($sentencia as $registro) { ?>
-                <a href="mas_tienda.php?txtID=<?php echo $registro['nit_identificacion']; ?>">
-                    <div class="card">
+                <a href="mas_tienda.php?txtID=<?php echo $registro['nit_identificacion']; ?>&ruta=mitienda.php">
+                    <div class="card_t">
                         <div class="card__img">
                             <img class="imagen_tienditas" src="./imagenes_tienda/<?php echo $registro['logo_tienda']; ?>" class="img-fluid rounded" alt="" />
                         </div>

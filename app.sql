@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-12-2023 a las 06:27:43
+-- Tiempo de generación: 10-05-2024 a las 18:18:55
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -20,6 +20,34 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `app`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tbl_administrador`
+--
+
+CREATE TABLE `tbl_administrador` (
+  `id_usuario` int(11) NOT NULL,
+  `usuario` varchar(100) NOT NULL,
+  `tipo_documento_u` varchar(20) NOT NULL,
+  `nombres_u` varchar(100) NOT NULL,
+  `apellidos_u` varchar(100) NOT NULL,
+  `correo` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `celular` varchar(11) NOT NULL,
+  `direccion` varchar(100) NOT NULL,
+  `barrio` int(11) NOT NULL,
+  `fotoPerfil` varchar(255) NOT NULL,
+  `id_rol` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `tbl_administrador`
+--
+
+INSERT INTO `tbl_administrador` (`id_usuario`, `usuario`, `tipo_documento_u`, `nombres_u`, `apellidos_u`, `correo`, `password`, `celular`, `direccion`, `barrio`, `fotoPerfil`, `id_rol`) VALUES
+(102940283, 'Admin', 'CC', 'Administrador', 'Prueba', 'administradorPaykind@gmail.com', '$2y$10$VbGsYospqdWvxjLulTiG1eFKlqgBFaqxIJi7K7jqfDyB.e2iElo4u', '829382', '', 0, '', 'Administrador');
 
 -- --------------------------------------------------------
 
@@ -476,37 +504,6 @@ INSERT INTO `tbl_barrio` (`id_barrio`, `nombre_barrio`, `id_comuna`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tbl_calificacion`
---
-
-CREATE TABLE `tbl_calificacion` (
-  `id_calificacion` int(11) NOT NULL,
-  `calificacion` varchar(30) NOT NULL,
-  `texto` varchar(500) NOT NULL,
-  `id_usuario` int(20) NOT NULL,
-  `id_producto` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `tbl_calificacion`
---
-
-INSERT INTO `tbl_calificacion` (`id_calificacion`, `calificacion`, `texto`, `id_usuario`, `id_producto`) VALUES
-(5, '5', '¡Este producto es increíble! Me encanta la calidad y el diseño.', 1234522, 21382),
-(6, '4', 'Buena relación calidad-precio. Funciona bien para mis necesidades.', 431293892, 21382),
-(7, '3', '¡Este producto es increíble! Me encanta la calidad y el diseño.', 1234522, 21382),
-(8, '4', 'Buena relación calidad-precio. Funciona bien para mis necesidades.', 431293892, 21382),
-(9, '1', 'Excelente, me encanta.', 431293892, 21382),
-(12, '5', 'El sonido es excelente, el micrófono es muy bueno. Ideal para reuniones y trabajo de oficina. Estoy bastante satisfecho con el producto.', 1234522, 21382),
-(14, '3', 'hhhhhhhhhhh', 1234522, 21381),
-(15, '3', 'HOLAAAAAAAAAAAAAAAAAAAAAAAAAAA', 1234522, 21440),
-(16, '2', 'ESTE ES UN COMENTARIO', 1234522, 21429),
-(17, '3', 'hhhhhhhhhhh', 1234522, 21434),
-(18, '1', 'llllllllll', 1234522, 21434);
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `tbl_carrito`
 --
 
@@ -518,28 +515,6 @@ CREATE TABLE `tbl_carrito` (
   `estado_carrito` varchar(30) NOT NULL DEFAULT 'Pendiente',
   `id_usuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `tbl_carrito`
---
-
-INSERT INTO `tbl_carrito` (`id_carrito`, `id_producto`, `cantidad`, `id_stock`, `estado_carrito`, `id_usuario`) VALUES
-(865, 21381, 1, '44', 'Pendiente', 1234522),
-(866, 21384, 1, '51', 'Pendiente', 1234522),
-(867, 21385, 2, '2', 'Pendiente', 1234522),
-(868, 21380, 1, '41', 'Pendiente', 1234522),
-(869, 21396, 1, '8', 'Pendiente', 1234522),
-(870, 21443, 1, '79', 'Pendiente', 1234522),
-(871, 21379, 1, '28', 'Pendiente', 1234522),
-(872, 21381, 1, '81', 'Pendiente', 1234522),
-(873, 21381, 1, '43', 'Pendiente', 1234522),
-(874, 21381, 1, '83', 'Pendiente', 1234522),
-(875, 21400, 2, '34', 'Pendiente', 1234522),
-(876, 21429, 3, '59', 'Pendiente', 1234522),
-(877, 21398, 1, '17', 'Pendiente', 1234522),
-(878, 21381, 1, '84', 'Pendiente', 1234522),
-(879, 21381, 1, '82', 'Pendiente', 1234522),
-(880, 21392, 1, '38', 'Pendiente', 1234522);
 
 -- --------------------------------------------------------
 
@@ -583,7 +558,7 @@ CREATE TABLE `tbl_compra` (
   `metodo_pago` varchar(45) NOT NULL,
   `id_usuario` int(11) NOT NULL,
   `fecha_compra` datetime NOT NULL DEFAULT current_timestamp(),
-  `imagen_tranferencia` varchar(255) NOT NULL
+  `imagen_tranferencia` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -591,17 +566,12 @@ CREATE TABLE `tbl_compra` (
 --
 
 INSERT INTO `tbl_compra` (`id_compra`, `total_compra`, `direccion`, `costo_envio`, `metodo_pago`, `id_usuario`, `fecha_compra`, `imagen_tranferencia`) VALUES
-(480, 8292760, 'Cra 33 #34-33 apto 43g', 20000, 'Efectivo', 1234522, '2023-12-13 10:08:18', ''),
-(481, 2263340, 'Cra 33 #34-33 apto 43g', 20000, 'Efectivo', 1234522, '2023-12-13 10:44:58', ''),
-(482, 12288600, 'Calle 34b 113 d 81', 20000, 'Efectivo', 8727361, '2023-12-13 14:03:39', ''),
-(483, 5088420, 'Calle 34b 113 d 81', 20000, 'Transferencia Ahorros Bancolombia', 8727361, '2023-12-13 15:14:11', '1702498451_Brown Elegant Logo Lawyer Logo.png'),
-(484, 3361918, 'Calle 34b 113 d 81', 20000, 'Efectivo', 8727361, '2023-12-13 15:31:35', ''),
-(485, 139410, 'Calle 34b 113 d 81', 20000, 'Efectivo', 8727361, '2023-12-13 15:58:18', ''),
-(486, 24667500, 'Carrera 133u ac', 20000, 'Efectivo', 4443442, '2023-12-14 11:25:15', ''),
-(487, 23604300, 'Cra 33 #34-33 apto 43g', 20000, 'Efectivo', 1234522, '2023-12-14 11:26:09', ''),
-(488, 36418500, 'Cra 33 #34-33 apto 43g', 20000, 'Transferencia Ahorros Bancolombia', 1234522, '2023-12-18 09:20:28', '1702909228_1605.m00.i124.n010.S.c12.324488348 Worker health and safety vector illustration.jpg'),
-(489, 1589307, 'Cra 33 #34-33 apto 43g', 20000, 'Efectivo', 1234522, '2023-12-18 09:22:26', ''),
-(490, 65550, 'Cra 33 #34-33 apto 43g', 20000, 'Transferencia Ahorros Bancolombia', 1234522, '2023-12-18 10:31:05', '1702913465_337430b2-85a9-4ef1-bbc5-cbc362cc3e81.jpg');
+(518, 106500, 'Cra 33 #34-33 apto 43g', 20000, 'Transferencia Ahorros Bancolombia', 1234522, '2024-01-08 23:13:58', '1704777238_pngwing.com.png'),
+(519, 1600000, 'Cra 33 #34-33 apto 43g', 20000, 'Efectivo', 1234522, '2024-01-11 12:15:43', ''),
+(520, 32767080, 'Cra 33 #34-33 apto 43g', 20000, 'Efectivo', 1234522, '2024-01-11 12:46:38', ''),
+(521, 7120660, 'carrera 112c', 20000, 'Efectivo', 87382731, '2024-01-12 00:24:15', ''),
+(522, 14129540, 'Cra 33 #34-33 apto 43g', 20000, 'Efectivo', 1234522, '2024-05-08 18:47:08', ''),
+(523, 4877320, 'Cra 33 #34-33 apto 43g', 20000, 'Efectivo', 1234522, '2024-05-08 18:51:47', '');
 
 -- --------------------------------------------------------
 
@@ -622,70 +592,27 @@ CREATE TABLE `tbl_compra_producto` (
 --
 
 INSERT INTO `tbl_compra_producto` (`id_compra`, `id_producto`, `id_stock`, `cantidad`, `estado_carrito`) VALUES
-(480, 21381, 6, 1, 'Completado'),
-(480, 21379, 28, 1, 'Completado'),
-(480, 21380, 41, 1, 'Completado'),
-(481, 21381, 35, 1, 'Completado'),
-(482, 21382, 45, 2, 'Completado'),
-(482, 21384, 50, 1, 'Completado'),
-(482, 21387, 12, 7, 'Completado'),
-(482, 21395, 5, 1, 'Completado'),
-(482, 21438, 74, 1, 'Completado'),
-(483, 21380, 41, 1, 'Completado'),
-(483, 21384, 9, 1, 'Completado'),
-(484, 21443, 79, 1, 'Cancelado'),
-(485, 21441, 77, 1, 'Completado'),
-(486, 21391, 29, 1, 'Completado'),
-(486, 21398, 17, 7, 'Completado'),
-(486, 21399, 16, 1, 'Completado'),
-(486, 21439, 75, 1, 'Completado'),
-(486, 21395, 5, 1, 'Completado'),
-(487, 21399, 16, 3, 'Completado'),
-(487, 21392, 38, 2, 'Completado'),
-(487, 21440, 76, 2, 'Completado'),
-(488, 21391, 29, 1, 'Completado'),
-(488, 21386, 39, 2, 'Completado'),
-(488, 21394, 7, 1, 'Completado'),
-(488, 21395, 5, 1, 'Completado'),
-(488, 21393, 4, 1, 'Completado'),
-(488, 21396, 8, 1, 'Completado'),
-(488, 21398, 17, 1, 'Completado'),
-(488, 21399, 16, 2, 'Completado'),
-(488, 21430, 61, 2, 'Completado'),
-(489, 21429, 59, 1, 'Completado'),
-(490, 21434, 67, 1, 'Completado'),
-(480, 21381, 6, 1, 'Completado'),
-(480, 21379, 28, 1, 'Completado'),
-(480, 21380, 41, 1, 'Completado'),
-(481, 21381, 35, 1, 'Completado'),
-(482, 21382, 45, 2, 'Completado'),
-(482, 21384, 50, 1, 'Completado'),
-(482, 21387, 12, 7, 'Completado'),
-(482, 21395, 5, 1, 'Completado'),
-(482, 21438, 74, 1, 'Completado'),
-(483, 21380, 41, 1, 'Completado'),
-(483, 21384, 9, 1, 'Completado'),
-(484, 21443, 79, 1, 'Cancelado'),
-(485, 21441, 77, 1, 'Completado'),
-(486, 21391, 29, 1, 'Completado'),
-(486, 21398, 17, 7, 'Completado'),
-(486, 21399, 16, 1, 'Completado'),
-(486, 21439, 75, 1, 'Completado'),
-(486, 21395, 5, 1, 'Completado'),
-(487, 21399, 16, 3, 'Completado'),
-(487, 21392, 38, 2, 'Completado'),
-(487, 21440, 76, 2, 'Completado'),
-(488, 21391, 29, 1, 'Completado'),
-(488, 21386, 39, 2, 'Completado'),
-(488, 21394, 7, 1, 'Completado'),
-(488, 21395, 5, 1, 'Completado'),
-(488, 21393, 4, 1, 'Completado'),
-(488, 21396, 8, 1, 'Completado'),
-(488, 21398, 17, 1, 'Completado'),
-(488, 21399, 16, 2, 'Completado'),
-(488, 21430, 61, 2, 'Completado'),
-(489, 21429, 59, 1, 'Completado'),
-(490, 21434, 67, 1, 'Completado');
+(518, 21433, 66, 1, 'Completado'),
+(518, 21432, 90, 1, 'Completado'),
+(519, 21379, 28, 1, 'Completado'),
+(520, 21381, 44, 10, 'Completado'),
+(520, 21381, 81, 2, 'Completado'),
+(520, 21383, 47, 1, 'Completado'),
+(520, 21383, 48, 2, 'Completado'),
+(520, 21379, 28, 3, 'Completado'),
+(521, 21381, 44, 1, 'Completado'),
+(521, 21380, 41, 1, 'Completado'),
+(521, 21383, 47, 1, 'Completado'),
+(521, 21382, 45, 1, 'Completado'),
+(522, 21382, 46, 18, 'Completado'),
+(522, 21381, 44, 1, 'Completado'),
+(522, 21396, 8, 1, 'Completado'),
+(522, 21383, 47, 1, 'Completado'),
+(522, 21384, 51, 1, 'Completado'),
+(522, 21392, 38, 1, 'Completado'),
+(523, 21382, 45, 1, 'Completado'),
+(523, 21380, 40, 1, 'Completado'),
+(523, 21383, 47, 1, 'Completado');
 
 -- --------------------------------------------------------
 
@@ -761,19 +688,6 @@ INSERT INTO `tbl_comuna` (`id_comuna`, `nombre_comuna`, `id_municipio`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tbl_factura`
---
-
-CREATE TABLE `tbl_factura` (
-  `id_factura` int(11) NOT NULL,
-  `fecha_factura` date NOT NULL,
-  `cantidad_p` int(5) NOT NULL,
-  `precio_total` decimal(10,0) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `tbl_municipio`
 --
 
@@ -845,7 +759,7 @@ INSERT INTO `tbl_productos` (`id_producto`, `nombre`, `descripcion`, `precio`, `
 (21429, 'iPhone 11', 'El iPhone 11 es un teléfono inteligente de gama alta con pantalla táctil producido por Apple, Inc. Fue presentado el 10 de septiembre de 2019 junto con el iPhone 11 Pro y el iPhone 11 Pro Max. El modelo cuenta con el chip Apple A13 Bionic y un nuevo sistema de cámara dual ultra ancho.', '2372100', 829482, '1699975732_iphone11-1.png', '1699975732_iphone11-2.png', '1699975732_iphone11-3.png', '1699975732_iphone11-4.png', '1699975732_iphone11-5.png', '1699975732_iphone11-6.png', 'Sistema de dos cámaras de 12 MP: ultra gran angular y gran angular', 33, 'Activo', 15),
 (21430, 'Iphone 14 Pro Max', 'El iPhone 14 y el iPhone 14 Plus están equipados con el sistema SoC Apple A15, el mismo que se usa en el iPhone 13 Pro y 13 Pro Max de 2021. El iPhone 14 y 14 Plus cuentan con una CPU de 6 núcleos, una GPU de 5 núcleos y un motor neuronal de 16 núcleos.', '6123900', 829482, '1699976257_iphone14-1.png', '1699976257_iphone14-2.png', '1699976257_iphone14-3.png', '1699976257_iphone14-4.png', '1699976257_iphone14-1.png', '1699976257_iphone14-3.png', '', 0, 'Activo', 15),
 (21431, 'Iphone 13 Pro Max 128', 'La pantalla del iPhone 13 tiene esquinas redondeadas que siguen el elegante diseño curvo del teléfono, y las esquinas se encuentran dentro de un rectángulo estándar. Si se mide en forma de rectángulo estándar, la pantalla tiene 6,06 pulgadas en diagonal (el área real de visualización es menor).', '3906800', 829482, '1699978176_iphone13p-1.png', '1699978176_iphone13p-2.png', '1699978176_iphone13p-3.png', '1699978176_iphone13p-4.png', '1699978176_iphone13p-1.png', '1699978176_iphone13p-2.png', '', 23, 'Activo', 15),
-(21432, 'Camiseta Oversize Oso', 'El modelo mide 1.88 m y tiene una talla L', '89000', 2332321, '1700324009_matt1.png', '1700324009_matt2.png', '1700324009_matt3.png', '1700324009_matt4.png', '1700324009_matt3.png', '1700324009_matt1.png', '', 0, 'Inactivo', 40),
+(21432, 'Camiseta Oversize Oso', 'El modelo mide 1.88 m y tiene una talla L', '89000', 2332321, '1700324009_matt1.png', '1700324009_matt2.png', '1700324009_matt3.png', '1700324009_matt4.png', '1700324009_matt3.png', '1700324009_matt1.png', '', 0, 'Activo', 40),
 (21433, 'Camiseta Texto', 'La modelo mide 1.64m y tiene una talla S', '17500', 2332321, '1700324374_matt4.png', '1700324374_matt2.png', '1700324374_matt3.png', '1700324374_matt5.png', '1700324374_matt1.png', '1700324374_matt4.png', '', 0, 'Activo', 40),
 (21434, 'Camiseta Oversize Ilustración', 'El modelo mide 1.88 m y tiene una talla L', '69000', 2332321, '1700324801_matt1.png', '1700324801_matt2.png', '1700324801_matt3.png', '1700324801_matt4.png', '1700324801_matt5.png', '1700324801_matt6.png', '', 5, 'Activo', 40),
 (21435, 'Jeans Straight Fit Carpintero', 'El modelo mide 1.76m y tiene una talla S', '129000', 2332321, '1700325119_matt2.png', '1700325119_matt1.png', '1700325119_matt3.png', '1700325119_matt4.png', '1700325119_matt5.png', '1700325119_matt2.png', '', 0, 'Inactivo', 66),
@@ -854,152 +768,7 @@ INSERT INTO `tbl_productos` (`id_producto`, `nombre`, `descripcion`, `precio`, `
 (21440, 'Camiseta Loose Fit', 'Camiseta en punto de algodón. Modelo de corte holgado con cuello redondo de ribete acanalado.', '50000', 9282913, '1702309946_h&m13.png', '1702309946_h&m9.png', '1702309946_h&m10.png', '1702309946_h&m11.png', '1702309946_h&m12.png', '1702309946_h&m14.png', '', 10, 'Inactivo', 62),
 (21441, 'Joggers', 'Joggers en denim rígido de algodón. Modelo de corte holgado de caderas a bajos con piernas redondeadas amplias y tiro bajo. Tiro medio con elástico revestido y cordón de ajuste oculto, cierre decorativo, bolsillos laterales, bolsillos de parche con tapa en las piernas y bolsillos traseros. Todo lo que necesitas para lucir un look denim impactante.', '154900', 9282913, '1702310248_h&m18.png', '1702310248_h&m15.png', '1702310248_h&m16.png', '1702310248_h&m17.png', '1702310248_h&m19.png', '1702310248_h&m16.png', '', 10, 'Activo', 66),
 (21442, 'Joggers', 'Joggers en denim rígido de algodón. Modelo de corte holgado de caderas a bajos con piernas redondeadas amplias y tiro bajo. Tiro medio con elástico revestido y cordón de ajuste oculto, cierre decorativo, bolsillos laterales, bolsillos de parche con tapa en las piernas y bolsillos traseros. Todo lo que necesitas para lucir un look denim impactante.', '154900', 9282913, '1702310565_h&m22.png', '1702310565_h&m20.png', '1702310565_h&m21.png', '1702310565_h&m23.png', '1702310565_h&m24.png', '1702310565_h&m22.png', '', 0, 'Activo', 66),
-(21443, 'Samsung Galaxy S23 Ultra ', 'Descubre infinitas posibilidades para tus fotos con las 4 cámaras principales de tu equipo. Pon a prueba tu creatividad y juega con la iluminación, diferentes planos y efectos para obtener grandes resultados.\r\n', '4099900', 76676, '1702311949_sm1.png', '1702311949_sm2.png', '1702311949_sm3.png', '1702311949_sm1.png', '1702311949_sm2.png', '1702311949_sm1.png', '', 18, 'Inactivo', 70);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tbl_restablecer_contraseña`
---
-
-CREATE TABLE `tbl_restablecer_contraseña` (
-  `id_restablecer` int(11) NOT NULL,
-  `id_usuario` int(11) DEFAULT NULL,
-  `token` varchar(255) DEFAULT NULL,
-  `expiration_time` datetime DEFAULT NULL,
-  `used` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `tbl_restablecer_contraseña`
---
-
-INSERT INTO `tbl_restablecer_contraseña` (`id_restablecer`, `id_usuario`, `token`, `expiration_time`, `used`) VALUES
-(2, 1234522, 'c39404021c743650438526db72fdca8d', '2023-10-27 22:39:48', 0),
-(3, 1234522, '552215876ff431eec573032cbc337d8a', '2023-10-27 22:40:46', 0),
-(4, 1234522, 'a8aff678f55689b74c35739a7baabfae', '2023-10-27 22:48:25', 0),
-(5, 1234522, '2362d4e26a4648f19c6d11b4ea205592', '2023-10-27 22:48:50', 0),
-(6, 1234522, 'c3e7a8ea65e72b79f52467feaff2bde3', '2023-10-27 22:49:52', 0),
-(7, 1234522, 'ee6e5b10d596289252d94e628b9e29e8', '2023-10-27 23:01:19', 1),
-(8, 1234522, '4abe980ed6d9764550ddd32000bcc146', '2023-10-27 23:02:07', 1),
-(9, 1234522, '33a29ae225c0f679ddfd87020368a33b', '2023-10-27 23:04:12', 1),
-(10, 1234522, '6a507eee77f282321340f0d08521a4d4', '2023-10-27 23:29:40', 0),
-(11, 1234522, 'df75d1abe90920a606b66ce4a5cd8c52', '2023-10-27 23:30:20', 0),
-(12, 1234522, '4a57355de4165b9602132cd04116ab32', '2023-10-27 23:47:55', 0),
-(13, 1234522, '7e868faf29189302de15dec7d9dcc4ac', '2023-10-27 23:48:05', 0),
-(14, 1234522, 'a2cde3141a0dba349e5374f8c2a2cf2c', '2023-10-27 23:52:07', 0),
-(15, 1234522, '89e37836956573b401d692f24f9c82aa', '2023-10-27 23:52:14', 0),
-(16, 1234522, 'bfe81a790f968075e112ec86698e481f', '2023-10-27 23:52:39', 0),
-(17, 1234522, '14ede7c6f0d36c9616a3dee5092bceed', '2023-10-27 23:53:11', 0),
-(18, 1234522, '801ba2be12837e1beb6d3df7869d2de8', '2023-10-27 23:53:20', 0),
-(19, 1234522, 'c5e7914c9fd98bcab3f252eb01e8a689', '2023-10-27 23:53:27', 0),
-(20, 1234522, 'ad43e18cd31859f54144dba8988d601c', '2023-10-27 23:53:34', 0),
-(21, 1234522, '0ea41a7e0542cf3e35aa673fab6e84d3', '2023-10-27 23:53:44', 0),
-(22, 1234522, 'd610b976d697a726f0eb1f95cc865600', '2023-10-27 23:54:04', 1),
-(23, 1234522, '568fbc7176f65d42f970e85c3e016eba', '2023-10-27 23:54:30', 1),
-(24, 1234522, '13d8698dc995cf679435fb1acecdb153', '2023-10-27 23:58:05', 1),
-(25, 1234522, '0c1b26dfa4e66c661de372e8776aeecb', '2023-10-27 23:59:04', 1),
-(26, 1234522, '81e16a3fe694ac9c45ac5e4679020caf', '2023-10-28 00:00:50', 0),
-(27, 1234522, '83fdbc3de926b2fd5c665c85159e8b21', '2023-10-28 00:09:12', 0),
-(28, 1234522, '2b2e0ccefcd7ec89623cddf8f1797738', '2023-10-28 00:09:21', 0),
-(29, 1234522, '745e76b460183e305081eed4b9d6b87a', '2023-10-28 00:09:34', 0),
-(30, 1234522, '2e3e768fbe12ce4a13b250501afdae59', '2023-10-28 20:23:50', 0),
-(31, 1234522, '1fa1a3fb7cb0973f13dbefa52471b1a0', '2023-10-28 20:23:56', 0),
-(32, 1234522, '51016672e5b5b4ae007a99812be01896', '2023-10-28 20:27:52', 0),
-(33, 1234522, '2efcb0e4f55a89474ef8d8cedc12fd91', '2023-10-28 20:30:50', 0),
-(34, 1234522, '4708d4b8cf2170d5c0eca664e002abbf', '2023-10-28 20:33:28', 0),
-(35, 1234522, '19ac8c4018e4eb29bc9051bc34f8cb49', '2023-10-28 20:36:52', 0),
-(36, 1234522, 'f39e12149c69fc8a05e6fb0e8f3166b6', '2023-10-28 20:39:24', 0),
-(37, 1234522, '3613829e7dac94c5df274ea8e81960e2', '2023-10-28 20:40:13', 0),
-(38, 1234522, '1240e12f68b9901012e529941c7fad95', '2023-10-28 20:47:49', 0),
-(39, 1234522, '32765cc79f7972470815e5e039162d37', '2023-10-28 20:49:45', 0),
-(40, 1234522, 'd3f3848f6300b29d618fe059872eb208', '2023-10-28 20:50:19', 0),
-(41, 1234522, 'dec15f8575c2a70e72b4015f5d2e5f45', '2023-10-28 20:50:53', 0),
-(42, 1234522, '0caf1a4ac09ee22aac6218e5412a6305', '2023-10-28 20:53:48', 0),
-(43, 1234522, '3466adf081444048c1b0c1a3905d57be', '2023-10-28 20:55:13', 0),
-(44, 1234522, '8f0809836c0d0e9fe9669e339bd8ab7e', '2023-10-28 20:56:23', 0),
-(45, 1234522, 'ac5a3457cb22e7456f19e3761fa0697f', '2023-10-28 20:58:45', 0),
-(46, 1234522, '49c59835b3dc1f0ce5d576ecfaef3812', '2023-10-28 20:59:45', 0),
-(47, 1234522, 'ec4edee0f1ef0a4cbdda1e01825025e7', '2023-10-28 21:01:13', 0),
-(48, 1234522, '86fc8c4a8159bfa6ae4bac252c29a484', '2023-10-28 21:02:41', 0),
-(49, 1234522, 'b6b13611e129414f5acecd2de0b56837', '2023-10-28 21:04:21', 0),
-(50, 1234522, '45f03e205366e6d92f741a9f948a6a3f', '2023-10-28 21:04:50', 0),
-(51, 1234522, 'dcae5393011940a788eb52bb7615f3a1', '2023-10-28 21:05:55', 0),
-(52, 1234522, '145a9e5c6e0d1efc5604ee63a238831f', '2023-10-29 01:40:54', 0),
-(53, 1234522, 'e80ae9578e78414b8837dcba9f59085a', '2023-10-29 01:42:06', 0),
-(54, 1234522, '54bed3b7e8188c484bb075084a33efb8', '2023-10-29 01:42:44', 0),
-(55, 1234522, '979e38e286ef5d17efc4089ebbef367d', '2023-10-29 01:43:26', 0),
-(56, 1234522, '8051619a1d5621fefca62e3789951ae7', '2023-10-29 01:44:11', 0),
-(57, 1234522, '6b4eab447faa896196d7913d468a91a5', '2023-10-29 01:45:45', 0),
-(58, 1234522, '931588eb8b0062ea51c09dd3b71fe22a', '2023-10-29 01:47:55', 0),
-(59, 1234522, '6aafac729c2aee93f14b9cb9200903f5', '2023-10-29 01:48:19', 0),
-(60, 1234522, '519c7438982bdd5d0c764431e23f9edf', '2023-10-29 01:49:28', 0),
-(61, 1234522, '4daffd22f777d3fadcab696797854774', '2023-10-29 01:49:43', 0),
-(62, 1234522, '0114da3174e07c048ef49285dfa99400', '2023-10-29 01:58:55', 0),
-(63, 1234522, '022581ae3f426855255feb9f35ba015d', '2023-10-29 01:59:38', 0),
-(64, 1234522, '1bf2125f6511a44cb48a3f56422a38cc', '2023-10-29 02:00:20', 0),
-(65, 1234522, '313bbc14a21e709618fa11544d45bd43', '2023-10-29 02:00:38', 0),
-(66, 1234522, '8282047355ca0cf9836146b1747359b9', '2023-10-29 02:00:49', 0),
-(67, 1234522, '4750dc44d9a9b8d1ca642ac2b911683f', '2023-10-29 02:01:28', 0),
-(68, 1234522, '9236eb0b1e657a73e1332b3a144918df', '2023-10-29 02:01:57', 0),
-(69, 1234522, 'beb514ccab8601b5139c35ba13fcb31e', '2023-10-29 02:02:28', 0),
-(70, 1234522, 'd0fb93f648fb30270e9eb9f35dda054a', '2023-10-29 02:06:22', 0),
-(71, 1234522, '8968cf76d9954ce5d0d4e1c829667fb1', '2023-10-29 02:06:58', 0),
-(72, 1234522, 'c61a55e6b40aadf9c2917d4ab677f513', '2023-10-29 02:07:22', 1),
-(73, 1234522, 'ba7aecdd35921f7f903cae58047ef2b9', '2023-10-29 02:16:43', 0),
-(74, 1234522, '601e44babee21d809b2eaa0340bc3910', '2023-10-29 02:17:25', 0),
-(75, 1234522, '112b2143dd3d1bc2ec4ca12cbacd63cc', '2023-10-29 02:17:58', 0),
-(76, 1234522, '65d00282f84e2a19eea9c1b72fa28d8d', '2023-10-29 02:19:07', 0),
-(77, 1234522, 'cb1c6e2f666dca6f2a06a8daf3eaf87f', '2023-10-29 02:20:08', 0),
-(78, 1234522, '0eadacdfa093e88819500a70affb7c32', '2023-10-29 02:21:09', 0),
-(79, 1234522, '567faff18113661b7e7792653d1bca24', '2023-10-29 02:24:11', 0),
-(80, 1234522, 'd401c67ea0c1da7f4cfbb6ea46e821f2', '2023-10-29 02:25:13', 0),
-(81, 1234522, '03c2d9588c7a891be02f84f9bd448bf0', '2023-10-29 02:25:24', 0),
-(82, 1234522, '81a165f4e92397923db144412bc2e875', '2023-10-29 02:26:55', 0),
-(83, 1234522, '535774cac7258e9eea9d3ec97a1ef9b8', '2023-10-29 02:27:50', 0),
-(84, 1234522, '503b9340c9388d6b4a37d3b646068a62', '2023-10-29 02:30:15', 0),
-(85, 1234522, 'ac7c838b756d294cf378d5b887f43a8f', '2023-10-29 02:31:40', 0),
-(86, 1234522, '55cbd702724eccebbb1336fe999603fd', '2023-10-29 02:31:59', 0),
-(87, 1234522, '6e1af3788ea772729a66e2a749319ee0', '2023-10-29 02:32:51', 0),
-(88, 1234522, 'b68ef1abfd92b82014fc5fb7b9fec89f', '2023-10-29 02:35:31', 0),
-(89, 1234522, '947418adc2aa1dde9e004ea1f4e5795c', '2023-10-29 02:37:51', 0),
-(90, 1234522, '92e44c30d85ca886fdd6a3a298a9010c', '2023-10-29 02:38:11', 0),
-(91, 1234522, 'e506cd31f6787dcfdfbf037660531af4', '2023-10-29 02:43:19', 0),
-(92, 1234522, '16bc08372db02e063af96dd60eb88d12', '2023-10-29 02:46:21', 1),
-(93, 1234522, '767dc815e1347f6775e7bb9ae754eb33', '2023-10-29 02:47:37', 0),
-(94, 1234522, 'cfe3f1b69e1dcb31b76955352fad1a52', '2023-10-29 02:48:17', 1),
-(95, 1234522, '7e5ab0bcf66bb8df2943c35562e22662', '2023-10-29 02:51:20', 0),
-(96, 1234522, 'd8c983943c36b50cb71cb54eb154bf06', '2023-10-29 03:13:06', 0),
-(97, 1234522, '20f81b4ebe413fbc04774a4a9a8ba717', '2023-10-29 03:14:55', 1),
-(98, 1234522, '3e82556241bfc3ad1c83691de123cdce', '2023-10-29 03:26:13', 0),
-(99, 1234522, 'abbc6d7ee0c6f4b38b1286b75e4dee74', '2023-10-29 03:30:09', 0),
-(100, 1234522, '9a2c95b33eda688800664bdf8d9ae62e', '2023-10-29 03:31:14', 0),
-(101, 1234522, '6ac0f849a5fbc2869918cdd063cb312b', '2023-10-29 03:33:42', 0),
-(102, 1234522, 'b18518a908a55a480af4fe73597c162d', '2023-10-29 03:33:51', 0),
-(103, 1234522, '551cfc8afbb27338edf203484e523691', '2023-10-29 03:34:07', 0),
-(104, 1234522, 'cf3d26baddfa898070f607bad3b129ca', '2023-10-29 03:34:26', 0),
-(105, 1234522, 'b2bec614259224678981328f9993d542', '2023-10-29 03:34:36', 0),
-(106, 1234522, '58553c29c9d41cb8df624008cce50696', '2023-10-29 03:35:26', 0),
-(107, 1234522, '4d8c750b59fdb7c75c83899279442661', '2023-10-29 03:37:49', 0),
-(108, 1234522, '1c8e1b5014b5c8e3794523d9ff6ed6ad', '2023-10-29 03:39:36', 0),
-(109, 1234522, '753ac6c0f0cfeaeb754cbffdddc68007', '2023-10-29 03:40:05', 0),
-(110, 1234522, 'abbc86786f3687938413c5865edbd1ed', '2023-10-29 03:41:42', 0),
-(111, 1234522, '48fc116867488d7be38102d7edcf5210', '2023-10-29 03:43:17', 0),
-(112, 1234522, '669e42dc5cd634029a43a325ba85eaa9', '2023-10-29 03:43:20', 0),
-(113, 1234522, 'af0b30a1c4ba1a0df130d11b04e98af3', '2023-10-29 03:44:15', 0),
-(114, 1234522, '6cbac228f9af86f46ee84f31c2192fa1', '2023-10-29 03:44:27', 0),
-(115, 1234522, '1ba4690c51c4a7330664521c02e4117e', '2023-10-29 03:45:46', 0),
-(116, 1234522, 'a048e6116df7c0685ac7121bcec01d6f', '2023-10-29 03:46:50', 0),
-(117, 1234522, 'e2fff2eb64afa991b4ed3ecc205ec254', '2023-10-29 03:47:00', 0),
-(118, 1234522, 'b6326854e8690c5acd345f48860a2f36', '2023-10-29 03:47:11', 0),
-(119, 1234522, '54ae37ebca4af3e8a5922ce4720e6358', '2023-10-29 03:15:04', 0),
-(120, 1234522, '74d9e09de413da3e3926c5f4ef1eff33', '2023-10-29 03:15:29', 0),
-(121, 1234522, 'c5bc729ffd1c8dcf387e3d3b2a577274', '2023-10-29 03:15:29', 1),
-(122, 1234522, 'b4ed67d0bda6e3b136b72ab95be3b75b', '2023-10-29 06:10:14', 1),
-(123, 1234522, 'c151effd14ba0af340c20117e4bed965', '2023-10-29 06:10:46', 1),
-(124, 1234522, 'd5e7d1fd03b97d22ce66a05ec58a997a', '2023-10-29 06:12:30', 1),
-(125, 1234522, '6e710947735eae2ea0b3b17ac38ee859', '2023-10-29 06:12:55', 1),
-(126, 1234522, '62f8ffe227d72829ef538100dfc0ef1a', '2023-10-29 06:17:15', 1);
+(21443, 'Samsung Galaxy S23 Ultra ', 'Descubre infinitas posibilidades para tus fotos con las 4 cámaras principales de tu equipo. Pon a prueba tu creatividad y juega con la iluminación, diferentes planos y efectos para obtener grandes resultados.\r\n', '4099900', 76676, '1702311949_sm1.png', '1702311949_sm2.png', '1702311949_sm3.png', '1702311949_sm1.png', '1702311949_sm2.png', '1702311949_sm1.png', '', 18, 'Activo', 70);
 
 -- --------------------------------------------------------
 
@@ -1021,71 +790,71 @@ CREATE TABLE `tbl_stock` (
 
 INSERT INTO `tbl_stock` (`id_stock`, `id_producto`, `cantidad_disponible`, `fecha_registro`, `color_producto`) VALUES
 (1, 21391, 30, '2023-10-26 08:59:19', '#000000'),
-(2, 21385, 10, '2023-10-26 09:12:18', '#58ED4A'),
-(3, 21382, 19, '2023-10-26 09:12:18', '#CE4AED'),
+(2, 21385, 5, '2023-10-26 09:12:18', '#58ED4A'),
+(3, 21382, 17, '2023-10-26 09:12:18', '#CE4AED'),
 (4, 21393, 10, '2023-10-26 09:12:18', '#F53B56'),
 (5, 21395, 12, '2023-10-26 09:12:18', '#76EFF4'),
-(6, 21381, 12, '2023-10-26 09:12:18', 'blue'),
+(6, 21381, 11, '2023-10-26 09:12:18', 'blue'),
 (7, 21394, 23, '2023-10-26 09:12:18', '#fc580c'),
-(8, 21396, 33, '2023-10-26 09:12:18', '#3B60F5'),
+(8, 21396, 25, '2023-10-26 09:12:18', '#3B60F5'),
 (9, 21384, 40, '2023-10-26 09:12:18', '#D60006'),
 (10, 21383, 100, '2023-10-26 09:12:18', '#3B60F5'),
 (12, 21387, 50, '2023-10-26 09:12:18', '#3B60F5'),
 (13, 21392, 5, '2023-10-26 09:12:18', '#F5DC0F'),
 (14, 21400, 100, '2023-10-26 09:12:18', '#3B60F5'),
-(15, 21380, 33, '2023-10-26 09:12:18', '#0032FF'),
-(16, 21399, 12, '2023-10-26 09:12:18', '#3B60F5'),
+(15, 21380, 32, '2023-10-26 09:12:18', '#0032FF'),
+(16, 21399, 11, '2023-10-26 09:12:18', '#3B60F5'),
 (17, 21398, 21, '2023-10-26 09:12:18', '#000'),
 (18, 21397, 43, '2023-10-26 09:12:18', 'black'),
-(19, 21386, 351, '2023-10-26 09:12:18', '#0FB1F5'),
-(20, 21379, 16, '2023-10-26 09:12:18', 'blue'),
-(28, 21379, 30, '2023-10-26 09:12:18', 'green'),
+(19, 21386, 348, '2023-10-26 09:12:18', '#0FB1F5'),
+(20, 21379, 4, '2023-10-26 09:12:18', 'blue'),
+(28, 21379, 24, '2023-10-26 09:12:18', 'green'),
 (29, 21391, 21, '2023-10-26 08:59:19', 'red'),
 (31, 21391, 30, '2023-10-26 08:59:19', 'green'),
 (34, 21400, 222, '2023-11-09 19:59:45', 'red'),
 (37, 21383, 100, '2023-10-26 09:12:18', '#F576D0'),
-(38, 21392, 56, '2023-10-26 09:12:18', '#F42301'),
+(38, 21392, 54, '2023-10-26 09:12:18', '#F42301'),
 (39, 21386, 31, '2023-10-26 09:12:18', '#9C00FC'),
-(40, 21380, 20, '2023-10-26 09:12:18', '#000000'),
-(41, 21380, 7, '2023-10-26 09:12:18', '#00DDAE'),
+(40, 21380, 9, '2023-10-26 09:12:18', '#000000'),
+(41, 21380, 2, '2023-10-26 09:12:18', '#00DDAE'),
 (42, 21380, 20, '2023-10-26 09:12:18', '#DD0000'),
-(43, 21381, 32, '2023-11-09 20:03:18', '#DD0000'),
-(44, 21381, 89, '2023-11-09 20:03:18', '#FFD800'),
-(45, 21382, 30, '2023-10-26 09:12:18', '#FFD800'),
-(46, 21382, 20, '2023-10-26 09:12:18', '#0078FF'),
-(47, 21383, 100, '2023-10-26 09:12:18', '#000000'),
-(48, 21383, 99, '2023-10-26 09:12:18', '#D800FF'),
+(43, 21381, 28, '2023-11-09 20:03:18', '#DD0000'),
+(44, 21381, 73, '2023-11-09 20:03:18', '#FFD800'),
+(45, 21382, 24, '2023-10-26 09:12:18', '#FFD800'),
+(46, 21382, 2, '2023-10-26 09:12:18', '#0078FF'),
+(47, 21383, 96, '2023-10-26 09:12:18', '#000000'),
+(48, 21383, 95, '2023-10-26 09:12:18', '#D800FF'),
 (49, 21383, 100, '2023-10-26 09:12:18', '#46FF00'),
-(50, 21384, 40, '2023-10-26 09:12:18', '#000000'),
-(51, 21384, 40, '2023-10-26 09:12:18', '#00FFCD'),
-(59, 21429, 100, '2023-11-14 10:28:52', '#7fff00'),
-(60, 21430, 100, '2023-11-14 10:37:37', '#ff6347'),
-(61, 21430, 2, '2023-11-14 10:41:08', '#8a2be2'),
+(50, 21384, 39, '2023-10-26 09:12:18', '#000000'),
+(51, 21384, 39, '2023-10-26 09:12:18', '#00FFCD'),
+(59, 21429, 98, '2023-11-14 10:28:52', '#7fff00'),
+(60, 21430, 94, '2023-11-14 10:37:37', '#ff6347'),
+(61, 21430, 1, '2023-11-14 10:41:08', '#8a2be2'),
 (62, 21430, 222, '2023-11-14 10:49:20', '#000000'),
-(63, 21431, 208, '2023-11-14 11:09:36', '#8a2be2'),
+(63, 21431, 207, '2023-11-14 11:09:36', '#8a2be2'),
 (64, 21431, 33, '2023-11-14 11:16:36', '#888'),
-(65, 21432, 99, '2023-11-18 10:13:29', '#000000'),
-(66, 21433, 12, '2023-11-18 10:19:34', '#d2b48c'),
-(67, 21434, 200, '2023-11-18 10:26:41', '#ff7f50'),
+(65, 21432, 98, '2023-11-18 10:13:29', '#000000'),
+(66, 21433, 9, '2023-11-18 10:19:34', '#d2b48c'),
+(67, 21434, 196, '2023-11-18 10:26:41', '#ff7f50'),
 (68, 21435, 20, '2023-11-18 10:31:59', '#000000'),
 (69, 21431, 2334, '2023-12-06 13:56:53', '#ff6347'),
 (70, 21431, 4, '2023-12-06 13:57:46', '#adff2f'),
-(71, 21431, 19, '2023-12-06 13:58:12', '#cd5c5c'),
+(71, 21431, 17, '2023-12-06 13:58:12', '#cd5c5c'),
 (72, 21431, 23, '2023-12-06 13:58:25', '#d8bfd8'),
 (73, 21431, 100, '2023-12-06 13:58:36', '#cd853f'),
 (74, 21438, 19, '2023-12-11 10:43:46', '#1e90ff'),
 (75, 21439, 109, '2023-12-11 10:47:43', '#000000'),
 (76, 21440, 234, '2023-12-11 10:52:26', '#ffefd5'),
 (77, 21441, 100, '2023-12-11 10:57:28', '#9370db'),
-(78, 21442, 91, '2023-12-11 11:02:45', '#000000'),
+(78, 21442, 85, '2023-12-11 11:02:45', '#000000'),
 (79, 21443, 32, '2023-12-11 11:25:49', '#000000'),
-(81, 21381, 21212, '2023-12-15 14:40:17', '#8b4513'),
-(82, 21381, 8, '2023-12-15 14:45:34', '#ff4500'),
+(81, 21381, 21202, '2023-12-15 14:40:17', '#8b4513'),
+(82, 21381, 7, '2023-12-15 14:45:34', '#ff4500'),
 (83, 21381, 69, '2023-12-15 14:47:27', '#cd853f'),
-(84, 21381, 667, '2023-12-15 14:48:12', '#9370db'),
-(88, 21397, 20, '2023-12-18 09:10:18', '#cd853f'),
+(84, 21381, 666, '2023-12-15 14:48:12', '#9370db'),
+(88, 21397, 19, '2023-12-18 09:10:18', '#cd853f'),
 (89, 21397, 32, '2023-12-18 09:11:03', '#7fffd4'),
-(90, 21432, 100, '2023-12-18 09:31:33', '#008b8b'),
+(90, 21432, 96, '2023-12-18 09:31:33', '#008b8b'),
 (91, 21392, 100, '2023-12-18 13:55:50', '#7fff00');
 
 -- --------------------------------------------------------
@@ -1223,14 +992,10 @@ CREATE TABLE `tbl_usuario` (
 --
 
 INSERT INTO `tbl_usuario` (`id_usuario`, `usuario`, `tipo_documento_u`, `nombres_u`, `apellidos_u`, `correo`, `password`, `celular`, `direccion`, `barrio`, `fotoPerfil`, `id_rol`) VALUES
-(1111, 'SantiagoV21', 'CC', 'Santiago ', 'Vargas Alvarez', 'admin21@gmail.com', '$2y$10$IO2jBBb2ecO5oM2E4pW6su5.TDNsvC2laDls2Bb9aF6OjlPQkbsQW', '2121', 'carrera 122c 34b 13', 211, '1701896424_md_5b321c98efaa6.jpg', 'Administrador'),
-(10292, 'kaja', 'CC', 'jasjdjhajj', 'ssssssssssssssssss', 'santi123@gmail.com', '$2y$10$YwZ1hH9pob5xAxYaaRuXLubutg30mznnaQKhjYc/m6EY48xn9b5Yy', '882828', NULL, NULL, NULL, 'Administrador'),
-(1234522, 'santi21', 'CC', 'Santiaguito', 'Vargas', 'santiagovargasalvarez8@gmail.com', '$2y$10$kyaQHY/7rFWjGsWTABX.NuvkEArv2UblEvc/UMmPSMbVs88gqQCZ2', '28128192', 'Cra 33 #34-33 apto 43g', 58, '1699160667_foto_perfil.png', 'Cliente'),
-(4443442, 'esteban1', 'CC', 'esteban', 'lopere', 'santi1w23e@gmail.com', '$2y$10$SBc85A5f4QjxxTDpABaISeOwf6v2na5lf0c.zu1zfSAzWSlJYdRkW', '232323', 'Carrera 133u ac', 120, NULL, 'Cliente'),
-(8727361, 'esteban1', 'CC', 'esteban', 'lopere', 'estebanlopere13@gmail.com', '$2y$10$b15QObPYoM.lxmGDCNvL.OtsQSURW1/0f5j/tOc47HJZ3Rz.iZ5vu', '232323', 'Calle 34b 113 d 81', 191, NULL, 'Cliente'),
-(431293892, 'Mateito', 'CC', 'Mateo', 'Reyes ', 'mateoreyes15@gmail.com', '$2y$10$zi0qyRQy27vpdtlk1GCLHulzxFNOAJKMlbvqJRGbGZN0Z5REPeT.a', '3029301821', 'carrera q12', 356, NULL, 'Cliente'),
-(1020550666, 'Jeronimo', 'CC', 'Jeronimo', 'Vargas', 'jerovargasalvarez21@gmail.com', '$2y$10$kAAxvsCO8pqCBTY6DjvR.e5UVrEUScbebTYvVwoELzCCD5GnDsJoe', '392829282', NULL, NULL, NULL, 'Cliente'),
-(2147483647, 'sasasaw', 'CC', 'Esteban', 'Vargas', 'santi1223@gmail.com', '$2y$10$ztTJ/y5kRQ8k66AWIE/VBefnSDgyOqsB3zRtmZcGdsIlWXGkHb0Pi', '21132313', NULL, NULL, NULL, 'Cliente');
+(1234522, 'santi21', 'CC', 'Santiago', 'Vargas2', 'santiagovargasalvarez8@gmail.com', '$2y$10$kyaQHY/7rFWjGsWTABX.NuvkEArv2UblEvc/UMmPSMbVs88gqQCZ2', '12345', 'Cra 33 #34-33 apto 43g', 256, '1699160667_foto_perfil.png', 'Cliente'),
+(19837263, 'Mateito', 'CC', 'Mateo', 'Reyes', 'mateoreyesuribe1@gmail.com', '$2y$10$.UGg5gf7Kfkh6SufVz52feYbK3hXJsWu891bjd6UzkJsFp6P1nqfu', '98374723', 'Carrera 112c8', 112, '1704604496_perfil2.png', 'Cliente'),
+(87382731, 'UsuPrueba', 'CC', 'Usuario', 'Prueba', 'usuarioprueba1@gmail.com', '$2y$10$8MYqYzXJo/shMsT61j/.xO39b3VgfxLRzW15PWDcmAGcKpC3bRzkG', '333333', 'carrera 112c', 256, NULL, 'Cliente'),
+(222333563, 'santas', 'CC', 'Santiago', 'sss', 'santi14@gmail.com', '$2y$10$6LEiM6E9miEIX5q6El5jUubphlbqf1LxGxcSX1BQqV.9D9Ot4.S5W', '22222222222', NULL, NULL, NULL, 'Cliente');
 
 -- --------------------------------------------------------
 
@@ -1258,15 +1023,12 @@ CREATE TABLE `tbl_vendedor` (
 --
 
 INSERT INTO `tbl_vendedor` (`id_usuario`, `usuario`, `tipo_documento_u`, `nombres_u`, `apellidos_u`, `correo`, `password`, `celular`, `direccion`, `barrio`, `fotoPerfil`, `id_rol`) VALUES
-(112, '111', 'TI', '2sssssss', 'ss', 'lopreesteba22n@gmailcom', '$2y$10$04UK8N0a5ueyi2MUbuqwfu7a/1JgMrZV2ZD4Pw.knQjSmPJL0B0KW', '1', NULL, 1, NULL, 'Vendedor'),
-(2221, 'Santiago21', 'CC', 'Santi', 'sss', 'santi1@gmail.com', '$2y$10$1JS097HYR/yfJepirF5dAeZwxo3cW.veXfHP4S81tKHBrApknlKEy', '2221', 'carrera w112c', 313, '1699160339_ab92edaadf5ced342055ac1ce79f6a2c.jpg', 'Vendedor'),
-(12323, 'sad', 'TI', 'Esteban', 'Vargas', 'santi122212@gmail.com', '$2y$10$ILfbA6uudMU4yP9HrlyonuGUjAIhn5KdccHHDhbdxm8oYLWWsLaWq', '3123', NULL, NULL, NULL, 'Vendedor'),
-(212121, 'qqq', 'TI', 'Santiago', 'ssssssssssssssssss', 'santi34@gmail.com', '$2y$10$/Cz0r9jYrCxtn00aqnQ/lu1hyjtkTAVdUkwa9vcZMLPOlykrRfh0S', 'qqqq', NULL, 1, NULL, 'Vendedor'),
-(9891821, 'Esteb', 'CC', 'Esteban', 'Vargas', 'lopreesteban4323@gmail.com', '$2y$10$PB62JcA0fQZSuUdAUgHCROBZEk.k9q6Wbsq43UjkQGtpYMgBJYRR2', '28712922', NULL, NULL, NULL, 'Vendedor'),
-(13214313, 'esteban1', 'TI', 'esteban', 'lopere', '4r41f@gmail.com', '$2y$10$b71fo3AxpETn3ioHlBrlpeiBDlpiG1HtJzyySMTP5Y747uDph1wH.', '232323', NULL, NULL, NULL, 'Vendedor'),
-(22233323, 'santas', 'CC', 'Santiago', 'wwww', 'wwwwwwwwwwwww@gmail.com', '$2y$10$2DvbKKgVQ2IBdJZviRHo5.UvVFJFR4WYvr77ICahPqOyvxEOFCJWG', '22222222222', NULL, NULL, NULL, 'Vendedor'),
-(1017122543, 'esteban1', 'CC', 'esteban', 'lopere', 'estebanlopere1@gmail.com', '$2y$10$.kXw/.rYN5npl19jGoYN2eyqJgBuvPjg8AR6HNaeb8ZYvWZuwoGIi', '232323', 'fsee', NULL, '1700746658_05.jpg', 'Vendedor'),
-(1017122545, 'esteban', 'CC', 'Esteban', 'Lopera Olaya', 'lopreesteban@gmail.com', '$2y$10$ozcmVJIqtJKRNE3feu9cke5B2DgyclExRVurJyapEn7Emdie6AP/O', '3005458283', NULL, 1, NULL, 'Vendedor');
+(2221, 'Santiago21', 'CC', 'Santi3', 'sss', 'santi1@gmail.com', '$2y$10$1JS097HYR/yfJepirF5dAeZwxo3cW.veXfHP4S81tKHBrApknlKEy', '2221', 'carrera w112c', 313, '1704826885_descarga.jpg', 'Vendedor'),
+(2228273, 'Santiago21', 'CC', 'Santiago', 'Vargas', 'santi1656@gmail.com', '$2y$10$BX/LddqK7g/aNkrYRer1BODsy8veq.PTKFUZA45F1VcKhZ9fZlMGW', '2221', NULL, NULL, NULL, 'Vendedor'),
+(18273827, 'santiago21', 'CC', 'santiago', 'vargas', 'santi2@gmail.com', '$2y$10$vc5X6dTkbh/grpndE9SaGuFdQIqov8pTjJFQk1QGCcH8sWC0fPasm', '2182738', NULL, NULL, NULL, 'Vendedor'),
+(98273612, 'Santiago21', 'CC', 'Santiago', 'vargas', 'santiago2394@gmail.com', '$2y$10$YaCZ9Pw3zsdTKMm1eScDKu/J1FfRweIVA2Ttq2BvDFvKgMg8F8qZe', '2221', NULL, NULL, NULL, 'Vendedor'),
+(123452234, 'vendedor', 'CC', 'usuario', 'vendedor', 'usuariovendedor1@gmail.com', '$2y$10$Shl.sVk9v9096Xt5Ta5T2OGg57VaMNty/gRQYm8ZBp2Y9kk4lBDEC', '2938293', NULL, NULL, NULL, 'Vendedor'),
+(1034557234, 'Jordan123', 'CC', 'Andres', 'Alvarez', 'andressarrazolaa21@gmail.com', '$2y$10$VL53dpjwSmCep/tlCUb0luAgnpmbyWMfy4Ivyxho6VpElxcUsXWIS', '3245955603', 'carrera 112c', 305, '1704603347_perfil1.png', 'Vendedor');
 
 -- --------------------------------------------------------
 
@@ -1277,14 +1039,40 @@ INSERT INTO `tbl_vendedor` (`id_usuario`, `usuario`, `tipo_documento_u`, `nombre
 CREATE TABLE `tbl_venta` (
   `id_venta` int(11) NOT NULL,
   `estado` varchar(100) NOT NULL,
-  `id_factura` int(11) NOT NULL,
   `id_compra` int(11) NOT NULL,
-  `id_usuario` int(11) NOT NULL
+  `metodo_pago` varchar(45) NOT NULL,
+  `total_compra` varchar(100) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `nombres_u` varchar(100) NOT NULL,
+  `apellidos_u` varchar(100) NOT NULL,
+  `correo` varchar(100) NOT NULL,
+  `direccion` varchar(100) NOT NULL,
+  `costo_envio` varchar(100) NOT NULL,
+  `fecha_compra` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `tbl_venta`
+--
+
+INSERT INTO `tbl_venta` (`id_venta`, `estado`, `id_compra`, `metodo_pago`, `total_compra`, `id_usuario`, `nombres_u`, `apellidos_u`, `correo`, `direccion`, `costo_envio`, `fecha_compra`) VALUES
+(18, 'completado', 518, 'Transferencia Ahorros Bancolombia', '106500', 1234522, 'Santiago', 'Vargas2', 'santiagovargasalvarez8@gmail.com', 'Cra 33 #34-33 apto 43g', '20000', '2024-01-08 23:13:58'),
+(19, 'completado', 521, 'Efectivo', '7120660', 87382731, 'Usuario', 'Prueba', 'usuarioprueba1@gmail.com', 'carrera 112c', '20000', '2024-01-12 00:24:15'),
+(20, 'completado', 522, 'Efectivo', '14129540', 1234522, 'Santiago', 'Vargas2', 'santiagovargasalvarez8@gmail.com', 'Cra 33 #34-33 apto 43g', '20000', '2024-05-08 18:47:08'),
+(21, 'completado', 519, 'Efectivo', '1600000', 1234522, 'Santiago', 'Vargas2', 'santiagovargasalvarez8@gmail.com', 'Cra 33 #34-33 apto 43g', '20000', '2024-01-11 12:15:43'),
+(22, 'completado', 520, 'Efectivo', '32767080', 1234522, 'Santiago', 'Vargas2', 'santiagovargasalvarez8@gmail.com', 'Cra 33 #34-33 apto 43g', '20000', '2024-01-11 12:46:38'),
+(23, 'completado', 523, 'Efectivo', '4877320', 1234522, 'Santiago', 'Vargas2', 'santiagovargasalvarez8@gmail.com', 'Cra 33 #34-33 apto 43g', '20000', '2024-05-08 18:51:47');
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `tbl_administrador`
+--
+ALTER TABLE `tbl_administrador`
+  ADD PRIMARY KEY (`id_usuario`),
+  ADD KEY `barrio` (`barrio`);
 
 --
 -- Indices de la tabla `tbl_barrio`
@@ -1292,14 +1080,6 @@ CREATE TABLE `tbl_venta` (
 ALTER TABLE `tbl_barrio`
   ADD PRIMARY KEY (`id_barrio`),
   ADD KEY `id_comuna` (`id_comuna`);
-
---
--- Indices de la tabla `tbl_calificacion`
---
-ALTER TABLE `tbl_calificacion`
-  ADD PRIMARY KEY (`id_calificacion`),
-  ADD KEY `id_usuario` (`id_usuario`),
-  ADD KEY `id_producto` (`id_producto`);
 
 --
 -- Indices de la tabla `tbl_carrito`
@@ -1336,12 +1116,6 @@ ALTER TABLE `tbl_comuna`
   ADD KEY `id_municipio` (`id_municipio`);
 
 --
--- Indices de la tabla `tbl_factura`
---
-ALTER TABLE `tbl_factura`
-  ADD PRIMARY KEY (`id_factura`);
-
---
 -- Indices de la tabla `tbl_municipio`
 --
 ALTER TABLE `tbl_municipio`
@@ -1354,13 +1128,6 @@ ALTER TABLE `tbl_productos`
   ADD PRIMARY KEY (`id_producto`),
   ADD KEY `nit_identificacion` (`nit_identificacion`),
   ADD KEY `id_sub_categoria` (`id_sub_categoria`);
-
---
--- Indices de la tabla `tbl_restablecer_contraseña`
---
-ALTER TABLE `tbl_restablecer_contraseña`
-  ADD PRIMARY KEY (`id_restablecer`),
-  ADD KEY `id_usuario` (`id_usuario`);
 
 --
 -- Indices de la tabla `tbl_stock`
@@ -1403,7 +1170,6 @@ ALTER TABLE `tbl_vendedor`
 --
 ALTER TABLE `tbl_venta`
   ADD PRIMARY KEY (`id_venta`),
-  ADD KEY `id_factura` (`id_factura`),
   ADD KEY `id_compra` (`id_compra`);
 
 --
@@ -1411,16 +1177,10 @@ ALTER TABLE `tbl_venta`
 --
 
 --
--- AUTO_INCREMENT de la tabla `tbl_calificacion`
---
-ALTER TABLE `tbl_calificacion`
-  MODIFY `id_calificacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-
---
 -- AUTO_INCREMENT de la tabla `tbl_carrito`
 --
 ALTER TABLE `tbl_carrito`
-  MODIFY `id_carrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=881;
+  MODIFY `id_carrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=980;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_categorias`
@@ -1432,31 +1192,19 @@ ALTER TABLE `tbl_categorias`
 -- AUTO_INCREMENT de la tabla `tbl_compra`
 --
 ALTER TABLE `tbl_compra`
-  MODIFY `id_compra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=491;
-
---
--- AUTO_INCREMENT de la tabla `tbl_factura`
---
-ALTER TABLE `tbl_factura`
-  MODIFY `id_factura` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_compra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=524;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_productos`
 --
 ALTER TABLE `tbl_productos`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21444;
-
---
--- AUTO_INCREMENT de la tabla `tbl_restablecer_contraseña`
---
-ALTER TABLE `tbl_restablecer_contraseña`
-  MODIFY `id_restablecer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21448;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_stock`
 --
 ALTER TABLE `tbl_stock`
-  MODIFY `id_stock` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
+  MODIFY `id_stock` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_sub_categorias`
@@ -1474,23 +1222,23 @@ ALTER TABLE `tbl_tienda`
 -- AUTO_INCREMENT de la tabla `tbl_venta`
 --
 ALTER TABLE `tbl_venta`
-  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- Restricciones para tablas volcadas
 --
 
 --
+-- Filtros para la tabla `tbl_administrador`
+--
+ALTER TABLE `tbl_administrador`
+  ADD CONSTRAINT `tbl_administrador_ibfk_1` FOREIGN KEY (`barrio`) REFERENCES `tbl_barrio` (`id_barrio`);
+
+--
 -- Filtros para la tabla `tbl_barrio`
 --
 ALTER TABLE `tbl_barrio`
   ADD CONSTRAINT `tbl_barrio_ibfk_1` FOREIGN KEY (`id_comuna`) REFERENCES `tbl_comuna` (`id_comuna`);
-
---
--- Filtros para la tabla `tbl_calificacion`
---
-ALTER TABLE `tbl_calificacion`
-  ADD CONSTRAINT `fk_tbl_producto_id` FOREIGN KEY (`id_producto`) REFERENCES `tbl_productos` (`id_producto`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `tbl_carrito`
@@ -1518,12 +1266,6 @@ ALTER TABLE `tbl_comuna`
 ALTER TABLE `tbl_productos`
   ADD CONSTRAINT `tbl_productos_ibfk_1` FOREIGN KEY (`nit_identificacion`) REFERENCES `tbl_tienda` (`nit_identificacion`),
   ADD CONSTRAINT `tbl_productos_ibfk_2` FOREIGN KEY (`id_sub_categoria`) REFERENCES `tbl_sub_categorias` (`id_sub_categoria`);
-
---
--- Filtros para la tabla `tbl_restablecer_contraseña`
---
-ALTER TABLE `tbl_restablecer_contraseña`
-  ADD CONSTRAINT `tbl_restablecer_contraseña_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `tbl_usuario` (`id_usuario`);
 
 --
 -- Filtros para la tabla `tbl_stock`
@@ -1560,7 +1302,6 @@ ALTER TABLE `tbl_vendedor`
 -- Filtros para la tabla `tbl_venta`
 --
 ALTER TABLE `tbl_venta`
-  ADD CONSTRAINT `tbl_venta_ibfk_1` FOREIGN KEY (`id_factura`) REFERENCES `tbl_factura` (`id_factura`),
   ADD CONSTRAINT `tbl_venta_ibfk_2` FOREIGN KEY (`id_compra`) REFERENCES `tbl_compra` (`id_compra`);
 COMMIT;
 

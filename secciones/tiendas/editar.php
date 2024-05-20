@@ -72,15 +72,15 @@ if (isset($_GET['tienda'])) {
         }
 
         $mensaje = "Tienda actualizada";
-        $parametros = "txtID=" . $tienda . "&mensaje=" . urlencode($mensaje);
-        header("Location: mas_tienda.php?" . $parametros);
+        $ruta = "index.php";
+        header("Location: mas_tienda.php?txtID=" . $tienda . "&mensaje=" . $mensaje . "&ruta=" . $ruta);
     }
 }
 ?>
 
 <?php include("../../templates/header.php"); ?>
 <div class="caja_botoncancelar">
-    <a href="mas_tienda.php?txtID=<?php echo $tienda ?>">
+    <a href="mas_tienda.php?txtID=<?php echo $tienda ?>&ruta=index.php">
         <button class="button_retrocederrr">
             <div class="button-box">
                 <span class="button-elem">
@@ -96,7 +96,6 @@ if (isset($_GET['tienda'])) {
             </div>
         </button>
     </a>
-
 </div>
 
 <form action="" method="post" enctype="multipart/form-data">

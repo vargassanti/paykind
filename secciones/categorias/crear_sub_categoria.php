@@ -15,12 +15,10 @@ include("../../bd.php");
 if ($_POST) {
     $nombre_sub_categoria = (isset($_POST["nombre_sub_categoria"]) ? $_POST["nombre_sub_categoria"] : "");
     $id_categoria = (isset($_POST["id_categoria"]) ? $_POST["id_categoria"] : "");
-    $nit_identificacion = (isset($_POST["nit_identificacion"]) ? $_POST["nit_identificacion"] : "");
-    $sentencia = $conexion->prepare("INSERT INTO tbl_sub_categorias(id_sub_categoria, nombre_sub_categoria, id_categoria, nit_identificacion)
-                 VALUES (null, :nombre_sub_categoria, :id_categoria, :nit_identificacion)");
+    $sentencia = $conexion->prepare("INSERT INTO tbl_sub_categorias(id_sub_categoria, nombre_sub_categoria, id_categoria)
+                 VALUES (null, :nombre_sub_categoria, :id_categoria)");
     $sentencia->bindParam(":nombre_sub_categoria", $nombre_sub_categoria);
     $sentencia->bindParam(":id_categoria", $id_categoria);
-    $sentencia->bindParam(":nit_identificacion", $nit_identificacion);
     $sentencia->execute();
 
     $mensaje = "Registro agregado";
@@ -73,20 +71,6 @@ $tienda->execute();
                     <?php } ?>
                 </select>
                 <span>Categoria:</span>
-            </div>
-        </div>
-
-        <div class="caja_productoos">
-            <div class="inputBox">
-                <select name="nit_identificacion" id="nit_identificacion" required="required">
-                    <option selected hidden>Selecciona una opción: </option>
-                    <?php foreach ($tienda as $registro) { ?>
-                        <option value="<?php echo $registro['nit_identificacion'] ?> selected">
-                            <?php echo $registro['nombre_tienda'] ?> - <?php echo $registro['nit_identificacion'] ?>
-                        </option>
-                    <?php } ?>
-                </select>
-                <span>Nit tienda:</span>
             </div>
         </div>
 

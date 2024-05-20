@@ -18,11 +18,24 @@ include("../../bd.php");
 
 $id_usuario = $_SESSION['usuario_id'];
 
-if (isset($_GET['txtID'])) {
+if (isset($_GET['txtID'], $_GET['rol_usuario_e'])) {
     $txtID = (isset($_GET['txtID'])) ? $_GET['txtID'] : "";
+    $rol_usuario_e = (isset($_GET['rol_usuario_e'])) ? $_GET['rol_usuario_e'] : "";
 
-    $sentencia = $conexion->prepare("DELETE FROM tbl_usuario WHERE id_usuario=:id_usuario");
+    if ($rol_usuario_e == 'Cliente') {
+        $tabla_eliminar = 'tbl_usuario';
+    } elseif ($rol_usuario_e == 'Vendedor') {
+        $tabla_eliminar = 'tbl_vendedor';
+    } elseif ($rol_usuario_e == 'Administrador') {
+        $tabla_eliminar = 'tbl_administrador';
+    } else {
+        echo "El rol seleccionado no es válido.";
+        exit;
+    }
+
+    $sentencia = $conexion->prepare("DELETE FROM $tabla_eliminar WHERE id_usuario=:id_usuario AND id_rol=:id_rol");
     $sentencia->bindParam(":id_usuario", $txtID);
+    $sentencia->bindParam(":id_rol", $rol_usuario_e);
     $sentencia->execute();
 
     $mensaje = "Registro eliminado";
@@ -33,7 +46,7 @@ $clientes = $conexion->prepare("SELECT * FROM `tbl_usuario` where id_rol = 'Clie
 $clientes->execute();
 $lista_tbl_usuarios = $clientes->fetchAll(PDO::FETCH_ASSOC);
 
-$administradores = $conexion->prepare("SELECT * FROM `tbl_usuario` WHERE id_rol = 'Administrador'");
+$administradores = $conexion->prepare("SELECT * FROM `tbl_administrador` WHERE id_rol = 'Administrador'");
 $administradores->execute();
 $lista_tbl_administradores = $administradores->fetchAll(PDO::FETCH_ASSOC);
 
@@ -55,8 +68,8 @@ $info_u = $conexion->prepare("SELECT * FROM tbl_usuario WHERE id_usuario =:id_us
 $info_u->bindParam(":id_usuario", $id_usuario);
 $info_u->execute();
 $informacion = $info_u->fetchAll(PDO::FETCH_ASSOC);
-?>
-<?php include("../../templates/header.php"); ?>
+
+include("../../templates/header.php"); ?>
 
 
 <h4 class="titulo_usuarios_registrados">Usuarios registrados</h4>
@@ -106,106 +119,94 @@ $informacion = $info_u->fetchAll(PDO::FETCH_ASSOC);
                 </tr>
             </thead>
             <tbody>
+                <?php
+                if (empty($lista_tbl_administradores)) {
+                    echo "<tr><td colspan='6'>No hay administradores registrados.</td></tr>";
+                } else {
+                    foreach ($lista_tbl_administradores as $registro) { ?>
+                        <tr>
+                            <td>
+                                <div class="container_foto_usu">
+                                    <div class="fotico">
+                                        <?php if (empty($registro['fotoPerfil'])) { ?>
+                                            <img src="../../imagen/Avatar-No-Background.png" alt="Imagen Predeterminada">
+                                        <?php } else { ?>
+                                            <img src="../miperfil/imagenes_producto/<?php echo $registro['fotoPerfil']; ?>" alt="">
+                                        <?php } ?>
+                                    </div>
+                                    <p>
+                                        <?php
+                                        $contenido = $registro['usuario'];
+                                        $limite_letras = 5;
 
-                <?php foreach ($lista_tbl_administradores as $registro) { ?>
-                    <tr class="">
-                        <td>
-                            <div class="container_foto_usu">
+                                        if (strlen($contenido) > $limite_letras) {
+                                            $contenido_limitado = substr($contenido, 0, $limite_letras) . '...';
+                                            echo $contenido_limitado;
+                                        } else {
+                                            echo $contenido;
+                                        }
+                                        ?>
+                                    </p>
+                                </div>
+                            </td>
+                            <td scope="row">
                                 <?php
-                                if (empty($registro['fotoPerfil'])) {
-                                ?>
-                                    <img src="../../imagen/Avatar-No-Background.png" alt="Imagen Predeterminada">
-                                <?php
+                                $numero = $registro['id_usuario'];
+                                $limite_digitos = 10;
+
+                                if (strlen((string)$numero) > $limite_digitos) {
+                                    $numero_limitado = number_format($numero, 0, '', '');
+                                    echo substr($numero_limitado, 0, $limite_digitos) . '...';
                                 } else {
-                                ?>
-                                    <img src="../miperfil/imagenes_producto/<?php echo $registro['fotoPerfil']; ?>" alt="">
-                                <?php
+                                    echo $numero;
                                 }
                                 ?>
-                                <p>
-                                    <?php
-                                    $contenido = $registro['usuario'];
-                                    $limite_letras = 5;
+                            </td>
+                            <td>
+                                <?php
+                                $contenido = $registro['correo'];
+                                $limite_letras = 15;
 
-                                    if (strlen($contenido) > $limite_letras) {
-                                        $contenido_limitado = substr($contenido, 0, $limite_letras) . '...';
-                                        echo $contenido_limitado;
-                                    } else {
-                                        echo $contenido;
-                                    }
-                                    ?>
-                                </p>
-                            </div>
-                        </td>
-                        <td scope="row">
-                            <?php
-                            $numero = $registro['id_usuario'];
-                            $limite_digitos = 10;
+                                if (strlen($contenido) > $limite_letras) {
+                                    $contenido_limitado = substr($contenido, 0, $limite_letras) . '...';
+                                    echo $contenido_limitado;
+                                } else {
+                                    echo $contenido;
+                                }
+                                ?>
+                            </td>
+                            <td>
+                                <?php
+                                $numero = $registro['celular'];
+                                $limite_digitos = 10;
 
-                            if (strlen((string)$numero) > $limite_digitos) {
-                                $numero_limitado = number_format($numero, 0, '', '');
-                                echo substr($numero_limitado, 0, $limite_digitos) . '...';
-                            } else {
-                                echo $numero;
-                            }
-                            ?>
-                        </td>
-                        <td>
-                            <?php
-                            $contenido = $registro['correo'];
-                            $limite_letras = 15;
+                                if (strlen((string)$numero) > $limite_digitos) {
+                                    $numero_limitado = number_format($numero, 0, '', '');
+                                    echo substr($numero_limitado, 0, $limite_digitos) . '...';
+                                } else {
+                                    echo $numero;
+                                }
+                                ?>
+                            </td>
+                            <td><?php echo $registro['id_rol']; ?></td>
+                            <td>
+                                <button class="animated-button-editar">
+                                    <a href="editar.php?txtID=<?php echo $registro['id_usuario']; ?>&rol_usuario=<?php echo $registro['id_rol']; ?>">
+                                        <span>Editar</span>
+                                        <span></span>
+                                    </a>
+                                </button>
 
-                            if (strlen($contenido) > $limite_letras) {
-                                $contenido_limitado = substr($contenido, 0, $limite_letras) . '...';
-                                echo $contenido_limitado;
-                            } else {
-                                echo $contenido;
-                            }
-                            ?>
-                        </td>
-                        <td>
-                            <?php
-                            $numero = $registro['celular'];
-                            $limite_digitos = 10;
-
-                            if (strlen((string)$numero) > $limite_digitos) {
-                                $numero_limitado = number_format($numero, 0, '', '');
-                                echo substr($numero_limitado, 0, $limite_digitos) . '...';
-                            } else {
-                                echo $numero;
-                            }
-                            ?>
-                        </td>
-                        <td><?php echo $registro['id_rol']; ?></td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="dropbtn" id="dropdownBtn">Opciones</button>
-                                <div class="dropdown-content" id="myDropdown">
-                                    <button class="animated-button-ver">
-                                        <a href="ver_usuario.php?txtID=<?php echo $registro['id_usuario']; ?>&id_rol=<?php echo $registro['id_rol']; ?>">
-                                            <span>Ver</span>
-                                            <span></span>
-                                        </a>
-                                    </button>
-
-                                    <button class="animated-button-editar">
-                                        <a href="editar.php?txtID=<?php echo $registro['id_usuario']; ?>">
-                                            <span>Editar</span>
-                                            <span></span>
-                                        </a>
-                                    </button>
-
-                                    <button class="animated-button-eliminar">
-                                        <a href="javascript:borrar(<?php echo $registro['id_usuario']; ?>);">
-                                            <span>Eliminar</span>
-                                            <span></span>
-                                        </a>
-                                    </button>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                <?php } ?>
+                                <button class="animated-button-eliminar">
+                                    <a href="javascript:borrar(<?php echo $registro['id_usuario']; ?>, '<?php echo $registro['id_rol']; ?>');">
+                                        <span>Eliminar</span>
+                                        <span></span>
+                                    </a>
+                                </button>
+                            </td>
+                        </tr>
+                <?php }
+                } ?>
             </tbody>
         </table>
     </div>
@@ -223,106 +224,94 @@ $informacion = $info_u->fetchAll(PDO::FETCH_ASSOC);
                 </tr>
             </thead>
             <tbody>
+                <?php
+                if (empty($lista_tbl_usuarios)) {
+                    echo "<tr><td colspan='6'>No hay clientes registrados.</td></tr>";
+                } else {
+                    foreach ($lista_tbl_usuarios as $registro) { ?>
+                        <tr>
+                            <td>
+                                <div class="container_foto_usu">
+                                    <div class="fotico">
+                                        <?php if (empty($registro['fotoPerfil'])) { ?>
+                                            <img src="../../imagen/Avatar-No-Background.png" alt="Imagen Predeterminada">
+                                        <?php } else { ?>
+                                            <img src="../miperfil/imagenes_producto/<?php echo $registro['fotoPerfil']; ?>" alt="">
+                                        <?php } ?>
+                                    </div>
+                                    <p>
+                                        <?php
+                                        $contenido = $registro['usuario'];
+                                        $limite_letras = 5;
 
-                <?php foreach ($lista_tbl_usuarios as $registro) { ?>
-                    <tr class="">
-                        <td>
-                            <div class="container_foto_usu">
+                                        if (strlen($contenido) > $limite_letras) {
+                                            $contenido_limitado = substr($contenido, 0, $limite_letras) . '...';
+                                            echo $contenido_limitado;
+                                        } else {
+                                            echo $contenido;
+                                        }
+                                        ?>
+                                    </p>
+                                </div>
+                            </td>
+                            <td scope="row">
                                 <?php
-                                if (empty($registro['fotoPerfil'])) {
-                                ?>
-                                    <img src="../../imagen/Avatar-No-Background.png" alt="Imagen Predeterminada">
-                                <?php
+                                $numero = $registro['id_usuario'];
+                                $limite_digitos = 10;
+
+                                if (strlen((string)$numero) > $limite_digitos) {
+                                    $numero_limitado = number_format($numero, 0, '', '');
+                                    echo substr($numero_limitado, 0, $limite_digitos) . '...';
                                 } else {
-                                ?>
-                                    <img src="../miperfil/imagenes_producto/<?php echo $registro['fotoPerfil']; ?>" alt="">
-                                <?php
+                                    echo $numero;
                                 }
                                 ?>
-                                <p>
-                                    <?php
-                                    $contenido = $registro['usuario'];
-                                    $limite_letras = 5;
+                            </td>
+                            <td>
+                                <?php
+                                $contenido = $registro['correo'];
+                                $limite_letras = 15;
 
-                                    if (strlen($contenido) > $limite_letras) {
-                                        $contenido_limitado = substr($contenido, 0, $limite_letras) . '...';
-                                        echo $contenido_limitado;
-                                    } else {
-                                        echo $contenido;
-                                    }
-                                    ?>
-                                </p>
-                            </div>
-                        </td>
-                        <td scope="row">
-                            <?php
-                            $numero = $registro['id_usuario'];
-                            $limite_digitos = 10;
+                                if (strlen($contenido) > $limite_letras) {
+                                    $contenido_limitado = substr($contenido, 0, $limite_letras) . '...';
+                                    echo $contenido_limitado;
+                                } else {
+                                    echo $contenido;
+                                }
+                                ?>
+                            </td>
+                            <td>
+                                <?php
+                                $numero = $registro['celular'];
+                                $limite_digitos = 10;
 
-                            if (strlen((string)$numero) > $limite_digitos) {
-                                $numero_limitado = number_format($numero, 0, '', '');
-                                echo substr($numero_limitado, 0, $limite_digitos) . '...';
-                            } else {
-                                echo $numero;
-                            }
-                            ?>
-                        </td>
-                        <td>
-                            <?php
-                            $contenido = $registro['correo'];
-                            $limite_letras = 15;
+                                if (strlen((string)$numero) > $limite_digitos) {
+                                    $numero_limitado = number_format($numero, 0, '', '');
+                                    echo substr($numero_limitado, 0, $limite_digitos) . '...';
+                                } else {
+                                    echo $numero;
+                                }
+                                ?>
+                            </td>
+                            <td><?php echo $registro['id_rol']; ?></td>
+                            <td>
+                                <button class="animated-button-editar">
+                                    <a href="editar.php?txtID=<?php echo $registro['id_usuario']; ?>&rol_usuario=<?php echo $registro['id_rol']; ?>">
+                                        <span>Editar</span>
+                                        <span></span>
+                                    </a>
+                                </button>
 
-                            if (strlen($contenido) > $limite_letras) {
-                                $contenido_limitado = substr($contenido, 0, $limite_letras) . '...';
-                                echo $contenido_limitado;
-                            } else {
-                                echo $contenido;
-                            }
-                            ?>
-                        </td>
-                        <td>
-                            <?php
-                            $numero = $registro['celular'];
-                            $limite_digitos = 10;
-
-                            if (strlen((string)$numero) > $limite_digitos) {
-                                $numero_limitado = number_format($numero, 0, '', '');
-                                echo substr($numero_limitado, 0, $limite_digitos) . '...';
-                            } else {
-                                echo $numero;
-                            }
-                            ?>
-                        </td>
-                        <td><?php echo $registro['id_rol']; ?></td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="dropbtn" id="dropdownBtn">Opciones</button>
-                                <div class="dropdown-content" id="myDropdown">
-                                    <button class="animated-button-ver">
-                                        <a href="ver_usuario.php?txtID=<?php echo $registro['id_usuario']; ?>&id_rol=<?php echo $registro['id_rol']; ?>">
-                                            <span>Ver</span>
-                                            <span></span>
-                                        </a>
-                                    </button>
-
-                                    <button class="animated-button-editar">
-                                        <a href="editar.php?txtID=<?php echo $registro['id_usuario']; ?>">
-                                            <span>Editar</span>
-                                            <span></span>
-                                        </a>
-                                    </button>
-
-                                    <button class="animated-button-eliminar">
-                                        <a href="javascript:borrar(<?php echo $registro['id_usuario']; ?>);">
-                                            <span>Eliminar</span>
-                                            <span></span>
-                                        </a>
-                                    </button>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                <?php } ?>
+                                <button class="animated-button-eliminar">
+                                    <a href="javascript:borrar(<?php echo $registro['id_usuario']; ?>, '<?php echo $registro['id_rol']; ?>');">
+                                        <span>Eliminar</span>
+                                        <span></span>
+                                    </a>
+                                </button>
+                            </td>
+                        </tr>
+                <?php }
+                } ?>
             </tbody>
         </table>
     </div>
@@ -340,106 +329,94 @@ $informacion = $info_u->fetchAll(PDO::FETCH_ASSOC);
                 </tr>
             </thead>
             <tbody>
+                <?php
+                if (empty($lista_tbl_vendedores)) {
+                    echo "<tr><td colspan='6'>No hay vendedores registrados.</td></tr>";
+                } else {
+                    foreach ($lista_tbl_vendedores as $registro) { ?>
+                        <tr class="">
+                            <td>
+                                <div class="container_foto_usu">
+                                    <div class="fotico">
+                                        <?php if (empty($registro['fotoPerfil'])) { ?>
+                                            <img src="../../imagen/Avatar-No-Background.png" alt="Imagen Predeterminada">
+                                        <?php } else { ?>
+                                            <img src="../miperfil/imagenes_producto/<?php echo $registro['fotoPerfil']; ?>" alt="">
+                                        <?php } ?>
+                                    </div>
+                                    <p>
+                                        <?php
+                                        $contenido = $registro['usuario'];
+                                        $limite_letras = 5;
 
-                <?php foreach ($lista_tbl_vendedores as $registro) { ?>
-                    <tr class="">
-                        <td>
-                            <div class="container_foto_usu">
+                                        if (strlen($contenido) > $limite_letras) {
+                                            $contenido_limitado = substr($contenido, 0, $limite_letras) . '...';
+                                            echo $contenido_limitado;
+                                        } else {
+                                            echo $contenido;
+                                        }
+                                        ?>
+                                    </p>
+                                </div>
+                            </td>
+                            <td scope="row">
                                 <?php
-                                if (empty($registro['fotoPerfil'])) {
-                                ?>
-                                    <img src="../../imagen/Avatar-No-Background.png" alt="Imagen Predeterminada">
-                                <?php
+                                $numero = $registro['id_usuario'];
+                                $limite_digitos = 10;
+
+                                if (strlen((string)$numero) > $limite_digitos) {
+                                    $numero_limitado = number_format($numero, 0, '', '');
+                                    echo substr($numero_limitado, 0, $limite_digitos) . '...';
                                 } else {
-                                ?>
-                                    <img src="../miperfil/imagenes_producto/<?php echo $registro['fotoPerfil']; ?>" alt="">
-                                <?php
+                                    echo $numero;
                                 }
                                 ?>
-                                <p>
-                                    <?php
-                                    $contenido = $registro['usuario'];
-                                    $limite_letras = 5;
+                            </td>
+                            <td>
+                                <?php
+                                $contenido = $registro['correo'];
+                                $limite_letras = 15;
 
-                                    if (strlen($contenido) > $limite_letras) {
-                                        $contenido_limitado = substr($contenido, 0, $limite_letras) . '...';
-                                        echo $contenido_limitado;
-                                    } else {
-                                        echo $contenido;
-                                    }
-                                    ?>
-                                </p>
-                            </div>
-                        </td>
-                        <td scope="row">
-                            <?php
-                            $numero = $registro['id_usuario'];
-                            $limite_digitos = 10;
+                                if (strlen($contenido) > $limite_letras) {
+                                    $contenido_limitado = substr($contenido, 0, $limite_letras) . '...';
+                                    echo $contenido_limitado;
+                                } else {
+                                    echo $contenido;
+                                }
+                                ?>
+                            </td>
+                            <td>
+                                <?php
+                                $numero = $registro['celular'];
+                                $limite_digitos = 10;
 
-                            if (strlen((string)$numero) > $limite_digitos) {
-                                $numero_limitado = number_format($numero, 0, '', '');
-                                echo substr($numero_limitado, 0, $limite_digitos) . '...';
-                            } else {
-                                echo $numero;
-                            }
-                            ?>
-                        </td>
-                        <td>
-                            <?php
-                            $contenido = $registro['correo'];
-                            $limite_letras = 15;
+                                if (strlen((string)$numero) > $limite_digitos) {
+                                    $numero_limitado = number_format($numero, 0, '', '');
+                                    echo substr($numero_limitado, 0, $limite_digitos) . '...';
+                                } else {
+                                    echo $numero;
+                                }
+                                ?>
+                            </td>
+                            <td><?php echo $registro['id_rol']; ?></td>
+                            <td>
+                                <button class="animated-button-editar">
+                                    <a href="editar.php?txtID=<?php echo $registro['id_usuario']; ?>&rol_usuario=<?php echo $registro['id_rol']; ?>">
+                                        <span>Editar</span>
+                                        <span></span>
+                                    </a>
+                                </button>
 
-                            if (strlen($contenido) > $limite_letras) {
-                                $contenido_limitado = substr($contenido, 0, $limite_letras) . '...';
-                                echo $contenido_limitado;
-                            } else {
-                                echo $contenido;
-                            }
-                            ?>
-                        </td>
-                        <td>
-                            <?php
-                            $numero = $registro['celular'];
-                            $limite_digitos = 10;
-
-                            if (strlen((string)$numero) > $limite_digitos) {
-                                $numero_limitado = number_format($numero, 0, '', '');
-                                echo substr($numero_limitado, 0, $limite_digitos) . '...';
-                            } else {
-                                echo $numero;
-                            }
-                            ?>
-                        </td>
-                        <td><?php echo $registro['id_rol']; ?></td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="dropbtn" id="dropdownBtn">Opciones</button>
-                                <div class="dropdown-content" id="myDropdown">
-                                    <button class="animated-button-ver">
-                                        <a href="ver_usuario.php?txtID=<?php echo $registro['id_usuario']; ?>&id_rol=<?php echo $registro['id_rol']; ?>">
-                                            <span>Ver</span>
-                                            <span></span>
-                                        </a>
-                                    </button>
-
-                                    <button class="animated-button-editar">
-                                        <a href="editar.php?txtID=<?php echo $registro['id_usuario']; ?>">
-                                            <span>Editar</span>
-                                            <span></span>
-                                        </a>
-                                    </button>
-
-                                    <button class="animated-button-eliminar">
-                                        <a href="javascript:borrar(<?php echo $registro['id_usuario']; ?>);">
-                                            <span>Eliminar</span>
-                                            <span></span>
-                                        </a>
-                                    </button>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                <?php } ?>
+                                <button class="animated-button-eliminar">
+                                    <a href="javascript:borrar(<?php echo $registro['id_usuario']; ?>, '<?php echo $registro['id_rol']; ?>');">
+                                        <span>Eliminar</span>
+                                        <span></span>
+                                    </a>
+                                </button>
+                            </td>
+                        </tr>
+                <?php }
+                } ?>
             </tbody>
         </table>
     </div>
@@ -476,7 +453,7 @@ $informacion = $info_u->fetchAll(PDO::FETCH_ASSOC);
             }
         }).fire({
             icon: 'success',
-            title: 'Cuenta como administrador registrada correctamente.'
+            title: 'Administrador registrado correctamente.'
         })
 
     }

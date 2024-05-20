@@ -45,13 +45,13 @@ foreach ($lista_tbl_productos as $registro) {
         <p><strong><?php echo $nombre; ?></p></strong>
         <br>
         <?php if ($descuento > 0) { ?>
-            <span><del>$<?php echo number_format($precio, 2, '.', '.'); ?></del></span>
+            <span><del>$<?php echo number_format($precio, 0, '.', '.'); ?></del></span>
             <h3 style="color: #258555;">
-                $<?php echo number_format($precio_desc, 2, '.', '.'); ?>
+                $<?php echo number_format($precio_desc, 0, '.', '.'); ?>
             </h3>
         <?php } else { ?>
             <span style="font-size: 20px;">
-                $<?php echo number_format($precio, 2, '.', '.'); ?></del></span>
+                $<?php echo number_format($precio, 0, '.', '.'); ?></del></span>
             </span>
         <?php
         }  ?>

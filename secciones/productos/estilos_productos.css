@@ -25,7 +25,7 @@ body {
 }
 
 .container_parrafos .precio_descuento3 {
-  color: #258555;
+  color: #65279f;
   font-weight: 800;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -89,11 +89,11 @@ a {
   z-index: 3000000000000;
 }
 
-#btn-modal:checked ~ .container-modal {
+#btn-modal:checked~.container-modal {
   display: flex;
 }
 
-#btn-modal:checked ~ .body {
+#btn-modal:checked~.body {
   overflow: hidden;
 }
 
@@ -959,15 +959,21 @@ a {
 .inputs {
   width: 70%;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 }
 
-.inputs input {
+.inputs .info_usuario_inputs{
   width: 276px;
-  height: 39px;
+  height: 36px;
   border-radius: 10px;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  background-color: #ededed;
+  border: 3px solid #d9d9d9;
 }
 
 .cabecera_principal {
@@ -1029,6 +1035,7 @@ th {
   display: flex;
   justify-content: space-around;
   margin-bottom: 28px;
+  width: 100%;
 }
 
 .opciones .botones_sc {
@@ -1249,11 +1256,9 @@ td {
 }
 
 .informacion_detalle_compraa {
-  margin-top: 20px;
-  margin-left: 45px;
-  padding-top: 35px;
-  width: 90%;
+  width: 100%;
   text-align: center;
+  overflow: hidden;
 }
 
 .informacion_detalle_compraa img {
@@ -1340,36 +1345,6 @@ td {
   font-size: 15px;
   font-weight: bold;
   margin-bottom: 5px;
-}
-
-/* Estilos para los botones de paginación */
-#paginacion {
-  margin-top: 25px;
-  display: flex;
-  justify-content: center;
-  background-color: #d5d5d5;
-  padding: 7px;
-  border-radius: 10px;
-}
-
-#paginacion button {
-  padding: 8px 16px;
-  margin: 0 4px;
-  border: none;
-  border-radius: 4px;
-  background-color: #53317387;
-  color: #fff;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-#paginacion button:hover {
-  background-color: #533173;
-}
-
-#paginacion button.active {
-  background-color: #533173;
 }
 
 .custom-select {
@@ -1484,8 +1459,501 @@ td {
   box-shadow: 6px 6px 15px rgba(112, 112, 112, 0.5);
 }
 
-.crear_referenciass:hover{
+.imagen_logo {
+  position: sticky;
+  top: 580px;
+  /* Ajusta la distancia desde el borde superior según tu preferencia */
+  left: 1600px;
+  z-index: 100;
+  width: 155px;
+  background-color: transparent;
+  margin-bottom: -168px;
+}
 
+.imagen_logo img {
+  height: 140px;
+}
+
+.container_busqueda {
+  margin: 30px;
+  width: 80%;
+  position: relative;
+  left: 170px;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  position: relative;
+  left: 20px;
+  top: -10px;
+}
+
+.input {
+  border-style: none;
+  height: 50px;
+  width: 50px;
+  padding: 10px;
+  outline: none;
+  border-radius: 50%;
+  transition: .5s ease-in-out;
+  box-shadow: 0px 0px 3px #f3f3f3;
+  padding-right: 40px;
+  color: #258555;
+  background-color: transparent;
+}
+
+.input::placeholder,
+.input {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 17px;
+}
+
+.input::placeholder {
+  color: #8f8f8f;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 0px;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  outline: none;
+  border-style: none;
+  border-radius: 50%;
+  pointer-events: painted;
+  background-color: #533173;
+  transition: .2s linear;
+}
+
+.icon:focus~.input,
+.input:focus {
+  box-shadow: none;
+  width: 250px;
+  border-radius: 0px;
+  border-bottom: 2px solid #050308;
+  border-top: transparent;
+  border-left: transparent;
+  border-right: transparent;
+  transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+  color: #000000;
+}
+
+@keyframes slide-in-top {
+  0% {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+.btnes {
+  display: flex;
+  justify-content: space-between;
+  width: 235px;
+  position: static;
+  top: 10px;
+}
+
+/* ESTILOS DEL BOTON EDITAR */
+.button_editar {
+  --primary-color: #258555;
+  --secondary-color: #fff;
+  --hover-color: #111;
+  --arrow-width: 10px;
+  --arrow-stroke: 2px;
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 20px;
+  color: var(--secondary-color);
+  padding: 11px 15px;
+  background: var(--primary-color);
+  display: flex;
+  transition: 0.2s background;
+  align-items: center;
+  gap: 0.6em;
+  font-weight: bold;
+}
+
+.button_editar .arrow-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button_editar .arrow {
+  margin-top: 1px;
+  width: var(--arrow-width);
+  background: var(--primary-color);
+  height: var(--arrow-stroke);
+  position: relative;
+  transition: 0.2s;
+}
+
+.button_editar .arrow::before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  border: solid var(--secondary-color);
+  border-width: 0 var(--arrow-stroke) var(--arrow-stroke) 0;
+  display: inline-block;
+  top: -3px;
+  right: 3px;
+  transition: 0.2s;
+  padding: 3px;
+  transform: rotate(-45deg);
+}
+
+.button_editar:hover {
+  background-color: var(--hover-color);
+}
+
+.button_editar:hover .arrow {
+  background: var(--secondary-color);
+}
+
+.button_editar:hover .arrow:before {
+  right: 0;
+}
+
+/* ESTILOS DEL BOTON ELIMINAR */
+.button_eliminar {
+  --primary-color: #a10000;
+  --secondary-color: #fff;
+  --hover-color: #111;
+  --arrow-width: 10px;
+  --arrow-stroke: 2px;
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 20px;
+  color: var(--secondary-color);
+  padding: 11px 20px;
+  background: var(--primary-color);
+  display: flex;
+  transition: 0.2s background;
+  align-items: center;
+  gap: 0.6em;
+  font-weight: bold;
+}
+
+.button_eliminar .arrow-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button_eliminar .arrow {
+  margin-top: 1px;
+  width: var(--arrow-width);
+  background: var(--primary-color);
+  height: var(--arrow-stroke);
+  position: relative;
+  transition: 0.2s;
+}
+
+.button_eliminar .arrow::before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  border: solid var(--secondary-color);
+  border-width: 0 var(--arrow-stroke) var(--arrow-stroke) 0;
+  display: inline-block;
+  top: -3px;
+  right: 3px;
+  transition: 0.2s;
+  padding: 3px;
+  transform: rotate(-45deg);
+}
+
+.button_eliminar:hover {
+  background-color: var(--hover-color);
+}
+
+.button_eliminar:hover .arrow {
+  background: var(--secondary-color);
+}
+
+.button_eliminar:hover .arrow:before {
+  right: 0;
+}
+
+.productos_carrito_a {
+  margin-left: 7%;
+  background-color: rgb(255 255 255);
+  display: flex;
+  width: 95%;
+  height: 140px;
+  position: sticky;
+  top: 0px;
+  z-index: 10;
+  box-shadow: 6px 6px 15px rgba(112, 112, 112, 0.5);
+}
+
+.productos_carrito_a p {
+  color: black;
+  font-weight: 500;
+}
+
+.productos_carrito_a h3{
+  color: #533173;
+  margin-top: 20px;
+}
+
+.productos_carrito_a .prodcts1 .container_img_p {
+  background-color: rgb(255, 255, 255);
+  width: 83px;
+  height: 83px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.productos_carrito_a .prodcts1 {
+  width: 50%;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 5px;
+}
+
+.productos_carrito_a .prodcts2 {
+  width: 50%;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.productos_carrito_a .prodcts3 {
+  width: 50%;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.productos_carrito_a .prodcts1 .container_img_p img {
+  width: 180px;
+}
+
+.posicion_aprobado {
+  width: 36px;
+  position: absolute;
+  left: 135px;
+  top: 21px;
+}
+
+.ver_carrito {
+  background-color: #52c156;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: background-color 0.3s;
+  box-shadow: 6px 6px 15px rgba(112, 112, 112, 0.5);
+  margin-top: 16px;
+}
+
+.ver_carrito:hover {
+  background-color: #773fc0;
+  color: #fff;
+}
+
+.Carousel {
+  width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  position: relative;
+  left: 50px;
+  top: 20px;
+}
+
+.Carousel h2 {
+  font-size: 26px;
+  line-height: 38px;
+  padding-bottom: 24px;
+  opacity: .9;
+  text-transform: uppercase;
+  letter-spacing: 10px;
+  text-align: center;
+}
+
+/* images */
+
+.slick-list {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  height: 304px;
+  padding: 10px 0px;
+  margin: 0px auto;
+  max-width: 90vw;
+  overflow: hidden;
+}
+
+.slick-track {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  transition: .5s ease-in-out;
+}
+
+.slick {
+  position: relative;
+  width: 275px;
+  padding: 0 18px;
+  float: left;
+  box-sizing: border-box;
+  display: flex;
+  height: 100%;
+}
+
+.slick h4 {
+  position: absolute;
+  z-index: 1;
+  font-size: 22px;
+  line-height: 23px;
+  color: #fff;
+  padding: 15px;
+}
+
+.slick h4 small {
+  font-size: 15px;
+  display: block;
+}
+
+.slick a img {
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .5);
+  transition: .3s ease-in-out;
+}
+
+.slick .tamaño_imagen_carrusel {
+  width: 200px;
+  height: 300px;
+  overflow: hidden;
+}
+
+.slick a img:hover {
+  opacity: .85;
+}
+
+/* buttons */
+
+.slick-arrow {
+  border-radius: 30px;
+  background-color: #fff;
+  position: absolute;
+  z-index: 4;
+  width: 48px;
+  height: 48px;
+  text-align: center;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .15);
+  border: 0;
+  cursor: pointer;
+}
+
+.slick-arrow:focus {
+  outline: 0;
+}
+
+.slick-arrow svg {
+  width: 12px;
+  height: 100%;
+  color: rgba(0, 0, 0, .7);
+}
+
+.slick-prev {
+  left: 0px;
+}
+
+.slick-next {
+  right: 0px;
+}
+
+.slick h4 small {
+  font-size: 15px;
+  display: block;
+}
+
+.slick a img {
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .5);
+  transition: .3s ease-in-out;
+}
+
+.slick .tamaño_imagen_carrusel {
+  width: 200px;
+  height: 300px;
+  overflow: hidden;
+}
+
+.slick a img:hover {
+  opacity: .85;
+}
+
+
+.slick h4 {
+  position: absolute;
+  z-index: 1;
+  font-size: 14px;
+  line-height: 23px;
+  color: #ffffff;
+  padding: 15px;
+  background: rgb(0 0 0 / 34%);
+  width: 73%;
+  border-radius: 10px 10px 0 0;
+}
+
+
+.Carousel2 {
+  width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  position: relative;
+  left: 50px;
+  top: 20px;
+}
+
+.Carousel2 h2 {
+  font-size: 26px;
+  line-height: 38px;
+  padding-bottom: 24px;
+  opacity: .9;
+  text-transform: uppercase;
+  letter-spacing: 10px;
+  text-align: center;
+}
+
+.no_hay_carrito {
+  text-align: center;
+  font-size: 20px;
+  margin-top: 59px;
+  margin-bottom: 63px;
+  font-weight: bolder;
 }
 
 /* TERMINA */
@@ -1529,7 +1997,7 @@ td {
 
 @media screen and (min-width: 390px) and (max-width: 427px) {
   .container_producticos {
-    width: 100%;
+    width: 93%;
     display: flex;
     flex-wrap: wrap;
     margin: 30px;
@@ -1538,15 +2006,14 @@ td {
     text-decoration: none;
     border-radius: 10px;
     position: relative;
-    left: 85px;
+    left: 55px;
     justify-content: center;
-    background-color: #00499c;
   }
 
   .titulo_producto {
     position: relative;
     top: 30px;
-    left: 116px;
+    left: 20%;
     font-size: 30px;
     color: black;
   }
@@ -1591,7 +2058,7 @@ td {
 
 @media (min-width: 911px) and (max-width: 1000px) {
   .container_producticos {
-    width: 86%;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     margin: 30px;
@@ -1600,67 +2067,14 @@ td {
     text-decoration: none;
     border-radius: 10px;
     position: relative;
-    left: 85px;
+    left: 78px;
     justify-content: center;
-  }
-
-  .titulo_producto {
-    position: relative;
-    top: 30px;
-    left: 48px;
-    font-size: 30px;
-    color: black;
-  }
-
-  .container_producticos .caja2 {
-    border-radius: 5px;
-    width: 191px;
-    height: 360px;
-    cursor: default;
-    transition: all 400ms ease;
-    overflow: hidden;
-    background-color: #ffffff;
-    box-shadow: 6px 6px 15px rgba(112, 112, 112, 0.5);
-  }
-
-  .container_producticos .imagenn {
-    width: 191px;
-    height: 170px;
-  }
-
-  .Boton_oferta {
-    display: none;
-  }
-
-  .container_parrafos .precio_descuento3 {
-    display: none;
-  }
-
-  .caja2 .nombre_p {
-    color: black;
-    margin-top: 26px;
-  }
-
-  .container_parrafos .precio_descuento2 {
-    display: none;
-  }
-
-  .content-modal {
-    width: 100%;
-    max-width: 750px;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 4px;
-    position: relative;
-    left: 86px;
-    top: 28%;
-    overflow: hidden;
   }
 }
 
 @media screen and (min-width: 1200px) {
   .container_producticos {
-    width: 100%;
+    width: 90%;
     display: flex;
     flex-wrap: wrap;
     margin: 30px;
@@ -1669,7 +2083,7 @@ td {
     text-decoration: none;
     border-radius: 10px;
     position: relative;
-    left: 85px;
+    left: 77px;
     justify-content: center;
   }
 

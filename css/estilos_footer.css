@@ -17,7 +17,7 @@ body {
 }
 
 :root {
-  --color1: #135337;
+  --color1: #347937;
   --color2: #9ccb9e;
   --color3: #30303f;
   --fondo: #f5f7f9;
@@ -29,12 +29,6 @@ footer {
   padding: 50px 0px;
   background-image: url(../imagen/background-footer.svg);
   background-size: cover;
-
-  /*background-color: #d0f0f8;
-    -webkit-mask-image: url("../Images/background-footer.svg");
-    mask-image: url("../Images/background-footer.svg");
-    -webkit-mask-size: cover;
-    mask-size: cover;*/
 }
 
 .container__footer {
@@ -165,7 +159,7 @@ footer hr {
   color: #959595;
 }
 
-.container__footer > div {
+.container__footer>div {
   flex: 1;
   text-align: left;
 }
@@ -184,7 +178,6 @@ footer hr {
 
 .follow-us img {
   width: 100px;
-  /* Ajusta el tamaño del logo según tus necesidades */
   margin-bottom: 10px;
 }
 
@@ -197,7 +190,6 @@ footer hr {
 
 .follow-us a:hover {
   color: #258555;
-  /* Color al pasar el ratón por encima */
 }
 
 .about-us li {
@@ -221,9 +213,9 @@ footer hr {
 
 .swiper-hero {
   width: 100%;
-  max-width: 1400px;
+  max-width: 984px;
   position: relative;
-  left: 63px;
+  left: 47px;
   top: 10px;
 }
 
@@ -305,6 +297,7 @@ footer hr {
   opacity: 1;
   pointer-events: auto;
 }
+
 .modal_carrito_flotante .modal__container {
   height: 100%;
   padding: 30px;
@@ -356,7 +349,7 @@ footer hr {
   flex-grow: 1;
 }
 
-.modal_carrito_flotante .modal__body{
+.modal_carrito_flotante .modal__body {
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
@@ -370,7 +363,7 @@ footer hr {
   align-items: center;
 }
 
-.modal__item + .modal__item {
+.modal__item+.modal__item {
   margin-top: 20px;
 }
 
@@ -394,7 +387,7 @@ footer hr {
   border-top: 1px solid var(--border);
 }
 
-.modal__list-price ul li + li {
+.modal__list-price ul li+li {
   margin-top: 10px;
 }
 
@@ -413,11 +406,11 @@ footer hr {
   border-top: 1px solid var(--border);
 }
 
-.modal__btns a + a {
+.modal__btns a+a {
   margin-top: 15px;
 }
 
-.modal_carrito_flotante img{
+.modal_carrito_flotante img {
   max-width: 100%;
 }
 
@@ -466,16 +459,16 @@ footer hr {
   color: #fff;
 }
 
-.mensaje-carrito-vacio{
+.mensaje-carrito-vacio {
   padding: 30px;
   margin-top: 67px;
 }
 
-.mensaje-carrito-vacio img{
+.mensaje-carrito-vacio img {
   width: 230px;
 }
 
-.mensaje-carrito-vacio p{
+.mensaje-carrito-vacio p {
   text-align: center;
   font-weight: 600;
   font-size: 14px;
@@ -560,12 +553,21 @@ footer hr {
 }
 
 @media screen and (min-width: 1600px) and (max-width: 1899px) {
+  /* .swiper-hero {
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+    left: 132px;
+    top: 16px;
+  } */
+
   .swiper-hero {
     width: 100%;
-    max-width: 1770px;
+    max-width: 100%;
     position: relative;
-    left: 50px;
-    top: 10px;
+    top: -31%;
+    left: 50%;
+    transform: translate(-43%, 7%);
   }
 
   .swiper-hero img {
